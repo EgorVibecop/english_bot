@@ -1,0 +1,1108 @@
+[
+  {
+    "tense": "Present Simple",
+    "tense_ru": "Настоящее простое",
+    "sentence": "She ___ a good person.",
+    "answers": [
+      "is",
+      "'s"
+    ],
+    "translation": "Она хороший человек."
+  },
+  {
+    "tense": "Present Simple",
+    "tense_ru": "Настоящее простое",
+    "sentence": "I ___ ready for the exam.",
+    "answers": [
+      "am",
+      "'m"
+    ],
+    "translation": "Я готов(а) к экзамену."
+  },
+  {
+    "tense": "Present Simple",
+    "tense_ru": "Настоящее простое",
+    "sentence": "They ___ from Canada.",
+    "answers": [
+      "are",
+      "'re"
+    ],
+    "translation": "Они из Канады."
+  },
+  {
+    "tense": "Present Simple",
+    "tense_ru": "Настоящее простое",
+    "sentence": "He ___ to work every day. (go)",
+    "answers": [
+      "goes"
+    ],
+    "translation": "Он ходит на работу каждый день."
+  },
+  {
+    "tense": "Present Simple",
+    "tense_ru": "Настоящее простое",
+    "sentence": "We ___ breakfast at 8 every morning. (have)",
+    "answers": [
+      "have"
+    ],
+    "translation": "Мы завтракаем в 8 каждое утро."
+  },
+  {
+    "tense": "Present Simple",
+    "tense_ru": "Настоящее простое",
+    "sentence": "The shops ___ closed on Sundays.",
+    "answers": [
+      "are",
+      "'re"
+    ],
+    "translation": "Магазины закрыты по воскресеньям."
+  },
+  {
+    "tense": "Present Simple",
+    "tense_ru": "Настоящее простое",
+    "sentence": "My sister ___ English very well. (speak)",
+    "answers": [
+      "speaks"
+    ],
+    "translation": "Моя сестра очень хорошо говорит по-английски."
+  },
+  {
+    "tense": "Present Simple",
+    "tense_ru": "Настоящее простое",
+    "sentence": "It ___ cold here in winter.",
+    "answers": [
+      "is",
+      "'s"
+    ],
+    "translation": "Здесь холодно зимой."
+  },
+  {
+    "tense": "Present Simple",
+    "tense_ru": "Настоящее простое",
+    "sentence": "You ___ always late!",
+    "answers": [
+      "are",
+      "'re"
+    ],
+    "translation": "Ты вечно опаздываешь!"
+  },
+  {
+    "tense": "Present Simple",
+    "tense_ru": "Настоящее простое",
+    "sentence": "Water ___ at 100 degrees Celsius. (boil)",
+    "answers": [
+      "boils"
+    ],
+    "translation": "Вода кипит при 100 градусах Цельсия."
+  },
+  {
+    "tense": "Present Continuous",
+    "tense_ru": "Настоящее продолженное",
+    "sentence": "I ___ going to the cinema today.",
+    "answers": [
+      "am",
+      "'m"
+    ],
+    "translation": "Я иду в кино сегодня."
+  },
+  {
+    "tense": "Present Continuous",
+    "tense_ru": "Настоящее продолженное",
+    "sentence": "She ___ studying for her exam right now.",
+    "answers": [
+      "is",
+      "'s"
+    ],
+    "translation": "Она сейчас готовится к экзамену."
+  },
+  {
+    "tense": "Present Continuous",
+    "tense_ru": "Настоящее продолженное",
+    "sentence": "We ___ having dinner at the moment.",
+    "answers": [
+      "are",
+      "'re"
+    ],
+    "translation": "Мы сейчас ужинаем."
+  },
+  {
+    "tense": "Present Continuous",
+    "tense_ru": "Настоящее продолженное",
+    "sentence": "They ___ playing football outside.",
+    "answers": [
+      "are",
+      "'re"
+    ],
+    "translation": "Они играют в футбол на улице."
+  },
+  {
+    "tense": "Present Continuous",
+    "tense_ru": "Настоящее продолженное",
+    "sentence": "He ___ working from home this week.",
+    "answers": [
+      "is",
+      "'s"
+    ],
+    "translation": "Он работает из дома на этой неделе."
+  },
+  {
+    "tense": "Present Continuous",
+    "tense_ru": "Настоящее продолженное",
+    "sentence": "I ___ not listening, sorry, can you repeat?",
+    "answers": [
+      "am",
+      "'m"
+    ],
+    "translation": "Я не слушаю, извини, повторишь?"
+  },
+  {
+    "tense": "Present Continuous",
+    "tense_ru": "Настоящее продолженное",
+    "sentence": "The children ___ sleeping now.",
+    "answers": [
+      "are",
+      "'re"
+    ],
+    "translation": "Дети сейчас спят."
+  },
+  {
+    "tense": "Present Continuous",
+    "tense_ru": "Настоящее продолженное",
+    "sentence": "You ___ standing on my foot!",
+    "answers": [
+      "are",
+      "'re"
+    ],
+    "translation": "Ты стоишь на моей ноге!"
+  },
+  {
+    "tense": "Present Continuous",
+    "tense_ru": "Настоящее продолженное",
+    "sentence": "It ___ raining outside right now.",
+    "answers": [
+      "is",
+      "'s"
+    ],
+    "translation": "На улице сейчас идёт дождь."
+  },
+  {
+    "tense": "Present Continuous",
+    "tense_ru": "Настоящее продолженное",
+    "sentence": "My parents ___ visiting us this weekend.",
+    "answers": [
+      "are",
+      "'re"
+    ],
+    "translation": "Мои родители приезжают к нам в гости на этих выходных."
+  },
+  {
+    "tense": "Past Simple",
+    "tense_ru": "Прошедшее простое",
+    "sentence": "She ___ tired yesterday.",
+    "answers": [
+      "was"
+    ],
+    "translation": "Она вчера устала."
+  },
+  {
+    "tense": "Past Simple",
+    "tense_ru": "Прошедшее простое",
+    "sentence": "I ___ at home last night.",
+    "answers": [
+      "was"
+    ],
+    "translation": "Вчера вечером я был(а) дома."
+  },
+  {
+    "tense": "Past Simple",
+    "tense_ru": "Прошедшее простое",
+    "sentence": "They ___ happy with the results.",
+    "answers": [
+      "were"
+    ],
+    "translation": "Они были довольны результатами."
+  },
+  {
+    "tense": "Past Simple",
+    "tense_ru": "Прошедшее простое",
+    "sentence": "We ___ to the cinema last Friday. (go)",
+    "answers": [
+      "went"
+    ],
+    "translation": "Мы ходили в кино в прошлую пятницу."
+  },
+  {
+    "tense": "Past Simple",
+    "tense_ru": "Прошедшее простое",
+    "sentence": "He ___ his homework before dinner. (finish)",
+    "answers": [
+      "finished"
+    ],
+    "translation": "Он закончил домашнее задание перед ужином."
+  },
+  {
+    "tense": "Past Simple",
+    "tense_ru": "Прошедшее простое",
+    "sentence": "You ___ late for the meeting yesterday.",
+    "answers": [
+      "were"
+    ],
+    "translation": "Ты вчера опоздал(а) на встречу."
+  },
+  {
+    "tense": "Past Simple",
+    "tense_ru": "Прошедшее простое",
+    "sentence": "I ___ a strange dream last night. (have)",
+    "answers": [
+      "had"
+    ],
+    "translation": "Мне приснился странный сон прошлой ночью."
+  },
+  {
+    "tense": "Past Simple",
+    "tense_ru": "Прошедшее простое",
+    "sentence": "The weather ___ terrible last week.",
+    "answers": [
+      "was"
+    ],
+    "translation": "Погода была ужасной на прошлой неделе."
+  },
+  {
+    "tense": "Past Simple",
+    "tense_ru": "Прошедшее простое",
+    "sentence": "She ___ a letter to her friend. (write)",
+    "answers": [
+      "wrote"
+    ],
+    "translation": "Она написала письмо своей подруге."
+  },
+  {
+    "tense": "Past Simple",
+    "tense_ru": "Прошедшее простое",
+    "sentence": "They ___ football in the park yesterday. (play)",
+    "answers": [
+      "played"
+    ],
+    "translation": "Они играли в футбол в парке вчера."
+  },
+  {
+    "tense": "Past Continuous",
+    "tense_ru": "Прошедшее продолженное",
+    "sentence": "I ___ watching TV when you called.",
+    "answers": [
+      "was"
+    ],
+    "translation": "Я смотрел(а) телевизор, когда ты позвонил(а)."
+  },
+  {
+    "tense": "Past Continuous",
+    "tense_ru": "Прошедшее продолженное",
+    "sentence": "They ___ sleeping when the phone rang.",
+    "answers": [
+      "were"
+    ],
+    "translation": "Они спали, когда зазвонил телефон."
+  },
+  {
+    "tense": "Past Continuous",
+    "tense_ru": "Прошедшее продолженное",
+    "sentence": "She ___ cooking dinner at 7 pm yesterday.",
+    "answers": [
+      "was"
+    ],
+    "translation": "Она готовила ужин в 7 вечера вчера."
+  },
+  {
+    "tense": "Past Continuous",
+    "tense_ru": "Прошедшее продолженное",
+    "sentence": "We ___ walking home when it started to rain.",
+    "answers": [
+      "were"
+    ],
+    "translation": "Мы шли домой, когда начался дождь."
+  },
+  {
+    "tense": "Past Continuous",
+    "tense_ru": "Прошедшее продолженное",
+    "sentence": "He ___ working when I visited him.",
+    "answers": [
+      "was"
+    ],
+    "translation": "Он работал, когда я его навестил(а)."
+  },
+  {
+    "tense": "Past Continuous",
+    "tense_ru": "Прошедшее продолженное",
+    "sentence": "It ___ raining all day yesterday.",
+    "answers": [
+      "was"
+    ],
+    "translation": "Вчера весь день шёл дождь."
+  },
+  {
+    "tense": "Past Continuous",
+    "tense_ru": "Прошедшее продолженное",
+    "sentence": "You ___ talking too loudly during the movie.",
+    "answers": [
+      "were"
+    ],
+    "translation": "Ты слишком громко разговаривал(а) во время фильма."
+  },
+  {
+    "tense": "Past Continuous",
+    "tense_ru": "Прошедшее продолженное",
+    "sentence": "The kids ___ playing outside when the storm began.",
+    "answers": [
+      "were"
+    ],
+    "translation": "Дети играли на улице, когда начался шторм."
+  },
+  {
+    "tense": "Past Continuous",
+    "tense_ru": "Прошедшее продолженное",
+    "sentence": "I ___ not paying attention during the lesson.",
+    "answers": [
+      "was"
+    ],
+    "translation": "Я не был(а) внимателен(на) во время урока."
+  },
+  {
+    "tense": "Past Continuous",
+    "tense_ru": "Прошедшее продолженное",
+    "sentence": "My parents ___ waiting for us at the station.",
+    "answers": [
+      "were"
+    ],
+    "translation": "Мои родители ждали нас на станции."
+  },
+  {
+    "tense": "Present Perfect",
+    "tense_ru": "Настоящее совершенное",
+    "sentence": "She ___ already finished her homework.",
+    "answers": [
+      "has"
+    ],
+    "translation": "Она уже закончила домашнее задание."
+  },
+  {
+    "tense": "Present Perfect",
+    "tense_ru": "Настоящее совершенное",
+    "sentence": "I ___ never been to Japan.",
+    "answers": [
+      "have"
+    ],
+    "translation": "Я никогда не был(а) в Японии."
+  },
+  {
+    "tense": "Present Perfect",
+    "tense_ru": "Настоящее совершенное",
+    "sentence": "They ___ just arrived at the airport.",
+    "answers": [
+      "have"
+    ],
+    "translation": "Они только что прибыли в аэропорт."
+  },
+  {
+    "tense": "Present Perfect",
+    "tense_ru": "Настоящее совершенное",
+    "sentence": "He ___ lost his keys again.",
+    "answers": [
+      "has"
+    ],
+    "translation": "Он снова потерял ключи."
+  },
+  {
+    "tense": "Present Perfect",
+    "tense_ru": "Настоящее совершенное",
+    "sentence": "We ___ known each other for ten years.",
+    "answers": [
+      "have"
+    ],
+    "translation": "Мы знаем друг друга уже десять лет."
+  },
+  {
+    "tense": "Present Perfect",
+    "tense_ru": "Настоящее совершенное",
+    "sentence": "You ___ grown so much!",
+    "answers": [
+      "have"
+    ],
+    "translation": "Ты так вырос(ла)!"
+  },
+  {
+    "tense": "Present Perfect",
+    "tense_ru": "Настоящее совершенное",
+    "sentence": "It ___ been a long day.",
+    "answers": [
+      "has"
+    ],
+    "translation": "Это был долгий день."
+  },
+  {
+    "tense": "Present Perfect",
+    "tense_ru": "Настоящее совершенное",
+    "sentence": "My brother ___ already left for work.",
+    "answers": [
+      "has"
+    ],
+    "translation": "Мой брат уже уехал на работу."
+  },
+  {
+    "tense": "Present Perfect",
+    "tense_ru": "Настоящее совершенное",
+    "sentence": "I ___ seen this movie three times.",
+    "answers": [
+      "have"
+    ],
+    "translation": "Я смотрел(а) этот фильм три раза."
+  },
+  {
+    "tense": "Present Perfect",
+    "tense_ru": "Настоящее совершенное",
+    "sentence": "The students ___ finished their exams.",
+    "answers": [
+      "have"
+    ],
+    "translation": "Студенты закончили экзамены."
+  },
+  {
+    "tense": "Past Perfect",
+    "tense_ru": "Прошедшее совершенное",
+    "sentence": "I ___ already left when he arrived.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Я уже ушёл(ушла), когда он пришёл."
+  },
+  {
+    "tense": "Past Perfect",
+    "tense_ru": "Прошедшее совершенное",
+    "sentence": "She ___ never seen snow before that winter.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Она никогда не видела снег до той зимы."
+  },
+  {
+    "tense": "Past Perfect",
+    "tense_ru": "Прошедшее совершенное",
+    "sentence": "They ___ finished dinner before we came.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Они закончили ужинать до того, как мы пришли."
+  },
+  {
+    "tense": "Past Perfect",
+    "tense_ru": "Прошедшее совершенное",
+    "sentence": "He ___ studied English before he moved to London.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Он изучал английский до того, как переехал в Лондон."
+  },
+  {
+    "tense": "Past Perfect",
+    "tense_ru": "Прошедшее совершенное",
+    "sentence": "We ___ just sat down when the phone rang.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Мы только что сели, когда зазвонил телефон."
+  },
+  {
+    "tense": "Past Perfect",
+    "tense_ru": "Прошедшее совершенное",
+    "sentence": "You ___ warned me, but I didn't listen.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Ты предупреждал(а) меня, но я не послушал(а)."
+  },
+  {
+    "tense": "Past Perfect",
+    "tense_ru": "Прошедшее совершенное",
+    "sentence": "The train ___ already left by the time we got there.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Поезд уже уехал к тому времени, как мы туда добрались."
+  },
+  {
+    "tense": "Past Perfect",
+    "tense_ru": "Прошедшее совершенное",
+    "sentence": "I ___ never met him before that party.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Я никогда не встречал(а) его до той вечеринки."
+  },
+  {
+    "tense": "Past Perfect",
+    "tense_ru": "Прошедшее совершенное",
+    "sentence": "She ___ forgotten her umbrella at home.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Она забыла зонт дома."
+  },
+  {
+    "tense": "Past Perfect",
+    "tense_ru": "Прошедшее совершенное",
+    "sentence": "They ___ lived there for years before moving.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Они прожили там много лет, прежде чем переехать."
+  },
+  {
+    "tense": "Future Simple",
+    "tense_ru": "Будущее простое",
+    "sentence": "We ___ visit Paris next year.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Мы посетим Париж в следующем году."
+  },
+  {
+    "tense": "Future Simple",
+    "tense_ru": "Будущее простое",
+    "sentence": "I ___ call you tomorrow.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Я позвоню тебе завтра."
+  },
+  {
+    "tense": "Future Simple",
+    "tense_ru": "Будущее простое",
+    "sentence": "She ___ be happy to see you.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Она будет рада тебя видеть."
+  },
+  {
+    "tense": "Future Simple",
+    "tense_ru": "Будущее простое",
+    "sentence": "They ___ arrive at noon.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Они прибудут в полдень."
+  },
+  {
+    "tense": "Future Simple",
+    "tense_ru": "Будущее простое",
+    "sentence": "It ___ probably rain later.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Наверное, позже пойдёт дождь."
+  },
+  {
+    "tense": "Future Simple",
+    "tense_ru": "Будущее простое",
+    "sentence": "He ___ help you with the project.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Он поможет тебе с проектом."
+  },
+  {
+    "tense": "Future Simple",
+    "tense_ru": "Будущее простое",
+    "sentence": "You ___ love this restaurant.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Тебе понравится этот ресторан."
+  },
+  {
+    "tense": "Future Simple",
+    "tense_ru": "Будущее простое",
+    "sentence": "I ___ never forget this day.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Я никогда не забуду этот день."
+  },
+  {
+    "tense": "Future Simple",
+    "tense_ru": "Будущее простое",
+    "sentence": "We ___ finish the report by Friday.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Мы закончим отчёт к пятнице."
+  },
+  {
+    "tense": "Future Simple",
+    "tense_ru": "Будущее простое",
+    "sentence": "The train ___ leave in ten minutes.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Поезд отправится через десять минут."
+  },
+  {
+    "tense": "Future Continuous",
+    "tense_ru": "Будущее продолженное",
+    "sentence": "This time tomorrow, I ___ flying to New York.",
+    "answers": [
+      "will be"
+    ],
+    "translation": "Завтра в это же время я буду лететь в Нью-Йорк."
+  },
+  {
+    "tense": "Future Continuous",
+    "tense_ru": "Будущее продолженное",
+    "sentence": "At 9 pm, she ___ watching her favorite show.",
+    "answers": [
+      "will be"
+    ],
+    "translation": "В 9 вечера она будет смотреть своё любимое шоу."
+  },
+  {
+    "tense": "Future Continuous",
+    "tense_ru": "Будущее продолженное",
+    "sentence": "Next week, we ___ traveling around Europe.",
+    "answers": [
+      "will be"
+    ],
+    "translation": "На следующей неделе мы будем путешествовать по Европе."
+  },
+  {
+    "tense": "Future Continuous",
+    "tense_ru": "Будущее продолженное",
+    "sentence": "He ___ working late tonight.",
+    "answers": [
+      "will be"
+    ],
+    "translation": "Он будет работать допоздна сегодня вечером."
+  },
+  {
+    "tense": "Future Continuous",
+    "tense_ru": "Будущее продолженное",
+    "sentence": "They ___ waiting for us at the airport.",
+    "answers": [
+      "will be"
+    ],
+    "translation": "Они будут ждать нас в аэропорту."
+  },
+  {
+    "tense": "Future Continuous",
+    "tense_ru": "Будущее продолженное",
+    "sentence": "At noon, I ___ having lunch with my boss.",
+    "answers": [
+      "will be"
+    ],
+    "translation": "В полдень я буду обедать с начальником."
+  },
+  {
+    "tense": "Future Continuous",
+    "tense_ru": "Будущее продолженное",
+    "sentence": "This time next year, they ___ living abroad.",
+    "answers": [
+      "will be"
+    ],
+    "translation": "В это же время в следующем году они будут жить за границей."
+  },
+  {
+    "tense": "Future Continuous",
+    "tense_ru": "Будущее продолженное",
+    "sentence": "She ___ studying when you arrive.",
+    "answers": [
+      "will be"
+    ],
+    "translation": "Она будет заниматься, когда ты придёшь."
+  },
+  {
+    "tense": "Future Continuous",
+    "tense_ru": "Будущее продолженное",
+    "sentence": "We ___ celebrating your birthday this time next week.",
+    "answers": [
+      "will be"
+    ],
+    "translation": "На следующей неделе в это же время мы будем отмечать твой день рождения."
+  },
+  {
+    "tense": "Future Continuous",
+    "tense_ru": "Будущее продолженное",
+    "sentence": "He ___ driving to the airport at 6 am.",
+    "answers": [
+      "will be"
+    ],
+    "translation": "Он будет ехать в аэропорт в 6 утра."
+  },
+  {
+    "tense": "Present Perfect Continuous",
+    "tense_ru": "Настоящее совершенное продолженное",
+    "sentence": "I ___ waiting for you for an hour.",
+    "answers": [
+      "have been"
+    ],
+    "translation": "Я жду тебя уже час."
+  },
+  {
+    "tense": "Present Perfect Continuous",
+    "tense_ru": "Настоящее совершенное продолженное",
+    "sentence": "She ___ working here since 2019.",
+    "answers": [
+      "has been"
+    ],
+    "translation": "Она работает здесь с 2019 года."
+  },
+  {
+    "tense": "Present Perfect Continuous",
+    "tense_ru": "Настоящее совершенное продолженное",
+    "sentence": "They ___ studying English for two years.",
+    "answers": [
+      "have been"
+    ],
+    "translation": "Они изучают английский уже два года."
+  },
+  {
+    "tense": "Present Perfect Continuous",
+    "tense_ru": "Настоящее совершенное продолженное",
+    "sentence": "He ___ living in London for six months.",
+    "answers": [
+      "has been"
+    ],
+    "translation": "Он живёт в Лондоне уже полгода."
+  },
+  {
+    "tense": "Present Perfect Continuous",
+    "tense_ru": "Настоящее совершенное продолженное",
+    "sentence": "We ___ trying to reach you all day.",
+    "answers": [
+      "have been"
+    ],
+    "translation": "Мы весь день пытаемся до тебя дозвониться."
+  },
+  {
+    "tense": "Present Perfect Continuous",
+    "tense_ru": "Настоящее совершенное продолженное",
+    "sentence": "It ___ raining since morning.",
+    "answers": [
+      "has been"
+    ],
+    "translation": "Дождь идёт с самого утра."
+  },
+  {
+    "tense": "Present Perfect Continuous",
+    "tense_ru": "Настоящее совершенное продолженное",
+    "sentence": "You ___ practicing a lot lately.",
+    "answers": [
+      "have been"
+    ],
+    "translation": "Ты много тренируешься в последнее время."
+  },
+  {
+    "tense": "Present Perfect Continuous",
+    "tense_ru": "Настоящее совершенное продолженное",
+    "sentence": "My sister ___ learning to drive this month.",
+    "answers": [
+      "has been"
+    ],
+    "translation": "Моя сестра учится водить в этом месяце."
+  },
+  {
+    "tense": "Present Perfect Continuous",
+    "tense_ru": "Настоящее совершенное продолженное",
+    "sentence": "I ___ feeling tired all week.",
+    "answers": [
+      "have been"
+    ],
+    "translation": "Я чувствую усталость всю неделю."
+  },
+  {
+    "tense": "Present Perfect Continuous",
+    "tense_ru": "Настоящее совершенное продолженное",
+    "sentence": "The children ___ playing outside for hours.",
+    "answers": [
+      "have been"
+    ],
+    "translation": "Дети играют на улице уже несколько часов."
+  },
+  {
+    "tense": "Past Perfect Continuous",
+    "tense_ru": "Прошедшее совершенное продолженное",
+    "sentence": "I ___ waiting for an hour before she arrived.",
+    "answers": [
+      "had been"
+    ],
+    "translation": "Я ждал(а) уже час, прежде чем она пришла."
+  },
+  {
+    "tense": "Past Perfect Continuous",
+    "tense_ru": "Прошедшее совершенное продолженное",
+    "sentence": "She ___ working there for years before she quit.",
+    "answers": [
+      "had been"
+    ],
+    "translation": "Она проработала там много лет, прежде чем уволилась."
+  },
+  {
+    "tense": "Past Perfect Continuous",
+    "tense_ru": "Прошедшее совершенное продолженное",
+    "sentence": "They ___ studying all night before the exam.",
+    "answers": [
+      "had been"
+    ],
+    "translation": "Они занимались всю ночь перед экзаменом."
+  },
+  {
+    "tense": "Past Perfect Continuous",
+    "tense_ru": "Прошедшее совершенное продолженное",
+    "sentence": "He ___ living in Paris before he moved to London.",
+    "answers": [
+      "had been"
+    ],
+    "translation": "Он жил в Париже, прежде чем переехал в Лондон."
+  },
+  {
+    "tense": "Past Perfect Continuous",
+    "tense_ru": "Прошедшее совершенное продолженное",
+    "sentence": "We ___ walking for hours when we finally found the hotel.",
+    "answers": [
+      "had been"
+    ],
+    "translation": "Мы шли уже несколько часов, когда наконец нашли отель."
+  },
+  {
+    "tense": "Past Perfect Continuous",
+    "tense_ru": "Прошедшее совершенное продолженное",
+    "sentence": "It ___ raining all day before it finally stopped.",
+    "answers": [
+      "had been"
+    ],
+    "translation": "Дождь шёл весь день, прежде чем наконец прекратился."
+  },
+  {
+    "tense": "Past Perfect Continuous",
+    "tense_ru": "Прошедшее совершенное продолженное",
+    "sentence": "You ___ practicing hard before the competition.",
+    "answers": [
+      "had been"
+    ],
+    "translation": "Ты усердно тренировался(лась) перед соревнованием."
+  },
+  {
+    "tense": "Past Perfect Continuous",
+    "tense_ru": "Прошедшее совершенное продолженное",
+    "sentence": "My parents ___ waiting for news for days.",
+    "answers": [
+      "had been"
+    ],
+    "translation": "Мои родители ждали новостей несколько дней."
+  },
+  {
+    "tense": "Past Perfect Continuous",
+    "tense_ru": "Прошедшее совершенное продолженное",
+    "sentence": "I ___ feeling sick before I saw the doctor.",
+    "answers": [
+      "had been"
+    ],
+    "translation": "Я чувствовал(а) себя плохо, прежде чем пошёл(шла) к врачу."
+  },
+  {
+    "tense": "Past Perfect Continuous",
+    "tense_ru": "Прошедшее совершенное продолженное",
+    "sentence": "The team ___ training for months before the championship.",
+    "answers": [
+      "had been"
+    ],
+    "translation": "Команда тренировалась несколько месяцев перед чемпионатом."
+  },
+  {
+    "tense": "Future Perfect",
+    "tense_ru": "Будущее совершенное",
+    "sentence": "By next year, I ___ finished my degree.",
+    "answers": [
+      "will have"
+    ],
+    "translation": "К следующему году я закончу учёбу (получу диплом)."
+  },
+  {
+    "tense": "Future Perfect",
+    "tense_ru": "Будущее совершенное",
+    "sentence": "By the time you arrive, we ___ already left.",
+    "answers": [
+      "will have"
+    ],
+    "translation": "К тому времени, как ты приедешь, мы уже уедем."
+  },
+  {
+    "tense": "Future Perfect",
+    "tense_ru": "Будущее совершенное",
+    "sentence": "She ___ completed the project by Friday.",
+    "answers": [
+      "will have"
+    ],
+    "translation": "Она завершит проект к пятнице."
+  },
+  {
+    "tense": "Future Perfect",
+    "tense_ru": "Будущее совершенное",
+    "sentence": "By 2030, they ___ built the new stadium.",
+    "answers": [
+      "will have"
+    ],
+    "translation": "К 2030 году они построят новый стадион."
+  },
+  {
+    "tense": "Future Perfect",
+    "tense_ru": "Будущее совершенное",
+    "sentence": "He ___ finished his homework by dinner.",
+    "answers": [
+      "will have"
+    ],
+    "translation": "Он закончит домашнее задание к ужину."
+  },
+  {
+    "tense": "Future Perfect",
+    "tense_ru": "Будущее совершенное",
+    "sentence": "By next month, we ___ moved to our new house.",
+    "answers": [
+      "will have"
+    ],
+    "translation": "К следующему месяцу мы переедем в новый дом."
+  },
+  {
+    "tense": "Future Perfect",
+    "tense_ru": "Будущее совершенное",
+    "sentence": "By the end of the year, I ___ saved enough money.",
+    "answers": [
+      "will have"
+    ],
+    "translation": "К концу года я накоплю достаточно денег."
+  },
+  {
+    "tense": "Future Perfect",
+    "tense_ru": "Будущее совершенное",
+    "sentence": "By then, the train ___ already departed.",
+    "answers": [
+      "will have"
+    ],
+    "translation": "К тому времени поезд уже отправится."
+  },
+  {
+    "tense": "Future Perfect",
+    "tense_ru": "Будущее совершенное",
+    "sentence": "By tomorrow, she ___ read the whole book.",
+    "answers": [
+      "will have"
+    ],
+    "translation": "К завтрашнему дню она прочитает всю книгу."
+  },
+  {
+    "tense": "Future Perfect",
+    "tense_ru": "Будущее совершенное",
+    "sentence": "By next week, they ___ signed the contract.",
+    "answers": [
+      "will have"
+    ],
+    "translation": "К следующей неделе они подпишут контракт."
+  },
+  {
+    "tense": "Future Perfect Continuous",
+    "tense_ru": "Будущее совершенное продолженное",
+    "sentence": "By next year, I ___ working here for a decade.",
+    "answers": [
+      "will have been"
+    ],
+    "translation": "К следующему году я буду работать здесь уже десять лет."
+  },
+  {
+    "tense": "Future Perfect Continuous",
+    "tense_ru": "Будущее совершенное продолженное",
+    "sentence": "By June, she ___ studying English for five years.",
+    "answers": [
+      "will have been"
+    ],
+    "translation": "К июню она будет изучать английский уже пять лет."
+  },
+  {
+    "tense": "Future Perfect Continuous",
+    "tense_ru": "Будущее совершенное продолженное",
+    "sentence": "By the time he retires, he ___ teaching for thirty years.",
+    "answers": [
+      "will have been"
+    ],
+    "translation": "К моменту выхода на пенсию он будет преподавать уже тридцать лет."
+  },
+  {
+    "tense": "Future Perfect Continuous",
+    "tense_ru": "Будущее совершенное продолженное",
+    "sentence": "By next month, we ___ living here for a year.",
+    "answers": [
+      "will have been"
+    ],
+    "translation": "К следующему месяцу мы будем жить здесь уже год."
+  },
+  {
+    "tense": "Future Perfect Continuous",
+    "tense_ru": "Будущее совершенное продолженное",
+    "sentence": "By tomorrow, they ___ traveling for three days straight.",
+    "answers": [
+      "will have been"
+    ],
+    "translation": "К завтрашнему дню они будут в пути уже три дня подряд."
+  },
+  {
+    "tense": "Future Perfect Continuous",
+    "tense_ru": "Будущее совершенное продолженное",
+    "sentence": "By the end of this year, I ___ working on this project for two years.",
+    "answers": [
+      "will have been"
+    ],
+    "translation": "К концу этого года я буду работать над этим проектом уже два года."
+  },
+  {
+    "tense": "Future Perfect Continuous",
+    "tense_ru": "Будущее совершенное продолженное",
+    "sentence": "By next week, it ___ raining for a month straight.",
+    "answers": [
+      "will have been"
+    ],
+    "translation": "К следующей неделе дождь будет идти уже целый месяц подряд."
+  },
+  {
+    "tense": "Future Perfect Continuous",
+    "tense_ru": "Будущее совершенное продолженное",
+    "sentence": "By the time you arrive, we ___ waiting for two hours.",
+    "answers": [
+      "will have been"
+    ],
+    "translation": "К тому времени, как ты приедешь, мы будем ждать уже два часа."
+  },
+  {
+    "tense": "Future Perfect Continuous",
+    "tense_ru": "Будущее совершенное продолженное",
+    "sentence": "By December, she ___ running the company for ten years.",
+    "answers": [
+      "will have been"
+    ],
+    "translation": "К декабрю она будет руководить компанией уже десять лет."
+  },
+  {
+    "tense": "Future Perfect Continuous",
+    "tense_ru": "Будущее совершенное продолженное",
+    "sentence": "By then, he ___ playing professionally for a decade.",
+    "answers": [
+      "will have been"
+    ],
+    "translation": "К тому времени он будет играть профессионально уже десять лет."
+  }
+]

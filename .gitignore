@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.pyc
+.env
+bot_log.txt
+seed_log.txt
