@@ -35,13 +35,15 @@ def init_db():
             translation TEXT,
             definition TEXT,
             pos TEXT,
-            source TEXT
+            source TEXT,
+            level INTEGER DEFAULT 1
         );
 
         CREATE TABLE IF NOT EXISTS users (
             user_id INTEGER PRIMARY KEY,
             username TEXT,
-            created_at TEXT
+            created_at TEXT,
+            level INTEGER DEFAULT 1
         );
 
         CREATE TABLE IF NOT EXISTS progress (
@@ -70,21 +72,22 @@ def init_db():
 
 # ---------- words ----------
 
-def upsert_word(rank, word, translation, definition, pos, source, order_index=None):
+def upsert_word(rank, word, translation, definition, pos, source, order_index=None, level=1):
     conn = get_conn()
     conn.execute(
         """
-        INSERT INTO words (rank, order_index, word, translation, definition, pos, source)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO words (rank, order_index, word, translation, definition, pos, source, level)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(word) DO UPDATE SET
             order_index=excluded.order_index,
             translation=excluded.translation,
             definition=excluded.definition,
             pos=excluded.pos,
-            source=excluded.source
+            source=excluded.source,
+            level=excluded.level
         """,
         (rank, order_index if order_index is not None else rank, word,
-         translation, definition, pos, source),
+         translation, definition, pos, source, level),
     )
     conn.commit()
     conn.close()
@@ -114,28 +117,44 @@ def count_words(only_with_translation=False):
 def ensure_user(user_id, username):
     conn = get_conn()
     conn.execute(
-        "INSERT OR IGNORE INTO users (user_id, username, created_at) VALUES (?, ?, ?)",
+        "INSERT OR IGNORE INTO users (user_id, username, created_at, level) VALUES (?, ?, ?, 1)",
         (user_id, username, datetime.utcnow().isoformat()),
     )
     conn.commit()
     conn.close()
 
 
+def get_user_level(user_id):
+    conn = get_conn()
+    row = conn.execute("SELECT level FROM users WHERE user_id = ?", (user_id,)).fetchone()
+    conn.close()
+    return row["level"] if row and row["level"] else 1
+
+
+def set_user_level(user_id, level):
+    conn = get_conn()
+    conn.execute("UPDATE users SET level = ? WHERE user_id = ?", (level, user_id))
+    conn.commit()
+    conn.close()
+
+
 # ---------- progress ----------
 
-def get_next_new_word(user_id):
-    """Следующее ещё не изученное слово, в перемешанном порядке показа
-    (не по чистой частоте — иначе подряд идут одни предлоги/артикли)."""
+def get_next_new_word(user_id, level=1):
+    """Следующее ещё не изученное слово выбранного уровня, в перемешанном
+    порядке показа (не по чистой частоте — иначе подряд идут одни предлоги/
+    артикли)."""
     conn = get_conn()
     row = conn.execute(
         """
         SELECT w.* FROM words w
         WHERE w.translation IS NOT NULL
+          AND w.level = ?
           AND w.id NOT IN (SELECT word_id FROM progress WHERE user_id = ?)
         ORDER BY COALESCE(w.order_index, w.rank) ASC
         LIMIT 1
         """,
-        (user_id,),
+        (level, user_id),
     ).fetchone()
     conn.close()
     return row
@@ -192,21 +211,25 @@ def record_answer(user_id, word_id, known: bool):
     conn.close()
 
 
-def get_stats(user_id):
+def get_stats(user_id, level=1):
     conn = get_conn()
     total = conn.execute(
-        "SELECT COUNT(*) FROM words WHERE translation IS NOT NULL"
+        "SELECT COUNT(*) FROM words WHERE translation IS NOT NULL AND level = ?", (level,)
     ).fetchone()[0]
     seen = conn.execute(
-        "SELECT COUNT(*) FROM progress WHERE user_id = ?", (user_id,)
+        """SELECT COUNT(*) FROM progress p JOIN words w ON w.id = p.word_id
+           WHERE p.user_id = ? AND w.level = ?""",
+        (user_id, level),
     ).fetchone()[0]
     known = conn.execute(
-        "SELECT COUNT(*) FROM progress WHERE user_id = ? AND status = 'known'",
-        (user_id,),
+        """SELECT COUNT(*) FROM progress p JOIN words w ON w.id = p.word_id
+           WHERE p.user_id = ? AND p.status = 'known' AND w.level = ?""",
+        (user_id, level),
     ).fetchone()[0]
     learning = conn.execute(
-        "SELECT COUNT(*) FROM progress WHERE user_id = ? AND status = 'learning'",
-        (user_id,),
+        """SELECT COUNT(*) FROM progress p JOIN words w ON w.id = p.word_id
+           WHERE p.user_id = ? AND p.status = 'learning' AND w.level = ?""",
+        (user_id, level),
     ).fetchone()[0]
     due = conn.execute(
         "SELECT COUNT(*) FROM progress WHERE user_id = ? AND next_review <= ?",

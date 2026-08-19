@@ -164,6 +164,7 @@ def main():
     for item in words:
         rank, word = item["rank"], item["word"]
         order_index = item.get("order", rank)
+        level = item.get("level", 1)
 
         existing = db.get_word_by_word(word)
         if existing is not None and existing["translation"] is not None:
@@ -174,7 +175,7 @@ def main():
             entry = core[word]
             db.upsert_word(
                 rank, word, entry["translation"], entry["definition"],
-                entry["pos"], "core", order_index,
+                entry["pos"], "core", order_index, level,
             )
             done += 1
             print(f"[{rank}/{total}] {word} -> {entry['translation']}  (core)")
@@ -187,7 +188,7 @@ def main():
                 pos = definition_overrides[word]["pos"]
             else:
                 definition, pos = wordnet_definition(word)
-            db.upsert_word(rank, word, translation, definition, pos, "curated", order_index)
+            db.upsert_word(rank, word, translation, definition, pos, "curated", order_index, level)
             done += 1
             print(f"[{rank}/{total}] {word} -> {translation}  (curated)")
             continue
@@ -201,7 +202,7 @@ def main():
         source = "api_needs_review" if translation else "api"
         if translation:
             needs_review.append(word)
-        db.upsert_word(rank, word, translation, definition, pos, source, order_index)
+        db.upsert_word(rank, word, translation, definition, pos, source, order_index, level)
         done += 1
         status = translation if translation else "⚠ перевод не получен"
         print(f"[{rank}/{total}] {word} -> {status}  (api, требует проверки)")

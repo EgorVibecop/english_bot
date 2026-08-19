@@ -64,10 +64,16 @@ MAIN_MENU = ReplyKeyboardMarkup(
 VOCAB_MENU = ReplyKeyboardMarkup(
     [
         ["📖 Новое слово", "🔁 Повторить"],
-        ["🧠 Квиз", "⬅️ Назад"],
+        ["🧠 Квиз", "🎚 Уровень"],
+        ["⬅️ Назад"],
     ],
     resize_keyboard=True,
 )
+
+LEVELS = {
+    1: "Уровень 1 (база, топ-947 слов)",
+    2: "Уровень 2 (сложнее, следующие 200 слов)",
+}
 
 GRAMMAR_MENU = ReplyKeyboardMarkup(
     [
@@ -147,11 +153,13 @@ async def cmd_back_to_main(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def send_next_word(send_func, user_id):
-    row = db.get_next_new_word(user_id)
+    level = db.get_user_level(user_id)
+    row = db.get_next_new_word(user_id, level)
     if row is None:
         await send_func(
-            "🎉 Ты прошёл(шла) все слова из текущего словаря!\n"
-            "Используй /review для повторения и /quiz для проверки.",
+            f"🎉 Ты прошёл(шла) все слова уровня {level}!\n"
+            "Используй /review для повторения и /quiz для проверки, "
+            "или переключи «🎚 Уровень», если он доступен.",
             reply_markup=VOCAB_MENU,
         )
         return
@@ -168,11 +176,27 @@ async def cmd_word(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await send_next_word(update.message.reply_text, user.id)
 
 
+async def cmd_level(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
+    db.ensure_user(user.id, user.username or user.first_name)
+    current = db.get_user_level(user.id)
+    buttons = [
+        [InlineKeyboardButton(
+            ("✅ " if lvl == current else "") + label, callback_data=f"level:{lvl}"
+        )]
+        for lvl, label in LEVELS.items()
+    ]
+    await update.message.reply_text(
+        f"🎚 Текущий уровень: {LEVELS[current]}\n\nВыбери уровень:",
+        reply_markup=InlineKeyboardMarkup(buttons),
+    )
+
+
 async def cmd_review(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     rows = db.get_due_reviews(user.id, limit=1)
     if not rows:
-        stats = db.get_stats(user.id)
+        stats = db.get_stats(user.id, db.get_user_level(user.id))
         await update.message.reply_text(
             f"Сейчас нет слов для повторения. Выучено: {stats['known']}, "
             f"в процессе: {stats['learning']}.\nЗагляни позже 🙂",
@@ -192,13 +216,14 @@ async def cmd_review(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def cmd_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
-    s = db.get_stats(user.id)
+    level = db.get_user_level(user.id)
+    s = db.get_stats(user.id, level)
     percent = round(100 * s["seen"] / s["total"]) if s["total"] else 0
     g = db.get_grammar_stats(user.id)
     g_percent = round(100 * g["correct"] / g["total"]) if g["total"] else 0
     await update.message.reply_text(
         f"📊 *Твой прогресс*\n\n"
-        f"📚 *Словарь*\n"
+        f"📚 *Словарь* ({LEVELS[level]})\n"
         f"Всего слов в словаре: {s['total']}\n"
         f"Просмотрено: {s['seen']} ({percent}%)\n"
         f"✅ Выучено: {s['known']}\n"
@@ -267,6 +292,12 @@ async def on_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
     data = query.data
     user_id = update.effective_user.id
+
+    if data.startswith("level:"):
+        level = int(data.split(":")[1])
+        db.set_user_level(user_id, level)
+        await query.edit_message_text(f"🎚 Установлен: {LEVELS[level]}")
+        return
 
     if data.startswith("know:") or data.startswith("dontknow:"):
         known = data.startswith("know:")
@@ -447,6 +478,7 @@ async def on_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "📖 Новое слово": cmd_word,
         "🔁 Повторить": cmd_review,
         "🧠 Квиз": cmd_quiz,
+        "🎚 Уровень": cmd_level,
         "📊 Прогресс": cmd_progress,
         "❓ Помощь": help_cmd,
     }

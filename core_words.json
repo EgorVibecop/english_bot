@@ -1,223 +1,1087 @@
 {
-  "katya": {"translation": "Катя", "definition": "a female first name (short for Ekaterina)", "pos": "proper noun"},
-  "the": {"translation": "определённый артикль (не переводится отдельно)", "definition": "used before a noun to refer to a specific thing already known to the listener", "pos": "article"},
-  "to": {"translation": "к, для; частица перед инфинитивом", "definition": "used to show direction or purpose, or before the base form of a verb", "pos": "preposition/particle"},
-  "and": {"translation": "и", "definition": "used to connect words, phrases, or clauses", "pos": "conjunction"},
-  "of": {"translation": "предлог принадлежности («из», «от»)", "definition": "used to show a relationship of belonging between two things", "pos": "preposition"},
-  "a": {"translation": "неопределённый артикль (один, какой-то)", "definition": "used before a singular noun to refer to one unspecified thing", "pos": "article"},
-  "in": {"translation": "в", "definition": "inside a place, area, or period of time", "pos": "preposition"},
-  "i": {"translation": "я", "definition": "used by a speaker to refer to themselves", "pos": "pronoun"},
-  "is": {"translation": "есть (форма глагола 'быть')", "definition": "the present form of 'be' used with he, she, or it", "pos": "verb"},
-  "for": {"translation": "для, за", "definition": "intended to belong to or be used by someone or something", "pos": "preposition"},
-  "that": {"translation": "что; тот, та", "definition": "used to point to a specific thing already mentioned, or to introduce a clause", "pos": "pronoun/conjunction"},
-  "you": {"translation": "ты, вы", "definition": "the person or people being spoken to", "pos": "pronoun"},
-  "it": {"translation": "это, он/она (о предмете)", "definition": "used to refer to a thing, animal, or idea already mentioned", "pos": "pronoun"},
-  "on": {"translation": "на", "definition": "touching or supported by a surface", "pos": "preposition"},
-  "with": {"translation": "с", "definition": "together with, in the company of", "pos": "preposition"},
-  "this": {"translation": "этот, эта, это", "definition": "used to point to something nearby in place or time", "pos": "pronoun/adjective"},
-  "was": {"translation": "был, была, было", "definition": "the past form of 'be' used with I, he, she, or it", "pos": "verb"},
-  "be": {"translation": "быть", "definition": "to exist, or to have a certain quality or identity", "pos": "verb"},
-  "as": {"translation": "как, так как", "definition": "used to compare things or to give a reason", "pos": "conjunction"},
-  "are": {"translation": "есть (форма 'быть' для we/you/they)", "definition": "the present form of 'be' used with we, you, or they", "pos": "verb"},
-  "have": {"translation": "иметь", "definition": "to possess, hold, or own something", "pos": "verb"},
-  "at": {"translation": "в, у (место или время)", "definition": "used to show an exact place, position, or time", "pos": "preposition"},
-  "he": {"translation": "он", "definition": "a male person already mentioned", "pos": "pronoun"},
-  "not": {"translation": "не", "definition": "used to make a word, phrase, or sentence negative", "pos": "adverb"},
-  "by": {"translation": "у, около; посредством", "definition": "next to something, or showing who or what does an action", "pos": "preposition"},
-  "but": {"translation": "но", "definition": "used to introduce something different or opposite", "pos": "conjunction"},
-  "from": {"translation": "от, из", "definition": "showing the starting point, origin, or source of something", "pos": "preposition"},
-  "my": {"translation": "мой", "definition": "belonging to me", "pos": "possessive pronoun"},
-  "or": {"translation": "или", "definition": "used to give a choice between two or more things", "pos": "conjunction"},
-  "we": {"translation": "мы", "definition": "the speaker together with one or more other people", "pos": "pronoun"},
-  "an": {"translation": "неопределённый артикль перед гласным звуком", "definition": "used before a word that starts with a vowel sound", "pos": "article"},
-  "your": {"translation": "твой, ваш", "definition": "belonging to you", "pos": "possessive pronoun"},
-  "all": {"translation": "весь, все", "definition": "the whole amount of something, or every one of a group", "pos": "determiner"},
-  "so": {"translation": "так, поэтому", "definition": "to such a great extent; as a result", "pos": "adverb/conjunction"},
-  "his": {"translation": "его", "definition": "belonging to him", "pos": "possessive pronoun"},
-  "they": {"translation": "они", "definition": "people, animals, or things already mentioned", "pos": "pronoun"},
-  "me": {"translation": "меня, мне", "definition": "the object form of 'I'", "pos": "pronoun"},
-  "if": {"translation": "если", "definition": "on the condition that something happens or is true", "pos": "conjunction"},
-  "one": {"translation": "один", "definition": "the number 1, or a single unspecified thing", "pos": "number/pronoun"},
-  "can": {"translation": "мочь, уметь", "definition": "to be able to do something, or to have permission to", "pos": "modal verb"},
-  "will": {"translation": "буду (будущее время); воля", "definition": "used to talk about future actions or strong intention", "pos": "modal verb"},
-  "just": {"translation": "просто; только что", "definition": "exactly, simply, or a very short time ago", "pos": "adverb"},
-  "like": {"translation": "нравиться; похожий на", "definition": "to enjoy or feel positive about something; similar to", "pos": "verb/preposition"},
-  "about": {"translation": "о, насчёт; около", "definition": "concerning a subject, or approximately", "pos": "preposition"},
-  "up": {"translation": "вверх, наверху", "definition": "toward or in a higher place or position", "pos": "adverb/preposition"},
-  "out": {"translation": "наружу, вне", "definition": "away from the inside of a place", "pos": "adverb/preposition"},
-  "what": {"translation": "что, какой", "definition": "used to ask for information about something", "pos": "pronoun"},
-  "has": {"translation": "имеет (форма 'have')", "definition": "the present form of 'have' used with he, she, or it", "pos": "verb"},
-  "when": {"translation": "когда", "definition": "at what time, or at the time that", "pos": "adverb/conjunction"},
-  "more": {"translation": "больше", "definition": "a greater amount or degree of something", "pos": "adverb/determiner"},
-  "do": {"translation": "делать", "definition": "to perform an action or activity", "pos": "verb"},
-  "no": {"translation": "нет; никакой", "definition": "used to refuse, disagree, or say that something does not exist", "pos": "adverb/determiner"},
-  "were": {"translation": "были", "definition": "the past form of 'be' used with we, you, or they", "pos": "verb"},
-  "who": {"translation": "кто", "definition": "used to ask which person, or to refer to a person already mentioned", "pos": "pronoun"},
-  "had": {"translation": "имел(а)", "definition": "the past form of 'have'", "pos": "verb"},
-  "their": {"translation": "их", "definition": "belonging to them", "pos": "possessive pronoun"},
-  "there": {"translation": "там; туда", "definition": "in, at, or to that place", "pos": "adverb"},
-  "her": {"translation": "её; ей", "definition": "belonging to her, or the object form of 'she'", "pos": "pronoun"},
-  "which": {"translation": "который, какой", "definition": "used to ask about or specify one thing from a group", "pos": "pronoun"},
-  "time": {"translation": "время", "definition": "the thing that is measured in seconds, minutes, hours, and days", "pos": "noun"},
-  "get": {"translation": "получать; становиться", "definition": "to obtain, receive, or come to have or be something", "pos": "verb"},
-  "been": {"translation": "был (причастие)", "definition": "the past participle of 'be'", "pos": "verb"},
-  "would": {"translation": "бы, стал(а) бы", "definition": "used to talk about hypothetical situations or polite requests", "pos": "modal verb"},
-  "she": {"translation": "она", "definition": "a female person already mentioned", "pos": "pronoun"},
-  "new": {"translation": "новый", "definition": "recently made, built, or not existing before", "pos": "adjective"},
-  "people": {"translation": "люди", "definition": "men, women, and children in general", "pos": "noun"},
-  "how": {"translation": "как", "definition": "in what way or manner", "pos": "adverb"},
-  "some": {"translation": "некоторые, несколько", "definition": "an amount or number of something that is not exact", "pos": "determiner"},
-  "also": {"translation": "также", "definition": "in addition; too", "pos": "adverb"},
-  "them": {"translation": "их, им", "definition": "the object form of 'they'", "pos": "pronoun"},
-  "now": {"translation": "сейчас", "definition": "at this exact moment", "pos": "adverb"},
-  "other": {"translation": "другой", "definition": "different from the one or ones already mentioned", "pos": "adjective"},
-  "its": {"translation": "его, её (о предмете)", "definition": "belonging to a thing, animal, or idea already mentioned", "pos": "possessive pronoun"},
-  "our": {"translation": "наш", "definition": "belonging to us", "pos": "possessive pronoun"},
-  "than": {"translation": "чем", "definition": "used to compare two people, things, or amounts", "pos": "conjunction"},
-  "good": {"translation": "хороший", "definition": "of high quality, or pleasant and enjoyable", "pos": "adjective"},
-  "only": {"translation": "только", "definition": "no more, no other, or nothing else than what is stated", "pos": "adverb/adjective"},
-  "after": {"translation": "после", "definition": "later than a particular time or event", "pos": "preposition/conjunction"},
-  "first": {"translation": "первый", "definition": "coming before all others in time or order", "pos": "adjective/adverb"},
-  "him": {"translation": "его, ему", "definition": "the object form of 'he'", "pos": "pronoun"},
-  "into": {"translation": "в, внутрь", "definition": "moving to the inside or middle of something", "pos": "preposition"},
-  "know": {"translation": "знать", "definition": "to have information or understanding about something", "pos": "verb"},
-  "see": {"translation": "видеть", "definition": "to notice or become aware of something with the eyes", "pos": "verb"},
-  "two": {"translation": "два", "definition": "the number 2", "pos": "number"},
-  "make": {"translation": "делать, создавать", "definition": "to create, produce, or cause something to happen", "pos": "verb"},
-  "over": {"translation": "над; свыше, более", "definition": "directly above something, or more than a certain amount", "pos": "preposition"},
-  "think": {"translation": "думать", "definition": "to have an idea, belief, or opinion in your mind", "pos": "verb"},
-  "any": {"translation": "любой, какой-нибудь", "definition": "one, some, or every one of a group, no matter which", "pos": "determiner"},
-  "then": {"translation": "тогда; затем", "definition": "at that time, or after that in a sequence", "pos": "adverb"},
-  "could": {"translation": "мог(ла)", "definition": "the past form of 'can', used for ability or polite requests", "pos": "modal verb"},
-  "back": {"translation": "назад, обратно; спина", "definition": "toward the previous place or position; the rear part of the body", "pos": "adverb/noun"},
-  "these": {"translation": "эти", "definition": "the plural form of 'this'", "pos": "pronoun/adjective"},
-  "us": {"translation": "нас, нам", "definition": "the object form of 'we'", "pos": "pronoun"},
-  "want": {"translation": "хотеть", "definition": "to have a desire for something", "pos": "verb"},
-  "because": {"translation": "потому что", "definition": "for the reason that", "pos": "conjunction"},
-  "go": {"translation": "идти, ехать", "definition": "to move or travel from one place to another", "pos": "verb"},
-  "well": {"translation": "хорошо; ну (вводное слово)", "definition": "in a good or satisfactory way; also used to start a sentence", "pos": "adverb"},
-  "said": {"translation": "сказал(а)", "definition": "the past form of 'say'", "pos": "verb"},
-  "way": {"translation": "путь, способ", "definition": "a method of doing something, or a road or route", "pos": "noun"},
-  "most": {"translation": "большинство; самый", "definition": "the largest number or amount of something", "pos": "determiner/adverb"},
-  "much": {"translation": "много", "definition": "a large amount of something", "pos": "determiner/adverb"},
-  "very": {"translation": "очень", "definition": "to a high degree", "pos": "adverb"},
-  "where": {"translation": "где, куда", "definition": "in, at, or to what place", "pos": "adverb"},
-  "even": {"translation": "даже", "definition": "used to emphasize something surprising or extreme", "pos": "adverb"},
-  "should": {"translation": "следует, должен", "definition": "used to give advice or say what is the right thing to do", "pos": "modal verb"},
-  "may": {"translation": "может (быть)", "definition": "used to talk about possibility or to give permission", "pos": "modal verb"},
-  "here": {"translation": "здесь, сюда", "definition": "in or to this place", "pos": "adverb"},
-  "need": {"translation": "нуждаться (в чём-то)", "definition": "to require something because it is necessary", "pos": "verb"},
-  "really": {"translation": "действительно, правда", "definition": "in fact; used to emphasize a statement", "pos": "adverb"},
-  "did": {"translation": "сделал(а)", "definition": "the past form of 'do'", "pos": "verb"},
-  "right": {"translation": "правильный; направо", "definition": "correct or true; also the opposite direction of left", "pos": "adjective/adverb"},
-  "work": {"translation": "работать; работа", "definition": "to do a job or task; also a job or the result of effort", "pos": "verb/noun"},
-  "year": {"translation": "год", "definition": "a period of twelve months", "pos": "noun"},
-  "years": {"translation": "годы", "definition": "the plural form of 'year'", "pos": "noun"},
-  "being": {"translation": "будучи; существо", "definition": "the -ing form of 'be'; also a living creature", "pos": "verb/noun"},
-  "day": {"translation": "день", "definition": "a period of 24 hours, or the time when it is light", "pos": "noun"},
-  "too": {"translation": "тоже; слишком", "definition": "also, in addition; or more than is needed or wanted", "pos": "adverb"},
-  "going": {"translation": "идущий; собирающийся (going to)", "definition": "the -ing form of 'go'; 'be going to' shows a future plan", "pos": "verb"},
-  "before": {"translation": "до, прежде", "definition": "earlier than a particular time or event", "pos": "preposition/conjunction"},
-  "off": {"translation": "выключено; прочь", "definition": "away from a place, or not connected/turned on", "pos": "adverb/preposition"},
-  "why": {"translation": "почему", "definition": "for what reason or purpose", "pos": "adverb"},
-  "made": {"translation": "сделал(а)", "definition": "the past form of 'make'", "pos": "verb"},
-  "still": {"translation": "всё ещё; неподвижно", "definition": "continuing up to now; without movement or sound", "pos": "adverb/adjective"},
-  "take": {"translation": "брать", "definition": "to get hold of, carry, or remove something", "pos": "verb"},
-  "got": {"translation": "получил(а)", "definition": "the past form of 'get'", "pos": "verb"},
-  "many": {"translation": "многие, много", "definition": "a large number of people or things", "pos": "determiner"},
-  "never": {"translation": "никогда", "definition": "at no time; not ever", "pos": "adverb"},
-  "those": {"translation": "те", "definition": "the plural form of 'that'", "pos": "pronoun/adjective"},
-  "life": {"translation": "жизнь", "definition": "the state of being alive, or the period from birth to death", "pos": "noun"},
-  "say": {"translation": "сказать, говорить", "definition": "to speak words in order to give information or an opinion", "pos": "verb"},
-  "world": {"translation": "мир (планета)", "definition": "the earth and all the people, places, and things on it", "pos": "noun"},
-  "down": {"translation": "вниз", "definition": "toward a lower place or position", "pos": "adverb/preposition"},
-  "great": {"translation": "великий, отличный", "definition": "very good, or very large, important, or impressive", "pos": "adjective"},
-  "through": {"translation": "через, сквозь", "definition": "from one side or end of something to the other", "pos": "preposition"},
-  "last": {"translation": "последний; прошлый", "definition": "coming after all others; also most recent", "pos": "adjective"},
-  "while": {"translation": "пока, в то время как", "definition": "during the time that something else happens", "pos": "conjunction/noun"},
-  "best": {"translation": "лучший", "definition": "of the highest quality; better than all others", "pos": "adjective"},
-  "such": {"translation": "такой", "definition": "of the type already mentioned or implied", "pos": "determiner"},
-  "love": {"translation": "любить; любовь", "definition": "to care very deeply about someone or something", "pos": "verb/noun"},
-  "man": {"translation": "мужчина; человек", "definition": "an adult male person", "pos": "noun"},
-  "home": {"translation": "дом, домашний очаг", "definition": "the place where a person lives", "pos": "noun/adverb"},
-  "long": {"translation": "длинный; долгий", "definition": "having a great distance from one end to the other, or lasting a long time", "pos": "adjective"},
-  "look": {"translation": "смотреть; взгляд, вид", "definition": "to direct your eyes toward something in order to see it", "pos": "verb/noun"},
-  "something": {"translation": "что-то", "definition": "a thing that is not stated or known exactly", "pos": "pronoun"},
-  "use": {"translation": "использовать; использование", "definition": "to employ something for a purpose", "pos": "verb/noun"},
-  "same": {"translation": "тот же самый, одинаковый", "definition": "not different; being one and the same thing", "pos": "adjective"},
-  "used": {"translation": "использованный; привычный (used to)", "definition": "the past form of 'use'; 'used to' describes a past habit", "pos": "verb/adjective"},
-  "both": {"translation": "оба", "definition": "the two people or things together, not just one", "pos": "determiner"},
-  "every": {"translation": "каждый", "definition": "each one of a group, without exception", "pos": "determiner"},
-  "am": {"translation": "есть (форма 'быть' для I)", "definition": "the present form of 'be' used with 'I'", "pos": "verb"},
-  "come": {"translation": "приходить", "definition": "to move toward the person who is speaking", "pos": "verb"},
-  "part": {"translation": "часть", "definition": "a piece or section of something larger", "pos": "noun"},
-  "state": {"translation": "состояние; штат, государство", "definition": "the condition of something; also a country or a region within a country", "pos": "noun"},
-  "three": {"translation": "три", "definition": "the number 3", "pos": "number"},
-  "around": {"translation": "вокруг; примерно", "definition": "on every side of something, or approximately", "pos": "preposition/adverb"},
-  "between": {"translation": "между", "definition": "in the space that separates two things or people", "pos": "preposition"},
-  "always": {"translation": "всегда", "definition": "at all times, every time", "pos": "adverb"},
-  "better": {"translation": "лучше", "definition": "the comparative form of 'good'", "pos": "adjective/adverb"},
-  "find": {"translation": "находить", "definition": "to discover or locate something", "pos": "verb"},
-  "help": {"translation": "помогать; помощь", "definition": "to make something easier or better for someone", "pos": "verb/noun"},
-  "high": {"translation": "высокий", "definition": "having a great height, level, or amount", "pos": "adjective"},
-  "little": {"translation": "маленький; немного", "definition": "small in size, or a small amount of something", "pos": "adjective/adverb"},
-  "old": {"translation": "старый", "definition": "having lived or existed for a long time", "pos": "adjective"},
-  "since": {"translation": "с тех пор как; так как", "definition": "from a point in the past until now, or because", "pos": "preposition/conjunction"},
-  "another": {"translation": "другой, ещё один", "definition": "one more thing or person, or a different one", "pos": "determiner"},
-  "does": {"translation": "делает", "definition": "the present form of 'do' used with he, she, or it", "pos": "verb"},
-  "own": {"translation": "собственный; владеть", "definition": "belonging to oneself; also to possess something", "pos": "adjective/verb"},
-  "things": {"translation": "вещи", "definition": "the plural form of 'thing'", "pos": "noun"},
-  "under": {"translation": "под", "definition": "in a position below something", "pos": "preposition"},
-  "during": {"translation": "во время", "definition": "throughout a particular period of time", "pos": "preposition"},
-  "game": {"translation": "игра", "definition": "an activity with rules, played for fun or competition", "pos": "noun"},
-  "thing": {"translation": "вещь, штука", "definition": "an object or a matter that is not named exactly", "pos": "noun"},
-  "give": {"translation": "давать", "definition": "to hand something to someone, or provide it", "pos": "verb"},
-  "house": {"translation": "дом (здание)", "definition": "a building where people live", "pos": "noun"},
-  "place": {"translation": "место", "definition": "a particular position, area, or building", "pos": "noun"},
-  "school": {"translation": "школа", "definition": "a place where children go to be educated", "pos": "noun"},
-  "again": {"translation": "снова", "definition": "one more time", "pos": "adverb"},
-  "next": {"translation": "следующий", "definition": "coming right after this one in time or order", "pos": "adjective"},
-  "each": {"translation": "каждый", "definition": "every one of a group, considered separately", "pos": "determiner"},
-  "mr": {"translation": "мистер, господин", "definition": "a title used before a man's name", "pos": "noun"},
-  "without": {"translation": "без", "definition": "not having or accompanied by something", "pos": "preposition"},
-  "against": {"translation": "против", "definition": "in opposition to a person, idea, or thing", "pos": "preposition"},
-  "end": {"translation": "конец; заканчивать", "definition": "the last part of something; also to finish it", "pos": "noun/verb"},
-  "found": {"translation": "нашёл(нашла); основал", "definition": "the past form of 'find'; also to start an organization", "pos": "verb"},
-  "must": {"translation": "должен", "definition": "used to show that something is necessary or very likely", "pos": "modal verb"},
-  "show": {"translation": "показывать; шоу", "definition": "to let someone see something; also a program on TV", "pos": "verb/noun"},
-  "big": {"translation": "большой", "definition": "large in size, number, or amount", "pos": "adjective"},
-  "feel": {"translation": "чувствовать", "definition": "to experience a physical sensation or emotion", "pos": "verb"},
-  "sure": {"translation": "уверенный", "definition": "certain, without any doubt", "pos": "adjective"},
-  "team": {"translation": "команда", "definition": "a group of people who work or play together", "pos": "noun"},
-  "ever": {"translation": "когда-либо", "definition": "at any time", "pos": "adverb"},
-  "family": {"translation": "семья", "definition": "a group of related people, such as parents and children", "pos": "noun"},
-  "keep": {"translation": "хранить, держать", "definition": "to continue having, doing, or being something", "pos": "verb"},
-  "might": {"translation": "мог бы; возможно", "definition": "the past form of 'may', used to show possibility", "pos": "modal verb"},
-  "please": {"translation": "пожалуйста; радовать", "definition": "used to make a polite request; also to make someone happy", "pos": "adverb/verb"},
-  "put": {"translation": "класть, ставить", "definition": "to move something into a particular place or position", "pos": "verb"},
-  "money": {"translation": "деньги", "definition": "coins and paper notes used to buy things", "pos": "noun"},
-  "free": {"translation": "свободный; бесплатный", "definition": "not costing any money, or not controlled by others", "pos": "adjective"},
-  "second": {"translation": "второй; секунда", "definition": "coming after the first; also a unit of time", "pos": "adjective/noun"},
-  "someone": {"translation": "кто-то", "definition": "an unspecified or unknown person", "pos": "pronoun"},
-  "away": {"translation": "прочь, вдали", "definition": "to or at a distance from a place", "pos": "adverb"},
-  "left": {"translation": "левый; ушёл(ушла)", "definition": "the opposite direction of right; also the past form of 'leave'", "pos": "adjective/verb"},
-  "number": {"translation": "число, номер", "definition": "a word or symbol used to count or show an amount", "pos": "noun"},
-  "city": {"translation": "город", "definition": "a large and important town", "pos": "noun"},
-  "days": {"translation": "дни", "definition": "the plural form of 'day'", "pos": "noun"},
-  "lot": {"translation": "много (a lot of)", "definition": "a large amount or number of something", "pos": "noun"},
-  "name": {"translation": "имя; называть", "definition": "the word by which a person or thing is known", "pos": "noun/verb"},
-  "night": {"translation": "ночь", "definition": "the dark hours between evening and morning", "pos": "noun"},
-  "play": {"translation": "играть", "definition": "to take part in a game or enjoyable activity", "pos": "verb"},
-  "until": {"translation": "до тех пор пока", "definition": "up to the point in time that something happens", "pos": "preposition/conjunction"},
-  "company": {"translation": "компания", "definition": "a business organization that sells goods or services", "pos": "noun"},
-  "doing": {"translation": "делающий", "definition": "the -ing form of 'do'", "pos": "verb"},
-  "few": {"translation": "немного, мало", "definition": "a small number of people or things", "pos": "determiner"},
-  "let": {"translation": "позволять", "definition": "to allow something to happen or someone to do something", "pos": "verb"},
-  "real": {"translation": "настоящий", "definition": "actually existing, not imagined or false", "pos": "adjective"},
-  "called": {"translation": "назвал(а), позвонил(а)", "definition": "the past form of 'call'", "pos": "verb"},
-  "different": {"translation": "другой, разный", "definition": "not the same as another person or thing", "pos": "adjective"},
-  "having": {"translation": "имеющий", "definition": "the -ing form of 'have'", "pos": "verb"},
-  "set": {"translation": "набор; ставить", "definition": "a group of matching or related things; also to put something in place", "pos": "noun/verb"},
-  "thought": {"translation": "мысль; думал(а)", "definition": "an idea in the mind; also the past form of 'think'", "pos": "noun/verb"},
-  "done": {"translation": "сделано, закончено", "definition": "the past participle of 'do'; also finished", "pos": "verb/adjective"}
+  "katya": {
+    "translation": "Катя",
+    "definition": "a female first name (short for Ekaterina)",
+    "pos": "proper noun"
+  },
+  "the": {
+    "translation": "определённый артикль (не переводится отдельно)",
+    "definition": "used before a noun to refer to a specific thing already known to the listener",
+    "pos": "article"
+  },
+  "to": {
+    "translation": "к, для; частица перед инфинитивом",
+    "definition": "used to show direction or purpose, or before the base form of a verb",
+    "pos": "preposition/particle"
+  },
+  "and": {
+    "translation": "и",
+    "definition": "used to connect words, phrases, or clauses",
+    "pos": "conjunction"
+  },
+  "of": {
+    "translation": "предлог принадлежности («из», «от»)",
+    "definition": "used to show a relationship of belonging between two things",
+    "pos": "preposition"
+  },
+  "a": {
+    "translation": "неопределённый артикль (один, какой-то)",
+    "definition": "used before a singular noun to refer to one unspecified thing",
+    "pos": "article"
+  },
+  "in": {
+    "translation": "в",
+    "definition": "inside a place, area, or period of time",
+    "pos": "preposition"
+  },
+  "i": {
+    "translation": "я",
+    "definition": "used by a speaker to refer to themselves",
+    "pos": "pronoun"
+  },
+  "is": {
+    "translation": "есть (форма глагола 'быть')",
+    "definition": "the present form of 'be' used with he, she, or it",
+    "pos": "verb"
+  },
+  "for": {
+    "translation": "для, за",
+    "definition": "intended to belong to or be used by someone or something",
+    "pos": "preposition"
+  },
+  "that": {
+    "translation": "что; тот, та",
+    "definition": "used to point to a specific thing already mentioned, or to introduce a clause",
+    "pos": "pronoun/conjunction"
+  },
+  "you": {
+    "translation": "ты, вы",
+    "definition": "the person or people being spoken to",
+    "pos": "pronoun"
+  },
+  "it": {
+    "translation": "это, он/она (о предмете)",
+    "definition": "used to refer to a thing, animal, or idea already mentioned",
+    "pos": "pronoun"
+  },
+  "on": {
+    "translation": "на",
+    "definition": "touching or supported by a surface",
+    "pos": "preposition"
+  },
+  "with": {
+    "translation": "с",
+    "definition": "together with, in the company of",
+    "pos": "preposition"
+  },
+  "this": {
+    "translation": "этот, эта, это",
+    "definition": "used to point to something nearby in place or time",
+    "pos": "pronoun/adjective"
+  },
+  "was": {
+    "translation": "был, была, было",
+    "definition": "the past form of 'be' used with I, he, she, or it",
+    "pos": "verb"
+  },
+  "be": {
+    "translation": "быть",
+    "definition": "to exist, or to have a certain quality or identity",
+    "pos": "verb"
+  },
+  "as": {
+    "translation": "как, так как",
+    "definition": "used to compare things or to give a reason",
+    "pos": "conjunction"
+  },
+  "are": {
+    "translation": "есть (форма 'быть' для we/you/they)",
+    "definition": "the present form of 'be' used with we, you, or they",
+    "pos": "verb"
+  },
+  "have": {
+    "translation": "иметь",
+    "definition": "to possess, hold, or own something",
+    "pos": "verb"
+  },
+  "at": {
+    "translation": "в, у (место или время)",
+    "definition": "used to show an exact place, position, or time",
+    "pos": "preposition"
+  },
+  "he": {
+    "translation": "он",
+    "definition": "a male person already mentioned",
+    "pos": "pronoun"
+  },
+  "not": {
+    "translation": "не",
+    "definition": "used to make a word, phrase, or sentence negative",
+    "pos": "adverb"
+  },
+  "by": {
+    "translation": "у, около; посредством",
+    "definition": "next to something, or showing who or what does an action",
+    "pos": "preposition"
+  },
+  "but": {
+    "translation": "но",
+    "definition": "used to introduce something different or opposite",
+    "pos": "conjunction"
+  },
+  "from": {
+    "translation": "от, из",
+    "definition": "showing the starting point, origin, or source of something",
+    "pos": "preposition"
+  },
+  "my": {
+    "translation": "мой",
+    "definition": "belonging to me",
+    "pos": "possessive pronoun"
+  },
+  "or": {
+    "translation": "или",
+    "definition": "used to give a choice between two or more things",
+    "pos": "conjunction"
+  },
+  "we": {
+    "translation": "мы",
+    "definition": "the speaker together with one or more other people",
+    "pos": "pronoun"
+  },
+  "an": {
+    "translation": "неопределённый артикль перед гласным звуком",
+    "definition": "used before a word that starts with a vowel sound",
+    "pos": "article"
+  },
+  "your": {
+    "translation": "твой, ваш",
+    "definition": "belonging to you",
+    "pos": "possessive pronoun"
+  },
+  "all": {
+    "translation": "весь, все",
+    "definition": "the whole amount of something, or every one of a group",
+    "pos": "determiner"
+  },
+  "so": {
+    "translation": "так, поэтому",
+    "definition": "to such a great extent; as a result",
+    "pos": "adverb/conjunction"
+  },
+  "his": {
+    "translation": "его",
+    "definition": "belonging to him",
+    "pos": "possessive pronoun"
+  },
+  "they": {
+    "translation": "они",
+    "definition": "people, animals, or things already mentioned",
+    "pos": "pronoun"
+  },
+  "me": {
+    "translation": "меня, мне",
+    "definition": "the object form of 'I'",
+    "pos": "pronoun"
+  },
+  "if": {
+    "translation": "если",
+    "definition": "on the condition that something happens or is true",
+    "pos": "conjunction"
+  },
+  "one": {
+    "translation": "один",
+    "definition": "the number 1, or a single unspecified thing",
+    "pos": "number/pronoun"
+  },
+  "can": {
+    "translation": "мочь, уметь",
+    "definition": "to be able to do something, or to have permission to",
+    "pos": "modal verb"
+  },
+  "will": {
+    "translation": "буду (будущее время); воля",
+    "definition": "used to talk about future actions or strong intention",
+    "pos": "modal verb"
+  },
+  "just": {
+    "translation": "просто; только что",
+    "definition": "exactly, simply, or a very short time ago",
+    "pos": "adverb"
+  },
+  "like": {
+    "translation": "нравиться; похожий на",
+    "definition": "to enjoy or feel positive about something; similar to",
+    "pos": "verb/preposition"
+  },
+  "about": {
+    "translation": "о, насчёт; около",
+    "definition": "concerning a subject, or approximately",
+    "pos": "preposition"
+  },
+  "up": {
+    "translation": "вверх, наверху",
+    "definition": "toward or in a higher place or position",
+    "pos": "adverb/preposition"
+  },
+  "out": {
+    "translation": "наружу, вне",
+    "definition": "away from the inside of a place",
+    "pos": "adverb/preposition"
+  },
+  "what": {
+    "translation": "что, какой",
+    "definition": "used to ask for information about something",
+    "pos": "pronoun"
+  },
+  "has": {
+    "translation": "имеет (форма 'have')",
+    "definition": "the present form of 'have' used with he, she, or it",
+    "pos": "verb"
+  },
+  "when": {
+    "translation": "когда",
+    "definition": "at what time, or at the time that",
+    "pos": "adverb/conjunction"
+  },
+  "more": {
+    "translation": "больше",
+    "definition": "a greater amount or degree of something",
+    "pos": "adverb/determiner"
+  },
+  "do": {
+    "translation": "делать",
+    "definition": "to perform an action or activity",
+    "pos": "verb"
+  },
+  "no": {
+    "translation": "нет; никакой",
+    "definition": "used to refuse, disagree, or say that something does not exist",
+    "pos": "adverb/determiner"
+  },
+  "were": {
+    "translation": "были",
+    "definition": "the past form of 'be' used with we, you, or they",
+    "pos": "verb"
+  },
+  "who": {
+    "translation": "кто",
+    "definition": "used to ask which person, or to refer to a person already mentioned",
+    "pos": "pronoun"
+  },
+  "had": {
+    "translation": "имел(а)",
+    "definition": "the past form of 'have'",
+    "pos": "verb"
+  },
+  "their": {
+    "translation": "их",
+    "definition": "belonging to them",
+    "pos": "possessive pronoun"
+  },
+  "there": {
+    "translation": "там; туда",
+    "definition": "in, at, or to that place",
+    "pos": "adverb"
+  },
+  "her": {
+    "translation": "её; ей",
+    "definition": "belonging to her, or the object form of 'she'",
+    "pos": "pronoun"
+  },
+  "which": {
+    "translation": "который, какой",
+    "definition": "used to ask about or specify one thing from a group",
+    "pos": "pronoun"
+  },
+  "time": {
+    "translation": "время",
+    "definition": "the thing that is measured in seconds, minutes, hours, and days",
+    "pos": "noun"
+  },
+  "get": {
+    "translation": "получать; становиться",
+    "definition": "to obtain, receive, or come to have or be something",
+    "pos": "verb"
+  },
+  "been": {
+    "translation": "был (причастие)",
+    "definition": "the past participle of 'be'",
+    "pos": "verb"
+  },
+  "would": {
+    "translation": "бы, стал(а) бы",
+    "definition": "used to talk about hypothetical situations or polite requests",
+    "pos": "modal verb"
+  },
+  "she": {
+    "translation": "она",
+    "definition": "a female person already mentioned",
+    "pos": "pronoun"
+  },
+  "new": {
+    "translation": "новый",
+    "definition": "recently made, built, or not existing before",
+    "pos": "adjective"
+  },
+  "how": {
+    "translation": "как",
+    "definition": "in what way or manner",
+    "pos": "adverb"
+  },
+  "some": {
+    "translation": "некоторые, несколько",
+    "definition": "an amount or number of something that is not exact",
+    "pos": "determiner"
+  },
+  "also": {
+    "translation": "также",
+    "definition": "in addition; too",
+    "pos": "adverb"
+  },
+  "them": {
+    "translation": "их, им",
+    "definition": "the object form of 'they'",
+    "pos": "pronoun"
+  },
+  "now": {
+    "translation": "сейчас",
+    "definition": "at this exact moment",
+    "pos": "adverb"
+  },
+  "other": {
+    "translation": "другой",
+    "definition": "different from the one or ones already mentioned",
+    "pos": "adjective"
+  },
+  "its": {
+    "translation": "его, её (о предмете)",
+    "definition": "belonging to a thing, animal, or idea already mentioned",
+    "pos": "possessive pronoun"
+  },
+  "our": {
+    "translation": "наш",
+    "definition": "belonging to us",
+    "pos": "possessive pronoun"
+  },
+  "than": {
+    "translation": "чем",
+    "definition": "used to compare two people, things, or amounts",
+    "pos": "conjunction"
+  },
+  "good": {
+    "translation": "хороший",
+    "definition": "of high quality, or pleasant and enjoyable",
+    "pos": "adjective"
+  },
+  "only": {
+    "translation": "только",
+    "definition": "no more, no other, or nothing else than what is stated",
+    "pos": "adverb/adjective"
+  },
+  "after": {
+    "translation": "после",
+    "definition": "later than a particular time or event",
+    "pos": "preposition/conjunction"
+  },
+  "first": {
+    "translation": "первый",
+    "definition": "coming before all others in time or order",
+    "pos": "adjective/adverb"
+  },
+  "him": {
+    "translation": "его, ему",
+    "definition": "the object form of 'he'",
+    "pos": "pronoun"
+  },
+  "into": {
+    "translation": "в, внутрь",
+    "definition": "moving to the inside or middle of something",
+    "pos": "preposition"
+  },
+  "know": {
+    "translation": "знать",
+    "definition": "to have information or understanding about something",
+    "pos": "verb"
+  },
+  "see": {
+    "translation": "видеть",
+    "definition": "to notice or become aware of something with the eyes",
+    "pos": "verb"
+  },
+  "two": {
+    "translation": "два",
+    "definition": "the number 2",
+    "pos": "number"
+  },
+  "make": {
+    "translation": "делать, создавать",
+    "definition": "to create, produce, or cause something to happen",
+    "pos": "verb"
+  },
+  "over": {
+    "translation": "над; свыше, более",
+    "definition": "directly above something, or more than a certain amount",
+    "pos": "preposition"
+  },
+  "think": {
+    "translation": "думать",
+    "definition": "to have an idea, belief, or opinion in your mind",
+    "pos": "verb"
+  },
+  "any": {
+    "translation": "любой, какой-нибудь",
+    "definition": "one, some, or every one of a group, no matter which",
+    "pos": "determiner"
+  },
+  "then": {
+    "translation": "тогда; затем",
+    "definition": "at that time, or after that in a sequence",
+    "pos": "adverb"
+  },
+  "could": {
+    "translation": "мог(ла)",
+    "definition": "the past form of 'can', used for ability or polite requests",
+    "pos": "modal verb"
+  },
+  "back": {
+    "translation": "назад, обратно; спина",
+    "definition": "toward the previous place or position; the rear part of the body",
+    "pos": "adverb/noun"
+  },
+  "these": {
+    "translation": "эти",
+    "definition": "the plural form of 'this'",
+    "pos": "pronoun/adjective"
+  },
+  "us": {
+    "translation": "нас, нам",
+    "definition": "the object form of 'we'",
+    "pos": "pronoun"
+  },
+  "want": {
+    "translation": "хотеть",
+    "definition": "to have a desire for something",
+    "pos": "verb"
+  },
+  "because": {
+    "translation": "потому что",
+    "definition": "for the reason that",
+    "pos": "conjunction"
+  },
+  "go": {
+    "translation": "идти, ехать",
+    "definition": "to move or travel from one place to another",
+    "pos": "verb"
+  },
+  "well": {
+    "translation": "хорошо; ну (вводное слово)",
+    "definition": "in a good or satisfactory way; also used to start a sentence",
+    "pos": "adverb"
+  },
+  "said": {
+    "translation": "сказал(а)",
+    "definition": "the past form of 'say'",
+    "pos": "verb"
+  },
+  "way": {
+    "translation": "путь, способ",
+    "definition": "a method of doing something, or a road or route",
+    "pos": "noun"
+  },
+  "most": {
+    "translation": "большинство; самый",
+    "definition": "the largest number or amount of something",
+    "pos": "determiner/adverb"
+  },
+  "much": {
+    "translation": "много",
+    "definition": "a large amount of something",
+    "pos": "determiner/adverb"
+  },
+  "very": {
+    "translation": "очень",
+    "definition": "to a high degree",
+    "pos": "adverb"
+  },
+  "where": {
+    "translation": "где, куда",
+    "definition": "in, at, or to what place",
+    "pos": "adverb"
+  },
+  "even": {
+    "translation": "даже",
+    "definition": "used to emphasize something surprising or extreme",
+    "pos": "adverb"
+  },
+  "should": {
+    "translation": "следует, должен",
+    "definition": "used to give advice or say what is the right thing to do",
+    "pos": "modal verb"
+  },
+  "may": {
+    "translation": "может (быть)",
+    "definition": "used to talk about possibility or to give permission",
+    "pos": "modal verb"
+  },
+  "here": {
+    "translation": "здесь, сюда",
+    "definition": "in or to this place",
+    "pos": "adverb"
+  },
+  "need": {
+    "translation": "нуждаться (в чём-то)",
+    "definition": "to require something because it is necessary",
+    "pos": "verb"
+  },
+  "really": {
+    "translation": "действительно, правда",
+    "definition": "in fact; used to emphasize a statement",
+    "pos": "adverb"
+  },
+  "did": {
+    "translation": "сделал(а)",
+    "definition": "the past form of 'do'",
+    "pos": "verb"
+  },
+  "right": {
+    "translation": "правильный; направо",
+    "definition": "correct or true; also the opposite direction of left",
+    "pos": "adjective/adverb"
+  },
+  "work": {
+    "translation": "работать; работа",
+    "definition": "to do a job or task; also a job or the result of effort",
+    "pos": "verb/noun"
+  },
+  "year": {
+    "translation": "год",
+    "definition": "a period of twelve months",
+    "pos": "noun"
+  },
+  "being": {
+    "translation": "будучи; существо",
+    "definition": "the -ing form of 'be'; also a living creature",
+    "pos": "verb/noun"
+  },
+  "day": {
+    "translation": "день",
+    "definition": "a period of 24 hours, or the time when it is light",
+    "pos": "noun"
+  },
+  "too": {
+    "translation": "тоже; слишком",
+    "definition": "also, in addition; or more than is needed or wanted",
+    "pos": "adverb"
+  },
+  "going": {
+    "translation": "идущий; собирающийся (going to)",
+    "definition": "the -ing form of 'go'; 'be going to' shows a future plan",
+    "pos": "verb"
+  },
+  "before": {
+    "translation": "до, прежде",
+    "definition": "earlier than a particular time or event",
+    "pos": "preposition/conjunction"
+  },
+  "off": {
+    "translation": "выключено; прочь",
+    "definition": "away from a place, or not connected/turned on",
+    "pos": "adverb/preposition"
+  },
+  "why": {
+    "translation": "почему",
+    "definition": "for what reason or purpose",
+    "pos": "adverb"
+  },
+  "made": {
+    "translation": "сделал(а)",
+    "definition": "the past form of 'make'",
+    "pos": "verb"
+  },
+  "still": {
+    "translation": "всё ещё; неподвижно",
+    "definition": "continuing up to now; without movement or sound",
+    "pos": "adverb/adjective"
+  },
+  "take": {
+    "translation": "брать",
+    "definition": "to get hold of, carry, or remove something",
+    "pos": "verb"
+  },
+  "got": {
+    "translation": "получил(а)",
+    "definition": "the past form of 'get'",
+    "pos": "verb"
+  },
+  "many": {
+    "translation": "многие, много",
+    "definition": "a large number of people or things",
+    "pos": "determiner"
+  },
+  "never": {
+    "translation": "никогда",
+    "definition": "at no time; not ever",
+    "pos": "adverb"
+  },
+  "those": {
+    "translation": "те",
+    "definition": "the plural form of 'that'",
+    "pos": "pronoun/adjective"
+  },
+  "life": {
+    "translation": "жизнь",
+    "definition": "the state of being alive, or the period from birth to death",
+    "pos": "noun"
+  },
+  "say": {
+    "translation": "сказать, говорить",
+    "definition": "to speak words in order to give information or an opinion",
+    "pos": "verb"
+  },
+  "world": {
+    "translation": "мир (планета)",
+    "definition": "the earth and all the people, places, and things on it",
+    "pos": "noun"
+  },
+  "down": {
+    "translation": "вниз",
+    "definition": "toward a lower place or position",
+    "pos": "adverb/preposition"
+  },
+  "great": {
+    "translation": "великий, отличный",
+    "definition": "very good, or very large, important, or impressive",
+    "pos": "adjective"
+  },
+  "through": {
+    "translation": "через, сквозь",
+    "definition": "from one side or end of something to the other",
+    "pos": "preposition"
+  },
+  "last": {
+    "translation": "последний; прошлый",
+    "definition": "coming after all others; also most recent",
+    "pos": "adjective"
+  },
+  "while": {
+    "translation": "пока, в то время как",
+    "definition": "during the time that something else happens",
+    "pos": "conjunction/noun"
+  },
+  "best": {
+    "translation": "лучший",
+    "definition": "of the highest quality; better than all others",
+    "pos": "adjective"
+  },
+  "such": {
+    "translation": "такой",
+    "definition": "of the type already mentioned or implied",
+    "pos": "determiner"
+  },
+  "love": {
+    "translation": "любить; любовь",
+    "definition": "to care very deeply about someone or something",
+    "pos": "verb/noun"
+  },
+  "man": {
+    "translation": "мужчина; человек",
+    "definition": "an adult male person",
+    "pos": "noun"
+  },
+  "home": {
+    "translation": "дом, домашний очаг",
+    "definition": "the place where a person lives",
+    "pos": "noun/adverb"
+  },
+  "long": {
+    "translation": "длинный; долгий",
+    "definition": "having a great distance from one end to the other, or lasting a long time",
+    "pos": "adjective"
+  },
+  "look": {
+    "translation": "смотреть; взгляд, вид",
+    "definition": "to direct your eyes toward something in order to see it",
+    "pos": "verb/noun"
+  },
+  "something": {
+    "translation": "что-то",
+    "definition": "a thing that is not stated or known exactly",
+    "pos": "pronoun"
+  },
+  "use": {
+    "translation": "использовать; использование",
+    "definition": "to employ something for a purpose",
+    "pos": "verb/noun"
+  },
+  "same": {
+    "translation": "тот же самый, одинаковый",
+    "definition": "not different; being one and the same thing",
+    "pos": "adjective"
+  },
+  "used": {
+    "translation": "использованный; привычный (used to)",
+    "definition": "the past form of 'use'; 'used to' describes a past habit",
+    "pos": "verb/adjective"
+  },
+  "both": {
+    "translation": "оба",
+    "definition": "the two people or things together, not just one",
+    "pos": "determiner"
+  },
+  "every": {
+    "translation": "каждый",
+    "definition": "each one of a group, without exception",
+    "pos": "determiner"
+  },
+  "am": {
+    "translation": "есть (форма 'быть' для I)",
+    "definition": "the present form of 'be' used with 'I'",
+    "pos": "verb"
+  },
+  "come": {
+    "translation": "приходить",
+    "definition": "to move toward the person who is speaking",
+    "pos": "verb"
+  },
+  "part": {
+    "translation": "часть",
+    "definition": "a piece or section of something larger",
+    "pos": "noun"
+  },
+  "state": {
+    "translation": "состояние; штат, государство",
+    "definition": "the condition of something; also a country or a region within a country",
+    "pos": "noun"
+  },
+  "three": {
+    "translation": "три",
+    "definition": "the number 3",
+    "pos": "number"
+  },
+  "around": {
+    "translation": "вокруг; примерно",
+    "definition": "on every side of something, or approximately",
+    "pos": "preposition/adverb"
+  },
+  "between": {
+    "translation": "между",
+    "definition": "in the space that separates two things or people",
+    "pos": "preposition"
+  },
+  "always": {
+    "translation": "всегда",
+    "definition": "at all times, every time",
+    "pos": "adverb"
+  },
+  "better": {
+    "translation": "лучше",
+    "definition": "the comparative form of 'good'",
+    "pos": "adjective/adverb"
+  },
+  "find": {
+    "translation": "находить",
+    "definition": "to discover or locate something",
+    "pos": "verb"
+  },
+  "help": {
+    "translation": "помогать; помощь",
+    "definition": "to make something easier or better for someone",
+    "pos": "verb/noun"
+  },
+  "high": {
+    "translation": "высокий",
+    "definition": "having a great height, level, or amount",
+    "pos": "adjective"
+  },
+  "little": {
+    "translation": "маленький; немного",
+    "definition": "small in size, or a small amount of something",
+    "pos": "adjective/adverb"
+  },
+  "old": {
+    "translation": "старый",
+    "definition": "having lived or existed for a long time",
+    "pos": "adjective"
+  },
+  "since": {
+    "translation": "с тех пор как; так как",
+    "definition": "from a point in the past until now, or because",
+    "pos": "preposition/conjunction"
+  },
+  "another": {
+    "translation": "другой, ещё один",
+    "definition": "one more thing or person, or a different one",
+    "pos": "determiner"
+  },
+  "does": {
+    "translation": "делает",
+    "definition": "the present form of 'do' used with he, she, or it",
+    "pos": "verb"
+  },
+  "own": {
+    "translation": "собственный; владеть",
+    "definition": "belonging to oneself; also to possess something",
+    "pos": "adjective/verb"
+  },
+  "under": {
+    "translation": "под",
+    "definition": "in a position below something",
+    "pos": "preposition"
+  },
+  "during": {
+    "translation": "во время",
+    "definition": "throughout a particular period of time",
+    "pos": "preposition"
+  },
+  "game": {
+    "translation": "игра",
+    "definition": "an activity with rules, played for fun or competition",
+    "pos": "noun"
+  },
+  "thing": {
+    "translation": "вещь, штука",
+    "definition": "an object or a matter that is not named exactly",
+    "pos": "noun"
+  },
+  "give": {
+    "translation": "давать",
+    "definition": "to hand something to someone, or provide it",
+    "pos": "verb"
+  },
+  "house": {
+    "translation": "дом (здание)",
+    "definition": "a building where people live",
+    "pos": "noun"
+  },
+  "place": {
+    "translation": "место",
+    "definition": "a particular position, area, or building",
+    "pos": "noun"
+  },
+  "school": {
+    "translation": "школа",
+    "definition": "a place where children go to be educated",
+    "pos": "noun"
+  },
+  "again": {
+    "translation": "снова",
+    "definition": "one more time",
+    "pos": "adverb"
+  },
+  "next": {
+    "translation": "следующий",
+    "definition": "coming right after this one in time or order",
+    "pos": "adjective"
+  },
+  "each": {
+    "translation": "каждый",
+    "definition": "every one of a group, considered separately",
+    "pos": "determiner"
+  },
+  "mr": {
+    "translation": "мистер, господин",
+    "definition": "a title used before a man's name",
+    "pos": "noun"
+  },
+  "without": {
+    "translation": "без",
+    "definition": "not having or accompanied by something",
+    "pos": "preposition"
+  },
+  "against": {
+    "translation": "против",
+    "definition": "in opposition to a person, idea, or thing",
+    "pos": "preposition"
+  },
+  "end": {
+    "translation": "конец; заканчивать",
+    "definition": "the last part of something; also to finish it",
+    "pos": "noun/verb"
+  },
+  "found": {
+    "translation": "нашёл(нашла); основал",
+    "definition": "the past form of 'find'; also to start an organization",
+    "pos": "verb"
+  },
+  "must": {
+    "translation": "должен",
+    "definition": "used to show that something is necessary or very likely",
+    "pos": "modal verb"
+  },
+  "show": {
+    "translation": "показывать; шоу",
+    "definition": "to let someone see something; also a program on TV",
+    "pos": "verb/noun"
+  },
+  "big": {
+    "translation": "большой",
+    "definition": "large in size, number, or amount",
+    "pos": "adjective"
+  },
+  "feel": {
+    "translation": "чувствовать",
+    "definition": "to experience a physical sensation or emotion",
+    "pos": "verb"
+  },
+  "sure": {
+    "translation": "уверенный",
+    "definition": "certain, without any doubt",
+    "pos": "adjective"
+  },
+  "team": {
+    "translation": "команда",
+    "definition": "a group of people who work or play together",
+    "pos": "noun"
+  },
+  "ever": {
+    "translation": "когда-либо",
+    "definition": "at any time",
+    "pos": "adverb"
+  },
+  "family": {
+    "translation": "семья",
+    "definition": "a group of related people, such as parents and children",
+    "pos": "noun"
+  },
+  "keep": {
+    "translation": "хранить, держать",
+    "definition": "to continue having, doing, or being something",
+    "pos": "verb"
+  },
+  "might": {
+    "translation": "мог бы; возможно",
+    "definition": "the past form of 'may', used to show possibility",
+    "pos": "modal verb"
+  },
+  "please": {
+    "translation": "пожалуйста; радовать",
+    "definition": "used to make a polite request; also to make someone happy",
+    "pos": "adverb/verb"
+  },
+  "put": {
+    "translation": "класть, ставить",
+    "definition": "to move something into a particular place or position",
+    "pos": "verb"
+  },
+  "money": {
+    "translation": "деньги",
+    "definition": "coins and paper notes used to buy things",
+    "pos": "noun"
+  },
+  "free": {
+    "translation": "свободный; бесплатный",
+    "definition": "not costing any money, or not controlled by others",
+    "pos": "adjective"
+  },
+  "second": {
+    "translation": "второй; секунда",
+    "definition": "coming after the first; also a unit of time",
+    "pos": "adjective/noun"
+  },
+  "someone": {
+    "translation": "кто-то",
+    "definition": "an unspecified or unknown person",
+    "pos": "pronoun"
+  },
+  "away": {
+    "translation": "прочь, вдали",
+    "definition": "to or at a distance from a place",
+    "pos": "adverb"
+  },
+  "left": {
+    "translation": "левый; ушёл(ушла)",
+    "definition": "the opposite direction of right; also the past form of 'leave'",
+    "pos": "adjective/verb"
+  },
+  "number": {
+    "translation": "число, номер",
+    "definition": "a word or symbol used to count or show an amount",
+    "pos": "noun"
+  },
+  "city": {
+    "translation": "город",
+    "definition": "a large and important town",
+    "pos": "noun"
+  },
+  "lot": {
+    "translation": "много (a lot of)",
+    "definition": "a large amount or number of something",
+    "pos": "noun"
+  },
+  "name": {
+    "translation": "имя; называть",
+    "definition": "the word by which a person or thing is known",
+    "pos": "noun/verb"
+  },
+  "night": {
+    "translation": "ночь",
+    "definition": "the dark hours between evening and morning",
+    "pos": "noun"
+  },
+  "play": {
+    "translation": "играть",
+    "definition": "to take part in a game or enjoyable activity",
+    "pos": "verb"
+  },
+  "until": {
+    "translation": "до тех пор пока",
+    "definition": "up to the point in time that something happens",
+    "pos": "preposition/conjunction"
+  },
+  "company": {
+    "translation": "компания",
+    "definition": "a business organization that sells goods or services",
+    "pos": "noun"
+  },
+  "doing": {
+    "translation": "делающий",
+    "definition": "the -ing form of 'do'",
+    "pos": "verb"
+  },
+  "few": {
+    "translation": "немного, мало",
+    "definition": "a small number of people or things",
+    "pos": "determiner"
+  },
+  "let": {
+    "translation": "позволять",
+    "definition": "to allow something to happen or someone to do something",
+    "pos": "verb"
+  },
+  "real": {
+    "translation": "настоящий",
+    "definition": "actually existing, not imagined or false",
+    "pos": "adjective"
+  },
+  "called": {
+    "translation": "назвал(а), позвонил(а)",
+    "definition": "the past form of 'call'",
+    "pos": "verb"
+  },
+  "different": {
+    "translation": "другой, разный",
+    "definition": "not the same as another person or thing",
+    "pos": "adjective"
+  },
+  "having": {
+    "translation": "имеющий",
+    "definition": "the -ing form of 'have'",
+    "pos": "verb"
+  },
+  "set": {
+    "translation": "набор; ставить",
+    "definition": "a group of matching or related things; also to put something in place",
+    "pos": "noun/verb"
+  },
+  "thought": {
+    "translation": "мысль; думал(а)",
+    "definition": "an idea in the mind; also the past form of 'think'",
+    "pos": "noun/verb"
+  },
+  "done": {
+    "translation": "сделано, закончено",
+    "definition": "the past participle of 'do'; also finished",
+    "pos": "verb/adjective"
+  }
 }
