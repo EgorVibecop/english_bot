@@ -994,11 +994,6 @@
     "definition": "the opposite direction of right; also the past form of 'leave'",
     "pos": "adjective/verb"
   },
-  "number": {
-    "translation": "число, номер",
-    "definition": "a word or symbol used to count or show an amount",
-    "pos": "noun"
-  },
   "city": {
     "translation": "город",
     "definition": "a large and important town",
@@ -1028,11 +1023,6 @@
     "translation": "до тех пор пока",
     "definition": "up to the point in time that something happens",
     "pos": "preposition/conjunction"
-  },
-  "company": {
-    "translation": "компания",
-    "definition": "a business organization that sells goods or services",
-    "pos": "noun"
   },
   "doing": {
     "translation": "делающий",
