@@ -92,7 +92,7 @@ def word_card_text(row, header="📖 Новое слово"):
         f"🇷🇺 {row['translation']}\n"
     )
     if row["definition"]:
-        text += f"\n💬 _{row['definition']}_"
+        text += f"\n✏️ _{row['definition']}_"
     return text
 
 

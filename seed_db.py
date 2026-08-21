@@ -5,30 +5,29 @@
 пропускает уже готовые слова, так что безопасно перезапускать).
 
 Источники данных (по приоритету):
-  1. core_words.json          — вручную проверенные перевод+определение+часть
-                                 речи для ~220 самых частотных служебных слов
-                                 (артикли, предлоги, местоимения и т.п. —
-                                 их плохо переводит любой автопереводчик).
-  2. translations_curated.json — вручную проверенные переводы ещё для ~780
-                                 слов (весь топ-1000). Определения и часть
-                                 речи для них берутся из WordNet — офлайн-
-                                 словарь английского языка (без сетевых
-                                 запросов и без риска получить случайный
-                                 неверный перевод, как это бывает у
-                                 бесплатных API машинного перевода).
+  1. core_words.json           — вручную проверенные переводы для ~220 самых
+                                  частотных служебных слов (артикли, предлоги,
+                                  местоимения и т.п. — их плохо переводит
+                                  любой автопереводчик).
+  2. translations_curated.json — вручную проверенные переводы для остальных
+                                  слов словаря (весь топ-1000+).
   3. dictionaryapi.dev + MyMemory — резервный вариант ТОЛЬКО для слов,
-                                 которых нет ни в одном из файлов выше
-                                 (например, если словарь расширили до
-                                 топ-3000 через generate_wordlist.py).
-                                 Качество перевода у бесплатных API
-                                 нестабильно, поэтому такие слова
-                                 помечаются source="api_needs_review", и
-                                 в конце скрипт печатает их список —
-                                 стоит проверить и, если нужно, поправить
-                                 вручную в translations_curated.json.
+                                  которых нет ни в одном из файлов выше
+                                  (например, если словарь расширили дальше
+                                  через generate_wordlist.py). Качество
+                                  перевода у бесплатных API нестабильно,
+                                  поэтому такие слова помечаются
+                                  source="api_needs_review", и в конце скрипт
+                                  печатает их список — стоит проверить и,
+                                  если нужно, поправить вручную в
+                                  translations_curated.json.
 
-WordNet требует одноразовой загрузки данных (~10 МБ) — скрипт скачает их
-сам при первом запуске, если их ещё нет.
+Пример употребления слова (короткая фраза 3-8 слов) берётся из examples.json
+для ВСЕХ слов словаря — вручную составленный список, без внешних API.
+
+Часть речи (pos) определяется через WordNet — офлайн-словарь английского
+(без сетевых запросов). WordNet требует одноразовой загрузки данных (~10 МБ)
+— скрипт скачает их сам при первом запуске, если их ещё нет.
 """
 
 import json
@@ -45,7 +44,7 @@ import db
 WORDS_FILE = "words_top1000.json"
 CORE_FILE = "core_words.json"
 CURATED_FILE = "translations_curated.json"
-DEFINITION_OVERRIDE_FILE = "definitions_override.json"
+EXAMPLES_FILE = "examples.json"
 
 DICT_API = "https://api.dictionaryapi.dev/api/v2/entries/en/{}"
 TRANSLATE_API = "https://api.mymemory.translated.net/get"
@@ -73,16 +72,11 @@ VERB_S_WHITELIST = {
     "needs", "says", "seems", "takes", "wants", "works", "includes",
 }
 
+POS_MAP = {"n": "noun", "v": "verb", "a": "adjective", "s": "adjective", "r": "adverb"}
 
-def wordnet_definition(word):
-    """
-    Возвращает (definition, pos) через WordNet.
-    Для слов на -ing/-ed (getting, looked, running...) — это почти всегда
-    глагольная форма, поэтому сперва ищем основной глагол (get, look, run).
-    Для слов на -s глагольная форма ищется только из явного списка
-    VERB_S_WHITELIST — иначе она слишком часто ошибочно перекрывала
-    множественное число существительных.
-    """
+
+def wordnet_pos(word):
+    """Часть речи через WordNet (см. VERB_S_WHITELIST про эвристику для -ing/-ed/-s)."""
     from nltk.corpus import wordnet as wn
 
     is_ing_ed = word.endswith("ing") or word.endswith("ed")
@@ -91,17 +85,11 @@ def wordnet_definition(word):
     if is_ing_ed or is_whitelisted_s:
         verb_lemma = wn.morphy(word, wn.VERB)
         if verb_lemma and verb_lemma != word:
-            syns = wn.synsets(verb_lemma, pos=wn.VERB)
-            if syns:
-                return syns[0].definition(), "verb"
+            if wn.synsets(verb_lemma, pos=wn.VERB):
+                return "verb"
 
     syns = wn.synsets(word)
-    if syns:
-        pos_map = {"n": "noun", "v": "verb", "a": "adjective",
-                   "s": "adjective", "r": "adverb"}
-        return syns[0].definition(), pos_map.get(syns[0].pos(), syns[0].pos())
-
-    return None, None
+    return POS_MAP.get(syns[0].pos(), syns[0].pos()) if syns else None
 
 
 def fetch_definition(word):
@@ -150,8 +138,8 @@ def main():
         core = json.load(f)
     with open(CURATED_FILE, encoding="utf-8") as f:
         curated = json.load(f)
-    with open(DEFINITION_OVERRIDE_FILE, encoding="utf-8") as f:
-        definition_overrides = json.load(f)
+    with open(EXAMPLES_FILE, encoding="utf-8") as f:
+        examples = json.load(f)
 
     if limit:
         words = words[:limit]
@@ -171,10 +159,12 @@ def main():
             skipped += 1
             continue
 
+        example = examples.get(word)
+
         if word in core:
             entry = core[word]
             db.upsert_word(
-                rank, word, entry["translation"], entry["definition"],
+                rank, word, entry["translation"], example,
                 entry["pos"], "core", order_index, level,
             )
             done += 1
@@ -183,18 +173,14 @@ def main():
 
         if word in curated:
             translation = curated[word]
-            if word in definition_overrides:
-                definition = definition_overrides[word]["definition"]
-                pos = definition_overrides[word]["pos"]
-            else:
-                definition, pos = wordnet_definition(word)
-            db.upsert_word(rank, word, translation, definition, pos, "curated", order_index, level)
+            pos = wordnet_pos(word)
+            db.upsert_word(rank, word, translation, example, pos, "curated", order_index, level)
             done += 1
             print(f"[{rank}/{total}] {word} -> {translation}  (curated)")
             continue
 
-        # слово за пределами топ-1000 (расширенный словарь) — резервные API
-        definition, pos = fetch_definition(word)
+        # слово за пределами словаря (расширение через generate_wordlist.py) — резервные API
+        fallback_definition, pos = fetch_definition(word)
         time.sleep(REQUEST_DELAY)
         translation = fetch_translation(word)
         time.sleep(REQUEST_DELAY)
@@ -202,7 +188,10 @@ def main():
         source = "api_needs_review" if translation else "api"
         if translation:
             needs_review.append(word)
-        db.upsert_word(rank, word, translation, definition, pos, source, order_index, level)
+        db.upsert_word(
+            rank, word, translation, example or fallback_definition,
+            pos, source, order_index, level,
+        )
         done += 1
         status = translation if translation else "⚠ перевод не получен"
         print(f"[{rank}/{total}] {word} -> {status}  (api, требует проверки)")
