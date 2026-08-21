@@ -293,13 +293,14 @@ def get_grammar_stats(user_id):
 
 
 def get_quiz_pool(user_id, limit=8):
-    """Слова, которые пользователь уже видел (learning/known) — материал для квиза."""
+    """Слова со статусом 'learning' — те, где пользователь ответил 'не знаю'
+    (именно они и должны тренироваться квизом, а не уже выученные/новые)."""
     conn = get_conn()
     rows = conn.execute(
         """
         SELECT w.* FROM progress p
         JOIN words w ON w.id = p.word_id
-        WHERE p.user_id = ? AND w.translation IS NOT NULL
+        WHERE p.user_id = ? AND p.status = 'learning' AND w.translation IS NOT NULL
         ORDER BY RANDOM()
         LIMIT ?
         """,

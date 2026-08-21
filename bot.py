@@ -242,8 +242,9 @@ async def cmd_quiz(update: Update, context: ContextTypes.DEFAULT_TYPE):
     pool = db.get_quiz_pool(user.id, limit=8)
     if len(pool) < 4:
         await update.message.reply_text(
-            "Пока маловато изученных слов для квиза (нужно минимум 4). "
-            "Пройди сначала несколько слов через «📖 Новое слово».",
+            "Пока маловато слов со статусом «не знаю» для квиза (нужно минимум 4). "
+            "Квиз тренирует именно те слова, где ты нажимал(а) «❌ Не знаю» на "
+            "«📖 Новое слово» или «🔁 Повторить».",
             reply_markup=VOCAB_MENU,
         )
         return
