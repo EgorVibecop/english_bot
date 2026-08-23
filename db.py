@@ -1,14 +1,21 @@
 """
 Работа с базой данных SQLite для бота.
-Хранит словарь (words) и прогресс каждого пользователя (progress).
+Хранит словарь (words), сленговые сокращения (slang) и прогресс
+каждого пользователя (progress, slang_progress).
+
+Путь к базе можно переопределить переменной окружения DB_PATH — это нужно
+на хостинге, чтобы положить базу на постоянный диск и не терять прогресс
+при передеплое.
 """
 
+import os
 import sqlite3
 import random
 from datetime import datetime, timedelta
 from pathlib import Path
 
-DB_PATH = Path(__file__).parent / "english_bot.db"
+DB_PATH = Path(os.getenv("DB_PATH") or (Path(__file__).parent / "english_bot.db"))
+DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 # Интервалы повторения по системе Лейтнера (в днях), индекс = номер "коробки"
 LEITNER_INTERVALS = {0: 0, 1: 1, 2: 2, 3: 4, 4: 7, 5: 14, 6: 30}
@@ -63,6 +70,26 @@ def init_db():
             tense TEXT NOT NULL,
             correct INTEGER NOT NULL,
             answered_at TEXT
+        );
+
+        CREATE TABLE IF NOT EXISTS slang (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            order_index INTEGER,
+            term TEXT UNIQUE NOT NULL,
+            full_form TEXT,
+            translation TEXT,
+            example TEXT
+        );
+
+        CREATE TABLE IF NOT EXISTS slang_progress (
+            user_id INTEGER NOT NULL,
+            slang_id INTEGER NOT NULL,
+            box INTEGER DEFAULT 0,
+            status TEXT DEFAULT 'new',
+            next_review TEXT,
+            last_seen TEXT,
+            PRIMARY KEY (user_id, slang_id),
+            FOREIGN KEY (slang_id) REFERENCES slang (id)
         );
         """
     )
@@ -310,6 +337,109 @@ def get_random_translations(exclude_word_id, n, pool="seen", user_id=None):
     options = [r["translation"] for r in rows]
     random.shuffle(options)
     return options[:n]
+
+
+# ---------- grammar (tenses) ----------
+
+# ---------- slang (сленговые сокращения) ----------
+
+def upsert_slang(order_index, term, full_form, translation, example):
+    conn = get_conn()
+    conn.execute(
+        """
+        INSERT INTO slang (order_index, term, full_form, translation, example)
+        VALUES (?, ?, ?, ?, ?)
+        ON CONFLICT(term) DO UPDATE SET
+            order_index=excluded.order_index,
+            full_form=excluded.full_form,
+            translation=excluded.translation,
+            example=excluded.example
+        """,
+        (order_index, term, full_form, translation, example),
+    )
+    conn.commit()
+    conn.close()
+
+
+def get_slang_by_term(term):
+    conn = get_conn()
+    row = conn.execute("SELECT * FROM slang WHERE term = ?", (term,)).fetchone()
+    conn.close()
+    return row
+
+
+def count_slang():
+    conn = get_conn()
+    n = conn.execute("SELECT COUNT(*) FROM slang").fetchone()[0]
+    conn.close()
+    return n
+
+
+def get_next_slang(user_id):
+    """Случайное сокращение, исключая последние показанные (см. get_next_new_word)."""
+    conn = get_conn()
+    total = conn.execute("SELECT COUNT(*) FROM slang").fetchone()[0]
+    window = min(NO_REPEAT_WINDOW, max(1, total // 2))
+    row = conn.execute(
+        """
+        SELECT s.* FROM slang s
+        WHERE s.id NOT IN (
+            SELECT slang_id FROM slang_progress
+            WHERE user_id = ?
+            ORDER BY last_seen DESC
+            LIMIT ?
+        )
+        ORDER BY RANDOM()
+        LIMIT 1
+        """,
+        (user_id, window),
+    ).fetchone()
+    if row is None:
+        row = conn.execute("SELECT * FROM slang ORDER BY RANDOM() LIMIT 1").fetchone()
+    conn.close()
+    return row
+
+
+def record_slang_answer(user_id, slang_id, known: bool):
+    conn = get_conn()
+    prev = conn.execute(
+        "SELECT box FROM slang_progress WHERE user_id = ? AND slang_id = ?",
+        (user_id, slang_id),
+    ).fetchone()
+    current_box = prev["box"] if prev else 0
+    new_box = min(current_box + 1, MAX_BOX) if known else 1
+    status = "known" if new_box >= KNOWN_BOX_THRESHOLD else "learning"
+    now = datetime.utcnow()
+    conn.execute(
+        """
+        INSERT INTO slang_progress (user_id, slang_id, box, status, next_review, last_seen)
+        VALUES (?, ?, ?, ?, ?, ?)
+        ON CONFLICT(user_id, slang_id) DO UPDATE SET
+            box=excluded.box, status=excluded.status,
+            next_review=excluded.next_review, last_seen=excluded.last_seen
+        """,
+        (
+            user_id, slang_id, new_box, status,
+            (now + timedelta(days=LEITNER_INTERVALS[new_box])).isoformat(),
+            now.isoformat(),
+        ),
+    )
+    conn.commit()
+    conn.close()
+
+
+def get_slang_stats(user_id):
+    conn = get_conn()
+    total = conn.execute("SELECT COUNT(*) FROM slang").fetchone()[0]
+    seen = conn.execute(
+        "SELECT COUNT(*) FROM slang_progress WHERE user_id = ?", (user_id,)
+    ).fetchone()[0]
+    known = conn.execute(
+        "SELECT COUNT(*) FROM slang_progress WHERE user_id = ? AND status = 'known'",
+        (user_id,),
+    ).fetchone()[0]
+    conn.close()
+    return {"total": total, "seen": seen, "known": known}
 
 
 # ---------- grammar (tenses) ----------

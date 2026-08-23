@@ -56,7 +56,16 @@ with open("grammar_exercises.json", encoding="utf-8") as f:
 MAIN_MENU = ReplyKeyboardMarkup(
     [
         ["📚 Словарь", "⏳ Времена"],
-        ["📊 Прогресс", "❓ Помощь"],
+        ["💬 Сленг", "📊 Прогресс"],
+        ["❓ Помощь"],
+    ],
+    resize_keyboard=True,
+)
+
+SLANG_MENU = ReplyKeyboardMarkup(
+    [
+        ["💬 Новое сокращение"],
+        ["⬅️ Назад"],
     ],
     resize_keyboard=True,
 )
@@ -108,6 +117,26 @@ def know_buttons(word_id):
     )
 
 
+def slang_card_text(row):
+    return (
+        f"💬 Сленговое сокращение\n\n"
+        f"*{row['term']}* — {row['full_form']}\n\n"
+        f"🇷🇺 {row['translation']}\n"
+        f"\n✏️ _{row['example']}_"
+    )
+
+
+def slang_buttons(slang_id):
+    return InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("✅ Знаю", callback_data=f"sknow:{slang_id}"),
+                InlineKeyboardButton("❌ Не знаю", callback_data=f"sdont:{slang_id}"),
+            ]
+        ]
+    )
+
+
 # ---------- commands ----------
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -116,10 +145,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.pop("grammar_active", None)
     await update.message.reply_text(
         "Привет! 👋 Я помогу выучить английский.\n\n"
-        "📚 *Словарь* — 1000 самых частотных слов: перевод + объяснение "
-        "на английском, интервальный повтор, квиз.\n"
+        "📚 *Словарь* — частотные слова с переводом и примером употребления, "
+        "три уровня сложности, интервальный повтор и квиз.\n"
         "⏳ *Времена* — тренажёр на все 12 английских времён: предложение "
-        "с пропуском, ты вписываешь ответ текстом.\n\n"
+        "с пропуском, ты вписываешь ответ текстом.\n"
+        "💬 *Сленг* — современные сокращения из переписки: btw, ngl, iykyk "
+        "и другие.\n\n"
         "Выбери раздел на клавиатуре ниже.",
         reply_markup=MAIN_MENU,
         parse_mode=ParseMode.MARKDOWN,
@@ -133,12 +164,17 @@ async def help_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/review — повторить слова по расписанию\n"
         "/quiz — мини-тест (нужно выучить хотя бы 4 слова)\n"
         "/grammar — тренажёр времён\n"
+        "/slang — сленговые сокращения\n"
         "/progress — статистика\n\n"
         "📚 Словарь: после каждого нового слова отметь, знал(а) ты его или "
-        "нет — от этого зависит, когда бот покажет его на повторении снова.\n"
+        "нет — от этого зависит, когда бот покажет его на повторении снова. "
+        "Слова идут в случайном порядке и не повторяются раньше, чем через "
+        "200 других слов.\n"
         "⏳ Времена: бот присылает предложение с пропуском (___), впиши "
         "пропущенное слово (или несколько слов, например «will have») "
-        "обычным текстовым сообщением.",
+        "обычным текстовым сообщением.\n"
+        "💬 Сленг: сокращения из реальной переписки — расшифровка, перевод "
+        "и пример.",
         reply_markup=MAIN_MENU,
     )
 
@@ -151,6 +187,39 @@ async def cmd_vocab_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_back_to_main(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.pop("grammar_active", None)
     await update.message.reply_text("Главное меню:", reply_markup=MAIN_MENU)
+
+
+async def send_next_slang(send_func, user_id):
+    row = db.get_next_slang(user_id)
+    if row is None:
+        await send_func(
+            "Словарь сокращений пуст. Запусти seed_db.py, чтобы его заполнить.",
+            reply_markup=SLANG_MENU,
+        )
+        return
+    await send_func(
+        slang_card_text(row),
+        reply_markup=slang_buttons(row["id"]),
+        parse_mode=ParseMode.MARKDOWN,
+    )
+
+
+async def cmd_slang(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
+    db.ensure_user(user.id, user.username or user.first_name)
+    context.user_data.pop("grammar_active", None)
+    await send_next_slang(update.message.reply_text, user.id)
+
+
+async def cmd_slang_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.pop("grammar_active", None)
+    s = db.get_slang_stats(update.effective_user.id)
+    await update.message.reply_text(
+        f"💬 Раздел «Сленг» — современные сокращения из переписки и соцсетей "
+        f"(btw, ngl, iykyk...).\n\n"
+        f"Всего в словаре: {s['total']} · пройдено: {s['seen']} · выучено: {s['known']}",
+        reply_markup=SLANG_MENU,
+    )
 
 
 async def send_next_word(send_func, user_id):
@@ -222,6 +291,7 @@ async def cmd_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
     percent = round(100 * s["seen"] / s["total"]) if s["total"] else 0
     g = db.get_grammar_stats(user.id)
     g_percent = round(100 * g["correct"] / g["total"]) if g["total"] else 0
+    sl = db.get_slang_stats(user.id)
     await update.message.reply_text(
         f"📊 *Твой прогресс*\n\n"
         f"📚 *Словарь* ({LEVELS[level]})\n"
@@ -232,7 +302,10 @@ async def cmd_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"🔁 Ждут повторения сейчас: {s['due']}\n\n"
         f"⏳ *Времена*\n"
         f"Отвечено вопросов: {g['total']}\n"
-        f"Правильно: {g['correct']} ({g_percent}%)",
+        f"Правильно: {g['correct']} ({g_percent}%)\n\n"
+        f"💬 *Сленг*\n"
+        f"Всего сокращений: {sl['total']}\n"
+        f"Пройдено: {sl['seen']} · ✅ выучено: {sl['known']}",
         reply_markup=MAIN_MENU,
         parse_mode=ParseMode.MARKDOWN,
     )
@@ -299,6 +372,14 @@ async def on_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         level = int(data.split(":")[1])
         db.set_user_level(user_id, level)
         await query.edit_message_text(f"🎚 Установлен: {LEVELS[level]}")
+        return
+
+    if data.startswith("sknow:") or data.startswith("sdont:"):
+        known = data.startswith("sknow:")
+        slang_id = int(data.split(":")[1])
+        db.record_slang_answer(user_id, slang_id, known)
+        await query.edit_message_reply_markup(reply_markup=None)
+        await send_next_slang(query.message.reply_text, user_id)
         return
 
     if data.startswith("know:") or data.startswith("dontknow:"):
@@ -475,6 +556,8 @@ async def on_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     mapping = {
         "📚 Словарь": cmd_vocab_menu,
         "⏳ Времена": cmd_grammar,
+        "💬 Сленг": cmd_slang_menu,
+        "💬 Новое сокращение": cmd_slang,
         "⬅️ Назад": cmd_back_to_main,
         "🏁 Закончить тренировку": cmd_grammar_stop,
         "📖 Новое слово": cmd_word,
@@ -496,17 +579,40 @@ async def on_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
 
+def ensure_seeded():
+    """Собрать базу при первом запуске.
+
+    Нужно для хостинга: файл базы намеренно НЕ хранится в git (иначе передеплой
+    затирал бы прогресс), поэтому на новом сервере бот наполняет её сам из
+    JSON-файлов. Операция идемпотентная — уже заполненные слова не трогаются,
+    прогресс не сбрасывается.
+    """
+    import seed_db
+
+    db.init_db()
+    words_before = db.count_words(only_with_translation=True)
+    slang_before = db.count_slang()
+    if words_before and slang_before:
+        logger.info("База готова: слов %s, сокращений %s", words_before, slang_before)
+        return
+
+    logger.info("База пуста или неполная — наполняю из JSON-файлов...")
+    seed_db.seed(verbose=False)
+    logger.info(
+        "Готово: слов %s, сокращений %s",
+        db.count_words(only_with_translation=True), db.count_slang(),
+    )
+
+
 def main():
     if not BOT_TOKEN:
         raise SystemExit(
             "Не найден BOT_TOKEN. Скопируйте .env.example в .env и вставьте "
-            "туда токен, полученный от @BotFather."
+            "туда токен, полученный от @BotFather (либо задайте переменную "
+            "окружения BOT_TOKEN в панели хостинга)."
         )
-    if db.count_words() == 0:
-        print(
-            "⚠ В базе нет слов. Сначала запустите: python seed_db.py\n"
-            "Бот всё равно запустится, но /word ничего не покажет."
-        )
+
+    ensure_seeded()
 
     app = Application.builder().token(BOT_TOKEN).build()
 
@@ -516,6 +622,7 @@ def main():
     app.add_handler(CommandHandler("review", cmd_review))
     app.add_handler(CommandHandler("quiz", cmd_quiz))
     app.add_handler(CommandHandler("grammar", cmd_grammar))
+    app.add_handler(CommandHandler("slang", cmd_slang))
     app.add_handler(CommandHandler("progress", cmd_progress))
     app.add_handler(CallbackQueryHandler(on_callback))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, on_text))
