@@ -18,6 +18,7 @@ Telegram-бот для изучения английского: словарь �
 Перед первым запуском обязательно выполните: python seed_db.py
 """
 
+import asyncio
 import json
 import logging
 import os
@@ -40,7 +41,10 @@ from telegram.ext import (
     filters,
 )
 
+import backup
 import db
+
+BACKUP_INTERVAL_SECONDS = 6 * 60 * 60  # каждые 6 часов
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -165,7 +169,8 @@ async def help_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/quiz — мини-тест (нужно выучить хотя бы 4 слова)\n"
         "/grammar — тренажёр времён\n"
         "/slang — сленговые сокращения\n"
-        "/progress — статистика\n\n"
+        "/progress — статистика\n"
+        "/backup — сделать бэкап базы в GitHub прямо сейчас\n\n"
         "📚 Словарь: после каждого нового слова отметь, знал(а) ты его или "
         "нет — от этого зависит, когда бот покажет его на повторении снова. "
         "Слова идут в случайном порядке и не повторяются раньше, чем через "
@@ -604,6 +609,31 @@ def ensure_seeded():
     )
 
 
+async def cmd_backup(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("💾 Делаю бэкап базы...")
+    ok = await asyncio.to_thread(backup.backup_now, db.DB_PATH)
+    if ok:
+        await update.message.reply_text("✅ Готово — свежий снимок в ветке backup на GitHub.")
+    else:
+        await update.message.reply_text(
+            "⚠ Бэкап не настроен или не удался. Проверь, что на хостинге заданы "
+            "переменные GITHUB_BACKUP_TOKEN и GITHUB_BACKUP_REPO, и посмотри логи."
+        )
+
+
+async def _backup_loop():
+    """Раз в BACKUP_INTERVAL_SECONDS отправляет снимок базы в GitHub.
+    Ошибки не приводят к падению бота — backup.backup_now сама их логирует."""
+    await asyncio.sleep(60)  # дать боту спокойно подняться перед первым бэкапом
+    while True:
+        await asyncio.to_thread(backup.backup_now, db.DB_PATH)
+        await asyncio.sleep(BACKUP_INTERVAL_SECONDS)
+
+
+async def _post_init(app: Application):
+    asyncio.create_task(_backup_loop())
+
+
 def main():
     if not BOT_TOKEN:
         raise SystemExit(
@@ -614,7 +644,7 @@ def main():
 
     ensure_seeded()
 
-    app = Application.builder().token(BOT_TOKEN).build()
+    app = Application.builder().token(BOT_TOKEN).post_init(_post_init).build()
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", help_cmd))
@@ -624,6 +654,7 @@ def main():
     app.add_handler(CommandHandler("grammar", cmd_grammar))
     app.add_handler(CommandHandler("slang", cmd_slang))
     app.add_handler(CommandHandler("progress", cmd_progress))
+    app.add_handler(CommandHandler("backup", cmd_backup))
     app.add_handler(CallbackQueryHandler(on_callback))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, on_text))
 
