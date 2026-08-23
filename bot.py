@@ -48,6 +48,7 @@ BACKUP_INTERVAL_SECONDS = 6 * 60 * 60  # каждые 6 часов
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_ID = os.getenv("ADMIN_ID")
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
@@ -621,6 +622,22 @@ async def cmd_backup(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
 
+async def cmd_admin(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not ADMIN_ID or str(update.effective_user.id) != str(ADMIN_ID):
+        return
+    s = db.get_admin_stats()
+    await update.message.reply_text(
+        f"📊 Статистика бота\n\n"
+        f"Всего пользователей: {s['total_users']}\n"
+        f"Активных за {s['active_days']} дн.: {s['active_users']}\n"
+        f"Новых сегодня: {s['new_today']}\n\n"
+        f"Слов выучено (известно): {s['words_known']}\n"
+        f"Слов в процессе: {s['words_learning']}\n"
+        f"Ответов на грамматику: {s['grammar_answers']}\n"
+        f"Сленга выучено: {s['slang_known']}"
+    )
+
+
 async def _backup_loop():
     """Раз в BACKUP_INTERVAL_SECONDS отправляет снимок базы в GitHub.
     Ошибки не приводят к падению бота — backup.backup_now сама их логирует."""
@@ -655,6 +672,7 @@ def main():
     app.add_handler(CommandHandler("slang", cmd_slang))
     app.add_handler(CommandHandler("progress", cmd_progress))
     app.add_handler(CommandHandler("backup", cmd_backup))
+    app.add_handler(CommandHandler("admin", cmd_admin))
     app.add_handler(CallbackQueryHandler(on_callback))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, on_text))
 

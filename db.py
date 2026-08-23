@@ -158,6 +158,54 @@ def get_user_level(user_id):
     return row["level"] if row and row["level"] else 1
 
 
+def get_admin_stats(active_days=7):
+    conn = get_conn()
+    total_users = conn.execute("SELECT COUNT(*) FROM users").fetchone()[0]
+
+    cutoff = (datetime.utcnow() - timedelta(days=active_days)).isoformat()
+    active_users = conn.execute(
+        """
+        SELECT COUNT(DISTINCT user_id) FROM (
+            SELECT user_id, last_seen AS ts FROM progress
+            UNION ALL
+            SELECT user_id, answered_at AS ts FROM grammar_log
+            UNION ALL
+            SELECT user_id, last_seen AS ts FROM slang_progress
+        )
+        WHERE ts >= ?
+        """,
+        (cutoff,),
+    ).fetchone()[0]
+
+    new_today = conn.execute(
+        "SELECT COUNT(*) FROM users WHERE created_at >= ?",
+        (datetime.utcnow().strftime("%Y-%m-%d"),),
+    ).fetchone()[0]
+
+    words_known = conn.execute(
+        "SELECT COUNT(*) FROM progress WHERE status = 'known'"
+    ).fetchone()[0]
+    words_learning = conn.execute(
+        "SELECT COUNT(*) FROM progress WHERE status = 'learning'"
+    ).fetchone()[0]
+    grammar_answers = conn.execute("SELECT COUNT(*) FROM grammar_log").fetchone()[0]
+    slang_known = conn.execute(
+        "SELECT COUNT(*) FROM slang_progress WHERE status = 'known'"
+    ).fetchone()[0]
+
+    conn.close()
+    return {
+        "total_users": total_users,
+        "active_users": active_users,
+        "active_days": active_days,
+        "new_today": new_today,
+        "words_known": words_known,
+        "words_learning": words_learning,
+        "grammar_answers": grammar_answers,
+        "slang_known": slang_known,
+    }
+
+
 def set_user_level(user_id, level):
     conn = get_conn()
     conn.execute("UPDATE users SET level = ? WHERE user_id = ?", (level, user_id))
