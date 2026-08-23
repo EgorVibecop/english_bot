@@ -1,11 +1,14 @@
 """
-Автобэкап базы данных в отдельную ветку GitHub.
+Автобэкап базы данных в отдельную ветку GitHub — через REST API,
+без зависимости от установленного бинарника git (на некоторых хостингах,
+например при базовом образе python:3.11-slim, git внутри контейнера просто
+нет, а тащить его отдельно ради этого не хочется).
 
 Раз в BACKUP_INTERVAL_HOURS часов бот делает консистентный снимок своей
 SQLite-базы (через штатный sqlite3 backup API — безопасно даже если в этот
-момент идёт запись) и отправляет его в ветку `backup` репозитория одним
-всегда актуальным коммитом (commit --amend + force-push), чтобы история
-репозитория не росла бесконечно.
+момент идёт запись) и отправляет его в ветку `backup` репозитория через
+GitHub Contents API. Если содержимое не изменилось с прошлого раза —
+новый коммит не создаётся.
 
 Работает только если заданы переменные окружения:
   GITHUB_BACKUP_TOKEN — GitHub Personal Access Token с правом Contents: Read/Write
@@ -16,100 +19,142 @@ SQLite-базы (через штатный sqlite3 backup API — безопас
 бот работает как обычно.
 """
 
+import base64
+import json
 import logging
 import os
-import shutil
 import sqlite3
-import subprocess
+import tempfile
+import urllib.error
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
 BACKUP_BRANCH = "backup"
+BACKUP_PATH_IN_REPO = "english_bot.db"
+API_BASE = "https://api.github.com"
+TIMEOUT = 20
 
 
-def _clone_dir(db_path: Path) -> Path:
-    return db_path.parent / "_backup_clone"
-
-
-def _run(args, cwd):
-    return subprocess.run(
-        args, cwd=cwd, check=True, capture_output=True, text=True, timeout=60
-    )
-
-
-def _safe_snapshot(db_path: Path, dest_path: Path):
+def _safe_snapshot_bytes(db_path: Path) -> bytes:
     """Консистентная копия SQLite-базы через встроенный backup API."""
-    src = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
-    dst = sqlite3.connect(str(dest_path))
+    with tempfile.TemporaryDirectory() as tmp:
+        dest = Path(tmp) / "snapshot.db"
+        src = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+        dst = sqlite3.connect(str(dest))
+        try:
+            src.backup(dst)
+        finally:
+            dst.close()
+            src.close()
+        return dest.read_bytes()
+
+
+def _api_request(method: str, path: str, token: str, data=None, _base=None):
+    url = f"{_base or API_BASE}{path}"
+    body = json.dumps(data).encode("utf-8") if data is not None else None
+    req = urllib.request.Request(
+        url,
+        data=body,
+        method=method,
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "english-bot-backup",
+            "X-GitHub-Api-Version": "2022-11-28",
+            "Content-Type": "application/json",
+        },
+    )
     try:
-        src.backup(dst)
-    finally:
-        dst.close()
-        src.close()
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+            raw = resp.read()
+            return resp.status, (json.loads(raw) if raw else None)
+    except urllib.error.HTTPError as e:
+        raw = e.read()
+        try:
+            payload = json.loads(raw) if raw else None
+        except Exception:
+            payload = None
+        return e.code, payload
 
 
-def backup_now(db_path: Path, _remote_url: str | None = None) -> bool:
+def _ensure_branch(token: str, repo: str, _base=None) -> bool:
+    status, _ = _api_request("GET", f"/repos/{repo}/branches/{BACKUP_BRANCH}", token, _base=_base)
+    if status == 200:
+        return True
+
+    status, data = _api_request("GET", f"/repos/{repo}/git/ref/heads/main", token, _base=_base)
+    if status != 200:
+        logger.error("Бэкап: не удалось получить SHA ветки main: %s %s", status, data)
+        return False
+    sha = data["object"]["sha"]
+
+    status, data = _api_request(
+        "POST", f"/repos/{repo}/git/refs", token,
+        {"ref": f"refs/heads/{BACKUP_BRANCH}", "sha": sha}, _base=_base,
+    )
+    if status not in (200, 201):
+        logger.error("Бэкап: не удалось создать ветку %s: %s %s", BACKUP_BRANCH, status, data)
+        return False
+    logger.info("Бэкап: создана ветка %s", BACKUP_BRANCH)
+    return True
+
+
+def backup_now(db_path: Path, _api_base: str | None = None) -> bool:
     """Сделать снимок базы и отправить его в ветку backup. Возвращает True при успехе.
 
-    _remote_url — только для тестов (например, локальный bare-репозиторий);
-    в обычной работе всегда строится из GITHUB_BACKUP_TOKEN/GITHUB_BACKUP_REPO.
+    _api_base — только для тестов (локальный фейковый сервер вместо api.github.com).
     """
-    remote_url = _remote_url
-    if remote_url is None:
-        token = os.getenv("GITHUB_BACKUP_TOKEN")
-        repo = os.getenv("GITHUB_BACKUP_REPO")
-        if not token or not repo:
-            logger.info("GITHUB_BACKUP_TOKEN/GITHUB_BACKUP_REPO не заданы — автобэкап выключен")
-            return False
-        remote_url = f"https://x-access-token:{token}@github.com/{repo}.git"
+    token = os.getenv("GITHUB_BACKUP_TOKEN")
+    repo = os.getenv("GITHUB_BACKUP_REPO")
+    if not token or not repo:
+        logger.info("GITHUB_BACKUP_TOKEN/GITHUB_BACKUP_REPO не заданы — автобэкап выключен")
+        return False
 
     if not db_path.exists():
         logger.warning("Бэкап пропущен: файл базы %s ещё не создан", db_path)
         return False
 
-    clone_dir = _clone_dir(db_path)
-
     try:
-        if not (clone_dir / ".git").exists():
-            clone_dir.mkdir(parents=True, exist_ok=True)
-            _run(["git", "init", "-q"], clone_dir)
-            _run(["git", "checkout", "-q", "--orphan", BACKUP_BRANCH], clone_dir)
-            _run(["git", "config", "user.email", "backup@bot.local"], clone_dir)
-            _run(["git", "config", "user.name", "English Bot Backup"], clone_dir)
+        if not _ensure_branch(token, repo, _base=_api_base):
+            return False
 
-        snapshot_path = clone_dir / "english_bot.db"
-        _safe_snapshot(db_path, snapshot_path)
+        snapshot = _safe_snapshot_bytes(db_path)
+        content_b64 = base64.b64encode(snapshot).decode("ascii")
 
-        _run(["git", "add", "english_bot.db"], clone_dir)
-
-        # если содержимое не изменилось с прошлого раза — коммитить нечего
-        diff = subprocess.run(
-            ["git", "diff", "--cached", "--quiet"],
-            cwd=clone_dir, capture_output=True, timeout=30,
+        status, existing = _api_request(
+            "GET",
+            f"/repos/{repo}/contents/{BACKUP_PATH_IN_REPO}?ref={BACKUP_BRANCH}",
+            token,
+            _base=_api_base,
         )
-        if diff.returncode == 0:
-            logger.info("Бэкап: база не изменилась с прошлого снимка, пропускаю")
+        sha = None
+        if status == 200 and existing:
+            sha = existing.get("sha")
+            remote_content = existing.get("content")
+            if remote_content and base64.b64decode(remote_content) == snapshot:
+                logger.info("Бэкап: база не изменилась с прошлого снимка, пропускаю")
+                return True
+
+        payload = {
+            "message": f"backup {datetime.now(timezone.utc).isoformat(timespec='seconds')}",
+            "content": content_b64,
+            "branch": BACKUP_BRANCH,
+        }
+        if sha:
+            payload["sha"] = sha
+
+        status, data = _api_request(
+            "PUT", f"/repos/{repo}/contents/{BACKUP_PATH_IN_REPO}", token, payload, _base=_api_base,
+        )
+        if status in (200, 201):
+            logger.info("Бэкап базы отправлен в ветку %s", BACKUP_BRANCH)
             return True
-
-        message = f"backup {datetime.now(timezone.utc).isoformat(timespec='seconds')}"
-        has_commit = subprocess.run(
-            ["git", "rev-parse", "--verify", "-q", "HEAD"],
-            cwd=clone_dir, capture_output=True, timeout=30,
-        ).returncode == 0
-        if has_commit:
-            _run(["git", "commit", "-q", "--amend", "-m", message], clone_dir)
-        else:
-            _run(["git", "commit", "-q", "-m", message], clone_dir)
-
-        _run(["git", "push", "-q", "-f", remote_url, f"HEAD:{BACKUP_BRANCH}"], clone_dir)
-        logger.info("Бэкап базы отправлен в ветку %s", BACKUP_BRANCH)
-        return True
-
-    except subprocess.CalledProcessError as e:
-        logger.error("Бэкап не удался: %s\n%s", e, e.stderr)
+        logger.error("Бэкап не удался: %s %s", status, data)
         return False
+
     except Exception:
         logger.exception("Бэкап не удался (непредвиденная ошибка)")
         return False

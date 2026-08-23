@@ -11,7 +11,3 @@ english_bot.db
 
 bot_log.txt
 seed_log.txt
-
-# Рабочая копия для отправки бэкапов в ветку backup — создаётся ботом
-# на лету рядом с базой, в git не хранится.
-_backup_clone/
