@@ -140,22 +140,66 @@ def set_user_level(user_id, level):
 
 # ---------- progress ----------
 
+# Сколько последних показанных слов не предлагать повторно.
+NO_REPEAT_WINDOW = 200
+
+# Фиксированное начало для нового пользователя, дальше — случайный порядок.
+PINNED_FIRST = ("i", "love", "katya")
+
+
 def get_next_new_word(user_id, level=1):
-    """Следующее ещё не изученное слово выбранного уровня, в перемешанном
-    порядке показа (не по чистой частоте — иначе подряд идут одни предлоги/
-    артикли)."""
+    """Случайное слово выбранного уровня, исключая NO_REPEAT_WINDOW последних
+    показанных этому пользователю.
+
+    Порядок именно случайный, а не фиксированный: прогресс на хостинге
+    сбрасывается при передеплое, и при фиксированном порядке после каждого
+    сброса шли бы одни и те же первые слова. Слово может встретиться снова,
+    но не раньше, чем через NO_REPEAT_WINDOW других слов.
+    """
     conn = get_conn()
+
+    seen_count = conn.execute(
+        "SELECT COUNT(*) FROM progress WHERE user_id = ?", (user_id,)
+    ).fetchone()[0]
+    if level == 1 and seen_count < len(PINNED_FIRST):
+        pinned = conn.execute(
+            "SELECT * FROM words WHERE word = ? AND level = ?",
+            (PINNED_FIRST[seen_count], level),
+        ).fetchone()
+        if pinned is not None:
+            conn.close()
+            return pinned
+
     row = conn.execute(
         """
         SELECT w.* FROM words w
         WHERE w.translation IS NOT NULL
           AND w.level = ?
-          AND w.id NOT IN (SELECT word_id FROM progress WHERE user_id = ?)
-        ORDER BY COALESCE(w.order_index, w.rank) ASC
+          AND w.id NOT IN (
+              SELECT word_id FROM progress
+              WHERE user_id = ?
+              ORDER BY last_seen DESC
+              LIMIT ?
+          )
+        ORDER BY RANDOM()
         LIMIT 1
         """,
-        (level, user_id),
+        (level, user_id, NO_REPEAT_WINDOW),
     ).fetchone()
+
+    # Подстраховка: если в уровне слов меньше окна, окно исключит вообще всё —
+    # тогда выдаём просто случайное слово уровня.
+    if row is None:
+        row = conn.execute(
+            """
+            SELECT w.* FROM words w
+            WHERE w.translation IS NOT NULL AND w.level = ?
+            ORDER BY RANDOM()
+            LIMIT 1
+            """,
+            (level,),
+        ).fetchone()
+
     conn.close()
     return row
 
