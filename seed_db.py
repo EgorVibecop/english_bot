@@ -21,6 +21,7 @@
 Запуск вручную:  python seed_db.py
 """
 
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -47,9 +48,31 @@ def _load(path, default=None):
         return json.load(f)
 
 
-def seed(verbose=True):
-    """Заполняет словарь и сленг. Возвращает число добавленных записей."""
+CONTENT_FINGERPRINT_KEY = "content_fingerprint"
+
+
+def _fingerprint():
+    """Отпечаток всех файлов-словарей: если не менялись, пересобирать нечего."""
+    h = hashlib.sha256()
+    for path in (WORDS_FILE, CORE_FILE, CURATED_FILE, EXAMPLES_FILE,
+                 POS_FILE, SLANG_FILE, IDIOMS_FILE):
+        h.update(path.read_bytes() if path.exists() else b"")
+    return h.hexdigest()
+
+
+def seed(verbose=True, force=False):
+    """Заполняет словарь, сленг и идиомы. Возвращает число записей.
+
+    Если содержимое JSON-файлов не менялось с прошлого запуска, работа
+    пропускается: иначе бот на каждом старте перезаписывал бы весь словарь.
+    """
     db.init_db()
+
+    fingerprint = _fingerprint()
+    if not force and db.get_meta(CONTENT_FINGERPRINT_KEY) == fingerprint:
+        if verbose:
+            print("Словари не менялись — база уже актуальна.")
+        return 0
 
     words = _load(WORDS_FILE)
     core = _load(CORE_FILE)
@@ -64,19 +87,14 @@ def seed(verbose=True):
     pruned = db.prune_words({item["word"] for item in words})
 
     total = len(words)
-    added = skipped = 0
     no_translation = []
+    rows = []
 
     for item in words:
         word = item["word"]
         rank = item["rank"]
         order_index = item.get("order", rank)
         level = item.get("level", 1)
-
-        existing = db.get_word_by_word(word)
-        if existing is not None and existing["translation"] is not None:
-            skipped += 1
-            continue
 
         if word in core:
             translation = core[word]["translation"]
@@ -90,19 +108,17 @@ def seed(verbose=True):
             no_translation.append(word)
             continue
 
-        db.upsert_word(
-            rank, word, translation, examples.get(word), pos, source,
-            order_index, level,
+        rows.append(
+            (rank, word, translation, examples.get(word), pos, source,
+             order_index, level)
         )
-        added += 1
-        if verbose:
-            print(f"[{rank}/{total}] {word} -> {translation}  ({source})")
+
+    # Пишем весь словарь разом: нумерация при обновлении меняется, и построчная
+    # вставка натыкалась бы на UNIQUE-констрейнт ещё занятых номеров.
+    added = db.bulk_upsert_words(rows)
 
     slang_added = 0
     for i, (term, entry) in enumerate(slang.items(), start=1):
-        existing = db.get_slang_by_term(term)
-        if existing is not None:
-            continue
         db.upsert_slang(
             i, term, entry["full"], entry["translation"], entry["example"]
         )
@@ -115,15 +131,16 @@ def seed(verbose=True):
         )
         idioms_added += 1
 
+    db.set_meta(CONTENT_FINGERPRINT_KEY, fingerprint)
+
     if verbose:
         print("\n--- Готово ---")
-        print(f"Слов добавлено: {added}, пропущено (уже были): {skipped}")
+        print(f"Слов записано: {added}")
         if pruned:
             print(f"Удалено устаревших слов из базы: {pruned}")
         print(f"Слов в базе с переводом: "
               f"{db.count_words(only_with_translation=True)} / {db.count_words()}")
-        print(f"Сленговых сокращений добавлено: {slang_added} "
-              f"(всего в базе: {db.count_slang()})")
+        print(f"Сленговых сокращений в базе: {db.count_slang()}")
         print(f"Идиом в базе: {db.count_idioms()}")
         if no_translation:
             print(f"\n⚠ Нет перевода для {len(no_translation)} слов — "

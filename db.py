@@ -127,13 +127,91 @@ def init_db():
 
         CREATE INDEX IF NOT EXISTS idx_shown_log_lookup
             ON shown_log (user_id, kind, id DESC);
+
+        CREATE TABLE IF NOT EXISTS meta (
+            key TEXT PRIMARY KEY,
+            value TEXT
+        );
         """
     )
     conn.commit()
     conn.close()
 
 
+# ---------- meta ----------
+
+def get_meta(key):
+    conn = get_conn()
+    row = conn.execute("SELECT value FROM meta WHERE key = ?", (key,)).fetchone()
+    conn.close()
+    return row["value"] if row else None
+
+
+def set_meta(key, value):
+    conn = get_conn()
+    conn.execute(
+        "INSERT INTO meta (key, value) VALUES (?, ?) "
+        "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+        (key, value),
+    )
+    conn.commit()
+    conn.close()
+
+
 # ---------- words ----------
+
+# На сколько временно сдвигаются номера существующих слов перед пересборкой
+# словаря. Заведомо больше любого реального rank/order_index.
+_RENUMBER_OFFSET = 10_000_000
+
+
+def bulk_upsert_words(rows):
+    """Записать весь словарь одним заходом.
+
+    rows: (rank, word, translation, definition, pos, source, order_index, level)
+
+    Перед вставкой номера существующих слов временно сдвигаются: rank и
+    order_index объявлены UNIQUE, а при обновлении словаря нумерация меняется.
+    Без сдвига вставка нового слова упирается в номер, который ещё занят
+    другим словом, и весь сидинг падает с UNIQUE constraint failed.
+    """
+    rows = list(rows)
+    if not rows:
+        return 0
+    conn = get_conn()
+    try:
+        conn.execute(
+            "UPDATE words SET rank = rank + ?, order_index = order_index + ?",
+            (_RENUMBER_OFFSET, _RENUMBER_OFFSET),
+        )
+        conn.executemany(
+            """
+            INSERT INTO words
+                (rank, order_index, word, translation, definition, pos, source, level)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(word) DO UPDATE SET
+                rank=excluded.rank,
+                order_index=excluded.order_index,
+                translation=excluded.translation,
+                definition=excluded.definition,
+                pos=excluded.pos,
+                source=excluded.source,
+                level=excluded.level
+            """,
+            [
+                (rank, order_index, word, translation, definition, pos, source, level)
+                for rank, word, translation, definition, pos, source, order_index, level
+                in rows
+            ],
+        )
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+    return len(rows)
+
 
 def upsert_word(rank, word, translation, definition, pos, source, order_index=None, level=1):
     conn = get_conn()
@@ -142,6 +220,7 @@ def upsert_word(rank, word, translation, definition, pos, source, order_index=No
         INSERT INTO words (rank, order_index, word, translation, definition, pos, source, level)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(word) DO UPDATE SET
+            rank=excluded.rank,
             order_index=excluded.order_index,
             translation=excluded.translation,
             definition=excluded.definition,
