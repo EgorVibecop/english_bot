@@ -479,11 +479,6 @@
     "definition": "in a good or satisfactory way; also used to start a sentence",
     "pos": "adverb"
   },
-  "said": {
-    "translation": "сказал(а)",
-    "definition": "the past form of 'say'",
-    "pos": "verb"
-  },
   "way": {
     "translation": "путь, способ",
     "definition": "a method of doing something, or a road or route",
@@ -593,11 +588,6 @@
     "translation": "почему",
     "definition": "for what reason or purpose",
     "pos": "adverb"
-  },
-  "made": {
-    "translation": "сделал(а)",
-    "definition": "the past form of 'make'",
-    "pos": "verb"
   },
   "still": {
     "translation": "всё ещё; неподвижно",
@@ -899,11 +889,6 @@
     "definition": "the last part of something; also to finish it",
     "pos": "noun/verb"
   },
-  "found": {
-    "translation": "нашёл(нашла); основал",
-    "definition": "the past form of 'find'; also to start an organization",
-    "pos": "verb"
-  },
   "must": {
     "translation": "должен",
     "definition": "used to show that something is necessary or very likely",
@@ -1044,11 +1029,6 @@
     "definition": "actually existing, not imagined or false",
     "pos": "adjective"
   },
-  "called": {
-    "translation": "назвал(а), позвонил(а)",
-    "definition": "the past form of 'call'",
-    "pos": "verb"
-  },
   "different": {
     "translation": "другой, разный",
     "definition": "not the same as another person or thing",
@@ -1062,11 +1042,6 @@
   "set": {
     "translation": "набор; ставить",
     "definition": "a group of matching or related things; also to put something in place",
-    "pos": "noun/verb"
-  },
-  "thought": {
-    "translation": "мысль; думал(а)",
-    "definition": "an idea in the mind; also the past form of 'think'",
     "pos": "noun/verb"
   },
   "done": {

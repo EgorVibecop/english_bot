@@ -61,8 +61,8 @@ with open("grammar_exercises.json", encoding="utf-8") as f:
 MAIN_MENU = ReplyKeyboardMarkup(
     [
         ["📚 Словарь", "⏳ Времена"],
-        ["💬 Сленг", "📊 Прогресс"],
-        ["❓ Помощь"],
+        ["💬 Сленг", "🎭 Идиомы"],
+        ["📊 Прогресс", "❓ Помощь"],
     ],
     resize_keyboard=True,
 )
@@ -70,6 +70,14 @@ MAIN_MENU = ReplyKeyboardMarkup(
 SLANG_MENU = ReplyKeyboardMarkup(
     [
         ["💬 Новое сокращение"],
+        ["⬅️ Назад"],
+    ],
+    resize_keyboard=True,
+)
+
+IDIOM_MENU = ReplyKeyboardMarkup(
+    [
+        ["🎭 Новая идиома"],
         ["⬅️ Назад"],
     ],
     resize_keyboard=True,
@@ -85,9 +93,9 @@ VOCAB_MENU = ReplyKeyboardMarkup(
 )
 
 LEVELS = {
-    1: "Уровень 1 (база, 843 слова)",
-    2: "Уровень 2 (средний, 540 слов)",
-    3: "Уровень 3 (продвинутый, 689 слов)",
+    1: "Уровень 1 (база, 870 слов)",
+    2: "Уровень 2 (средний, 624 слова)",
+    3: "Уровень 3 (продвинутый, 641 слово)",
 }
 
 GRAMMAR_MENU = ReplyKeyboardMarkup(
@@ -142,6 +150,28 @@ def slang_buttons(slang_id):
     )
 
 
+def idiom_card_text(row):
+    literal = f"\n📖 дословно: «{row['literal']}»" if row["literal"] else ""
+    return (
+        f"🎭 Идиома\n\n"
+        f"*{row['phrase']}*\n\n"
+        f"🇷🇺 {row['translation']}"
+        f"{literal}\n"
+        f"\n✏️ _{row['example']}_"
+    )
+
+
+def idiom_buttons(idiom_id):
+    return InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("✅ Знаю", callback_data=f"iknow:{idiom_id}"),
+                InlineKeyboardButton("❌ Не знаю", callback_data=f"idont:{idiom_id}"),
+            ]
+        ]
+    )
+
+
 # ---------- commands ----------
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -173,7 +203,10 @@ async def help_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "пропущенное слово (или несколько слов, например «will have») "
         "обычным текстовым сообщением.\n\n"
         "💬 Сленг: сокращения из реальной переписки — расшифровка, перевод "
-        "и пример.",
+        "и пример.\n\n"
+        "🎭 Идиомы: устойчивые выражения, которые дословно не переводятся. "
+        "На карточке видно и настоящий смысл, и дословный перевод — чтобы "
+        "было понятно, почему по словам переводить нельзя.",
         reply_markup=MAIN_MENU,
     )
 
@@ -196,6 +229,7 @@ async def send_next_slang(send_func, user_id):
             reply_markup=SLANG_MENU,
         )
         return
+    db.log_shown(user_id, "slang", row["id"])
     await send_func(
         slang_card_text(row),
         reply_markup=slang_buttons(row["id"]),
@@ -208,6 +242,40 @@ async def cmd_slang(update: Update, context: ContextTypes.DEFAULT_TYPE):
     db.ensure_user(user.id, user.username or user.first_name)
     context.user_data.pop("grammar_active", None)
     await send_next_slang(update.message.reply_text, user.id)
+
+
+async def send_next_idiom(send_func, user_id):
+    row = db.get_next_idiom(user_id)
+    if row is None:
+        await send_func(
+            "Словарь идиом пуст. Запусти seed_db.py, чтобы его заполнить.",
+            reply_markup=IDIOM_MENU,
+        )
+        return
+    db.log_shown(user_id, "idiom", row["id"])
+    await send_func(
+        idiom_card_text(row),
+        reply_markup=idiom_buttons(row["id"]),
+        parse_mode=ParseMode.MARKDOWN,
+    )
+
+
+async def cmd_idiom(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
+    db.ensure_user(user.id, user.username or user.first_name)
+    context.user_data.pop("grammar_active", None)
+    await send_next_idiom(update.message.reply_text, user.id)
+
+
+async def cmd_idiom_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.pop("grammar_active", None)
+    s = db.get_idiom_stats(update.effective_user.id)
+    await update.message.reply_text(
+        f"🎭 Раздел «Идиомы» — устойчивые выражения, которые нельзя перевести "
+        f"дословно (break a leg, piece of cake...).\n\n"
+        f"Всего: {s['total']} · пройдено: {s['seen']} · выучено: {s['known']}",
+        reply_markup=IDIOM_MENU,
+    )
 
 
 async def cmd_slang_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -232,6 +300,7 @@ async def send_next_word(send_func, user_id):
             reply_markup=VOCAB_MENU,
         )
         return
+    db.log_shown(user_id, "word", row["id"])
     await send_func(
         word_card_text(row),
         reply_markup=know_buttons(row["id"]),
@@ -291,6 +360,7 @@ async def cmd_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
     g = db.get_grammar_stats(user.id)
     g_percent = round(100 * g["correct"] / g["total"]) if g["total"] else 0
     sl = db.get_slang_stats(user.id)
+    idm = db.get_idiom_stats(user.id)
     await update.message.reply_text(
         f"📊 *Твой прогресс*\n\n"
         f"📚 *Словарь* ({LEVELS[level]})\n"
@@ -304,7 +374,10 @@ async def cmd_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Правильно: {g['correct']} ({g_percent}%)\n\n"
         f"💬 *Сленг*\n"
         f"Всего сокращений: {sl['total']}\n"
-        f"Пройдено: {sl['seen']} · ✅ выучено: {sl['known']}",
+        f"Пройдено: {sl['seen']} · ✅ выучено: {sl['known']}\n\n"
+        f"🎭 *Идиомы*\n"
+        f"Всего идиом: {idm['total']}\n"
+        f"Пройдено: {idm['seen']} · ✅ выучено: {idm['known']}",
         reply_markup=MAIN_MENU,
         parse_mode=ParseMode.MARKDOWN,
     )
@@ -379,6 +452,14 @@ async def on_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         db.record_slang_answer(user_id, slang_id, known)
         await query.edit_message_reply_markup(reply_markup=None)
         await send_next_slang(query.message.reply_text, user_id)
+        return
+
+    if data.startswith("iknow:") or data.startswith("idont:"):
+        known = data.startswith("iknow:")
+        idiom_id = int(data.split(":")[1])
+        db.record_idiom_answer(user_id, idiom_id, known)
+        await query.edit_message_reply_markup(reply_markup=None)
+        await send_next_idiom(query.message.reply_text, user_id)
         return
 
     if data.startswith("know:") or data.startswith("dontknow:"):
@@ -557,6 +638,8 @@ async def on_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "⏳ Времена": cmd_grammar,
         "💬 Сленг": cmd_slang_menu,
         "💬 Новое сокращение": cmd_slang,
+        "🎭 Идиомы": cmd_idiom_menu,
+        "🎭 Новая идиома": cmd_idiom,
         "⬅️ Назад": cmd_back_to_main,
         "🏁 Закончить тренировку": cmd_grammar_stop,
         "📖 Новое слово": cmd_word,
@@ -589,17 +672,15 @@ def ensure_seeded():
     import seed_db
 
     db.init_db()
-    words_before = db.count_words(only_with_translation=True)
-    slang_before = db.count_slang()
-    if words_before and slang_before:
-        logger.info("База готова: слов %s, сокращений %s", words_before, slang_before)
-        return
-
-    logger.info("База пуста или неполная — наполняю из JSON-файлов...")
+    # Сидируем при каждом старте, а не только на пустой базе: seed идемпотентен,
+    # но он же удаляет слова, убранные из словаря, и подтягивает новые разделы
+    # (например идиомы) после обновления кода. Прогресс при этом не трогается.
+    logger.info("Проверяю и обновляю базу из JSON-файлов...")
     seed_db.seed(verbose=False)
     logger.info(
-        "Готово: слов %s, сокращений %s",
+        "Готово: слов %s, сокращений %s, идиом %s",
         db.count_words(only_with_translation=True), db.count_slang(),
+        db.count_idioms(),
     )
 
 
@@ -627,7 +708,8 @@ async def cmd_admin(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Слов выучено (известно): {s['words_known']}\n"
         f"Слов в процессе: {s['words_learning']}\n"
         f"Ответов на грамматику: {s['grammar_answers']}\n"
-        f"Сленга выучено: {s['slang_known']}"
+        f"Сленга выучено: {s['slang_known']}\n"
+        f"Идиом выучено: {s['idioms_known']}"
     )
 
 
@@ -663,6 +745,7 @@ def main():
     app.add_handler(CommandHandler("quiz", cmd_quiz))
     app.add_handler(CommandHandler("grammar", cmd_grammar))
     app.add_handler(CommandHandler("slang", cmd_slang))
+    app.add_handler(CommandHandler("idioms", cmd_idiom))
     app.add_handler(CommandHandler("progress", cmd_progress))
     app.add_handler(CommandHandler("backup", cmd_backup))
     app.add_handler(CommandHandler("admin", cmd_admin))

@@ -1,0 +1,1142 @@
+{
+  "break a leg": {
+    "translation": "ни пуха ни пера; удачи",
+    "literal": "сломай ногу",
+    "example": "Break a leg at your audition tonight!"
+  },
+  "piece of cake": {
+    "translation": "проще простого",
+    "literal": "кусок торта",
+    "example": "The test was a piece of cake."
+  },
+  "hit the sack": {
+    "translation": "идти спать",
+    "literal": "ударить мешок",
+    "example": "I'm exhausted, time to hit the sack."
+  },
+  "under the weather": {
+    "translation": "неважно себя чувствовать",
+    "literal": "под погодой",
+    "example": "She's a bit under the weather today."
+  },
+  "spill the beans": {
+    "translation": "проболтаться",
+    "literal": "рассыпать бобы",
+    "example": "Don't spill the beans about the party."
+  },
+  "cost an arm and a leg": {
+    "translation": "стоить целое состояние",
+    "literal": "стоить руку и ногу",
+    "example": "That car cost an arm and a leg."
+  },
+  "once in a blue moon": {
+    "translation": "очень редко",
+    "literal": "раз в голубую луну",
+    "example": "We meet once in a blue moon."
+  },
+  "bite the bullet": {
+    "translation": "стиснуть зубы и сделать",
+    "literal": "укусить пулю",
+    "example": "I bit the bullet and called him."
+  },
+  "let the cat out of the bag": {
+    "translation": "выдать секрет",
+    "literal": "выпустить кота из мешка",
+    "example": "He let the cat out of the bag."
+  },
+  "hit the nail on the head": {
+    "translation": "попасть в точку",
+    "literal": "ударить по шляпке гвоздя",
+    "example": "You hit the nail on the head."
+  },
+  "the ball is in your court": {
+    "translation": "теперь твой ход",
+    "literal": "мяч на твоей половине",
+    "example": "I've done my part, the ball is in your court."
+  },
+  "beat around the bush": {
+    "translation": "ходить вокруг да около",
+    "literal": "бить вокруг куста",
+    "example": "Stop beating around the bush."
+  },
+  "call it a day": {
+    "translation": "закончить на сегодня",
+    "literal": "назвать это днём",
+    "example": "We're tired, let's call it a day."
+  },
+  "cut corners": {
+    "translation": "делать спустя рукава",
+    "literal": "срезать углы",
+    "example": "Don't cut corners on safety."
+  },
+  "get cold feet": {
+    "translation": "струсить в последний момент",
+    "literal": "получить холодные ноги",
+    "example": "He got cold feet before the wedding."
+  },
+  "give someone the cold shoulder": {
+    "translation": "демонстративно игнорировать",
+    "literal": "дать холодное плечо",
+    "example": "She gave me the cold shoulder."
+  },
+  "go the extra mile": {
+    "translation": "сделать больше, чем требуется",
+    "literal": "пройти лишнюю милю",
+    "example": "He always goes the extra mile."
+  },
+  "hit the road": {
+    "translation": "отправляться в путь",
+    "literal": "ударить дорогу",
+    "example": "It's late, we should hit the road."
+  },
+  "in hot water": {
+    "translation": "в неприятностях",
+    "literal": "в горячей воде",
+    "example": "He's in hot water with his boss."
+  },
+  "it's not rocket science": {
+    "translation": "это несложно",
+    "literal": "это не ракетостроение",
+    "example": "Come on, it's not rocket science."
+  },
+  "jump on the bandwagon": {
+    "translation": "примкнуть к модному течению",
+    "literal": "запрыгнуть на повозку",
+    "example": "Everyone jumped on the bandwagon."
+  },
+  "keep an eye on": {
+    "translation": "присматривать за",
+    "literal": "держать глаз на",
+    "example": "Keep an eye on my bag, please."
+  },
+  "kill two birds with one stone": {
+    "translation": "убить двух зайцев",
+    "literal": "убить двух птиц одним камнем",
+    "example": "I killed two birds with one stone."
+  },
+  "leave no stone unturned": {
+    "translation": "сделать всё возможное",
+    "literal": "не оставить камня неперевёрнутым",
+    "example": "We left no stone unturned."
+  },
+  "miss the boat": {
+    "translation": "упустить возможность",
+    "literal": "пропустить лодку",
+    "example": "You snooze, you miss the boat."
+  },
+  "on the ball": {
+    "translation": "быстро соображать; быть начеку",
+    "literal": "на мяче",
+    "example": "The new assistant is really on the ball."
+  },
+  "out of the blue": {
+    "translation": "как гром среди ясного неба",
+    "literal": "из синевы",
+    "example": "He called me out of the blue."
+  },
+  "pull someone's leg": {
+    "translation": "разыгрывать кого-то",
+    "literal": "тянуть за ногу",
+    "example": "Relax, I'm just pulling your leg."
+  },
+  "see eye to eye": {
+    "translation": "сходиться во мнениях",
+    "literal": "видеть глаз в глаз",
+    "example": "We don't see eye to eye on this."
+  },
+  "sit on the fence": {
+    "translation": "занимать нейтральную позицию",
+    "literal": "сидеть на заборе",
+    "example": "Stop sitting on the fence and decide."
+  },
+  "speak of the devil": {
+    "translation": "лёгок на помине",
+    "literal": "говорить о дьяволе",
+    "example": "Speak of the devil, here he is!"
+  },
+  "take it with a grain of salt": {
+    "translation": "относиться скептически",
+    "literal": "принимать с крупинкой соли",
+    "example": "Take his advice with a grain of salt."
+  },
+  "the last straw": {
+    "translation": "последняя капля",
+    "literal": "последняя соломинка",
+    "example": "That was the last straw for me."
+  },
+  "throw in the towel": {
+    "translation": "сдаться",
+    "literal": "бросить полотенце",
+    "example": "Don't throw in the towel yet."
+  },
+  "under the table": {
+    "translation": "нелегально, из-под полы",
+    "literal": "под столом",
+    "example": "He was paid under the table."
+  },
+  "up in the air": {
+    "translation": "ещё не решено",
+    "literal": "в воздухе",
+    "example": "Our holiday plans are still up in the air."
+  },
+  "wrap your head around": {
+    "translation": "уложить в голове; осмыслить",
+    "literal": "обернуть голову вокруг",
+    "example": "I can't wrap my head around it."
+  },
+  "a blessing in disguise": {
+    "translation": "не было бы счастья, да несчастье помогло",
+    "literal": "благословение в маскировке",
+    "example": "Losing that job was a blessing in disguise."
+  },
+  "add fuel to the fire": {
+    "translation": "подливать масла в огонь",
+    "literal": "добавить топлива в огонь",
+    "example": "Your comment just added fuel to the fire."
+  },
+  "back to square one": {
+    "translation": "вернуться к началу",
+    "literal": "назад на первую клетку",
+    "example": "The deal fell through, back to square one."
+  },
+  "barking up the wrong tree": {
+    "translation": "искать не там; ошибаться",
+    "literal": "лаять не на то дерево",
+    "example": "If you suspect me, you're barking up the wrong tree."
+  },
+  "bend over backwards": {
+    "translation": "из кожи вон лезть",
+    "literal": "прогнуться назад",
+    "example": "She bent over backwards to help us."
+  },
+  "bite off more than you can chew": {
+    "translation": "переоценить свои силы",
+    "literal": "откусить больше, чем можешь прожевать",
+    "example": "He bit off more than he could chew."
+  },
+  "break the ice": {
+    "translation": "растопить лёд в общении",
+    "literal": "разбить лёд",
+    "example": "He told a joke to break the ice."
+  },
+  "burn bridges": {
+    "translation": "сжигать мосты",
+    "literal": "жечь мосты",
+    "example": "Don't burn bridges when you quit."
+  },
+  "burn the midnight oil": {
+    "translation": "работать допоздна",
+    "literal": "жечь полуночное масло",
+    "example": "She burned the midnight oil before the exam."
+  },
+  "by the skin of your teeth": {
+    "translation": "еле-еле, чудом",
+    "literal": "кожей своих зубов",
+    "example": "We caught the train by the skin of our teeth."
+  },
+  "cry over spilled milk": {
+    "translation": "горевать о непоправимом",
+    "literal": "плакать над разлитым молоком",
+    "example": "It's done, no use crying over spilled milk."
+  },
+  "cut to the chase": {
+    "translation": "перейти к сути",
+    "literal": "перейти сразу к погоне",
+    "example": "Let's cut to the chase, what do you want?"
+  },
+  "down to earth": {
+    "translation": "приземлённый, простой в общении",
+    "literal": "вниз к земле",
+    "example": "She's famous but very down to earth."
+  },
+  "every cloud has a silver lining": {
+    "translation": "нет худа без добра",
+    "literal": "у каждой тучи серебряная кайма",
+    "example": "Cheer up, every cloud has a silver lining."
+  },
+  "face the music": {
+    "translation": "расхлёбывать последствия",
+    "literal": "встретить музыку",
+    "example": "It's time to face the music."
+  },
+  "get out of hand": {
+    "translation": "выйти из-под контроля",
+    "literal": "выйти из руки",
+    "example": "The party got out of hand."
+  },
+  "get your act together": {
+    "translation": "взять себя в руки",
+    "literal": "собрать свой номер",
+    "example": "You need to get your act together."
+  },
+  "hang in there": {
+    "translation": "держись, не сдавайся",
+    "literal": "вися там",
+    "example": "Hang in there, it gets easier."
+  },
+  "hit rock bottom": {
+    "translation": "достичь дна",
+    "literal": "удариться о каменное дно",
+    "example": "He hit rock bottom last year."
+  },
+  "hold your horses": {
+    "translation": "не торопись",
+    "literal": "придержи коней",
+    "example": "Hold your horses, I'm not ready."
+  },
+  "in the same boat": {
+    "translation": "в одинаковом положении",
+    "literal": "в той же лодке",
+    "example": "We're all in the same boat here."
+  },
+  "it takes two to tango": {
+    "translation": "виноваты оба",
+    "literal": "для танго нужны двое",
+    "example": "Don't blame only him, it takes two to tango."
+  },
+  "jump the gun": {
+    "translation": "поторопиться раньше времени",
+    "literal": "прыгнуть на выстрел",
+    "example": "Don't jump the gun, wait for the results."
+  },
+  "keep your chin up": {
+    "translation": "не вешай нос",
+    "literal": "держи подбородок вверх",
+    "example": "Keep your chin up, things will improve."
+  },
+  "know the ropes": {
+    "translation": "знать все ходы; быть в теме",
+    "literal": "знать верёвки",
+    "example": "Ask Tom, he knows the ropes."
+  },
+  "let sleeping dogs lie": {
+    "translation": "не буди лихо, пока тихо",
+    "literal": "пусть спящие собаки лежат",
+    "example": "Let sleeping dogs lie and say nothing."
+  },
+  "long story short": {
+    "translation": "короче говоря",
+    "literal": "длинную историю коротко",
+    "example": "Long story short, we missed the flight."
+  },
+  "no pain no gain": {
+    "translation": "без труда не выловишь и рыбку",
+    "literal": "нет боли — нет выигрыша",
+    "example": "Keep training, no pain no gain."
+  },
+  "off the hook": {
+    "translation": "соскочить; избежать наказания",
+    "literal": "с крючка",
+    "example": "You're off the hook this time."
+  },
+  "on thin ice": {
+    "translation": "на грани; в опасном положении",
+    "literal": "на тонком льду",
+    "example": "You're skating on thin ice, be careful."
+  },
+  "once bitten twice shy": {
+    "translation": "обжёгшись на молоке, дуешь на воду",
+    "literal": "раз укушенный — дважды пуглив",
+    "example": "He won't invest again, once bitten twice shy."
+  },
+  "pay through the nose": {
+    "translation": "переплатить втридорога",
+    "literal": "платить через нос",
+    "example": "We paid through the nose for those tickets."
+  },
+  "play it by ear": {
+    "translation": "действовать по обстановке",
+    "literal": "играть на слух",
+    "example": "We have no plan, let's play it by ear."
+  },
+  "pull yourself together": {
+    "translation": "возьми себя в руки",
+    "literal": "собери себя вместе",
+    "example": "Pull yourself together, we need you."
+  },
+  "put all your eggs in one basket": {
+    "translation": "поставить всё на одну карту",
+    "literal": "положить все яйца в одну корзину",
+    "example": "Don't put all your eggs in one basket."
+  },
+  "rain cats and dogs": {
+    "translation": "лить как из ведра",
+    "literal": "дождь из кошек и собак",
+    "example": "It's raining cats and dogs outside."
+  },
+  "read between the lines": {
+    "translation": "читать между строк",
+    "literal": "читать между линий",
+    "example": "Read between the lines of his letter."
+  },
+  "ring a bell": {
+    "translation": "напоминать что-то смутно знакомое",
+    "literal": "звонить в колокол",
+    "example": "That name rings a bell."
+  },
+  "rub salt in the wound": {
+    "translation": "сыпать соль на рану",
+    "literal": "тереть соль в рану",
+    "example": "Don't rub salt in the wound."
+  },
+  "sell like hot cakes": {
+    "translation": "расходиться нарасхват",
+    "literal": "продаваться как горячие пирожки",
+    "example": "The new phone sells like hot cakes."
+  },
+  "shoot yourself in the foot": {
+    "translation": "навредить самому себе",
+    "literal": "выстрелить себе в ногу",
+    "example": "He shot himself in the foot by lying."
+  },
+  "sleep on it": {
+    "translation": "утро вечера мудренее",
+    "literal": "поспать на этом",
+    "example": "Don't decide now, sleep on it."
+  },
+  "take the bull by the horns": {
+    "translation": "взять быка за рога",
+    "literal": "взять быка за рога",
+    "example": "She took the bull by the horns."
+  },
+  "the tip of the iceberg": {
+    "translation": "верхушка айсберга",
+    "literal": "кончик айсберга",
+    "example": "This is just the tip of the iceberg."
+  },
+  "through thick and thin": {
+    "translation": "и в горе и в радости",
+    "literal": "через толстое и тонкое",
+    "example": "They stayed together through thick and thin."
+  },
+  "tie the knot": {
+    "translation": "пожениться",
+    "literal": "завязать узел",
+    "example": "They're tying the knot in June."
+  },
+  "turn a blind eye": {
+    "translation": "закрывать глаза на что-то",
+    "literal": "повернуть слепой глаз",
+    "example": "The manager turned a blind eye to it."
+  },
+  "walk on eggshells": {
+    "translation": "вести себя крайне осторожно",
+    "literal": "ходить по яичной скорлупе",
+    "example": "I walk on eggshells around him."
+  },
+  "when pigs fly": {
+    "translation": "когда рак на горе свистнет",
+    "literal": "когда свиньи полетят",
+    "example": "He'll apologize when pigs fly."
+  },
+  "you can't judge a book by its cover": {
+    "translation": "встречают по одёжке",
+    "literal": "нельзя судить книгу по обложке",
+    "example": "You can't judge a book by its cover."
+  },
+  "actions speak louder than words": {
+    "translation": "дела важнее слов",
+    "literal": "действия говорят громче слов",
+    "example": "Actions speak louder than words."
+  },
+  "all ears": {
+    "translation": "весь внимание",
+    "literal": "все уши",
+    "example": "Tell me everything, I'm all ears."
+  },
+  "at the drop of a hat": {
+    "translation": "не раздумывая, тотчас",
+    "literal": "при падении шляпы",
+    "example": "She'd help at the drop of a hat."
+  },
+  "back to the drawing board": {
+    "translation": "начинать заново",
+    "literal": "назад к чертёжной доске",
+    "example": "It failed, back to the drawing board."
+  },
+  "ballpark figure": {
+    "translation": "примерная цифра",
+    "literal": "цифра со стадиона",
+    "example": "Give me a ballpark figure."
+  },
+  "beat a dead horse": {
+    "translation": "толочь воду в ступе",
+    "literal": "бить мёртвую лошадь",
+    "example": "Stop beating a dead horse."
+  },
+  "bells and whistles": {
+    "translation": "навороты, излишества",
+    "literal": "колокольчики и свистки",
+    "example": "The app has too many bells and whistles."
+  },
+  "better late than never": {
+    "translation": "лучше поздно, чем никогда",
+    "literal": "лучше поздно, чем никогда",
+    "example": "You finally came, better late than never."
+  },
+  "bite your tongue": {
+    "translation": "прикусить язык, промолчать",
+    "literal": "укусить свой язык",
+    "example": "I had to bite my tongue."
+  },
+  "blow off steam": {
+    "translation": "выпустить пар",
+    "literal": "сдуть пар",
+    "example": "He runs to blow off steam."
+  },
+  "bring home the bacon": {
+    "translation": "зарабатывать на жизнь",
+    "literal": "принести домой бекон",
+    "example": "She brings home the bacon."
+  },
+  "call the shots": {
+    "translation": "командовать, решать",
+    "literal": "объявлять выстрелы",
+    "example": "Who calls the shots here?"
+  },
+  "cash cow": {
+    "translation": "дойная корова",
+    "literal": "денежная корова",
+    "example": "That product is their cash cow."
+  },
+  "catch someone red-handed": {
+    "translation": "поймать с поличным",
+    "literal": "поймать с красными руками",
+    "example": "The thief was caught red-handed."
+  },
+  "change of heart": {
+    "translation": "передумать",
+    "literal": "смена сердца",
+    "example": "He had a change of heart."
+  },
+  "chip on your shoulder": {
+    "translation": "обида на весь мир",
+    "literal": "щепка на плече",
+    "example": "He has a chip on his shoulder."
+  },
+  "clear the air": {
+    "translation": "разрядить обстановку",
+    "literal": "очистить воздух",
+    "example": "Let's talk and clear the air."
+  },
+  "close but no cigar": {
+    "translation": "почти, но мимо",
+    "literal": "близко, но не сигара",
+    "example": "Nice try, close but no cigar."
+  },
+  "cold turkey": {
+    "translation": "бросить резко, разом",
+    "literal": "холодная индейка",
+    "example": "He quit smoking cold turkey."
+  },
+  "come clean": {
+    "translation": "признаться во всём",
+    "literal": "прийти чистым",
+    "example": "It's time to come clean."
+  },
+  "curiosity killed the cat": {
+    "translation": "любопытной Варваре нос оторвали",
+    "literal": "любопытство убило кота",
+    "example": "Don't ask, curiosity killed the cat."
+  },
+  "cut someone some slack": {
+    "translation": "не быть слишком строгим",
+    "literal": "дать слабину верёвки",
+    "example": "Cut him some slack, he's new."
+  },
+  "devil's advocate": {
+    "translation": "адвокат дьявола; спорить ради спора",
+    "literal": "адвокат дьявола",
+    "example": "Let me play devil's advocate here."
+  },
+  "dodge a bullet": {
+    "translation": "счастливо избежать беды",
+    "literal": "увернуться от пули",
+    "example": "We really dodged a bullet there."
+  },
+  "don't count your chickens": {
+    "translation": "цыплят по осени считают",
+    "literal": "не считай своих цыплят",
+    "example": "Don't count your chickens before they hatch."
+  },
+  "drop the ball": {
+    "translation": "облажаться, не справиться",
+    "literal": "уронить мяч",
+    "example": "He dropped the ball on this project."
+  },
+  "easier said than done": {
+    "translation": "легче сказать, чем сделать",
+    "literal": "легче сказано, чем сделано",
+    "example": "Quitting is easier said than done."
+  },
+  "eat your words": {
+    "translation": "взять свои слова обратно",
+    "literal": "съесть свои слова",
+    "example": "You'll have to eat your words."
+  },
+  "elephant in the room": {
+    "translation": "очевидная проблема, о которой молчат",
+    "literal": "слон в комнате",
+    "example": "Nobody mentioned the elephant in the room."
+  },
+  "fall on deaf ears": {
+    "translation": "остаться неуслышанным",
+    "literal": "упасть на глухие уши",
+    "example": "His warnings fell on deaf ears."
+  },
+  "fish out of water": {
+    "translation": "не в своей тарелке",
+    "literal": "рыба вне воды",
+    "example": "I felt like a fish out of water."
+  },
+  "a taste of your own medicine": {
+    "translation": "получить по заслугам",
+    "literal": "вкус собственного лекарства",
+    "example": "He got a taste of his own medicine."
+  },
+  "get the ball rolling": {
+    "translation": "запустить процесс",
+    "literal": "заставить мяч катиться",
+    "example": "Let's get the ball rolling."
+  },
+  "benefit of the doubt": {
+    "translation": "поверить на слово; презумпция",
+    "literal": "преимущество сомнения",
+    "example": "I'll give you the benefit of the doubt."
+  },
+  "hands are tied": {
+    "translation": "руки связаны, ничего не поделать",
+    "literal": "руки связаны",
+    "example": "I'd help, but my hands are tied."
+  },
+  "a lot on your plate": {
+    "translation": "быть загруженным делами",
+    "literal": "много на тарелке",
+    "example": "She has a lot on her plate now."
+  },
+  "head over heels": {
+    "translation": "по уши влюблён",
+    "literal": "головой через пятки",
+    "example": "He's head over heels for her."
+  },
+  "hit the books": {
+    "translation": "засесть за учёбу",
+    "literal": "ударить книги",
+    "example": "Exams start Monday, time to hit the books."
+  },
+  "in a nutshell": {
+    "translation": "в двух словах",
+    "literal": "в ореховой скорлупе",
+    "example": "In a nutshell, we lost."
+  },
+  "in the long run": {
+    "translation": "в конечном счёте",
+    "literal": "на длинной дистанции",
+    "example": "It pays off in the long run."
+  },
+  "it's a small world": {
+    "translation": "мир тесен",
+    "literal": "это маленький мир",
+    "example": "You know him too? It's a small world!"
+  },
+  "jump to conclusions": {
+    "translation": "делать поспешные выводы",
+    "literal": "прыгать к выводам",
+    "example": "Don't jump to conclusions."
+  },
+  "keep your fingers crossed": {
+    "translation": "держать кулачки",
+    "literal": "держать пальцы скрещёнными",
+    "example": "Keep your fingers crossed for me."
+  },
+  "kick the bucket": {
+    "translation": "сыграть в ящик, умереть",
+    "literal": "пнуть ведро",
+    "example": "The old car finally kicked the bucket."
+  },
+  "last but not least": {
+    "translation": "и наконец, не менее важное",
+    "literal": "последнее, но не худшее",
+    "example": "Last but not least, thank you all."
+  },
+  "learn the hard way": {
+    "translation": "научиться на своих ошибках",
+    "literal": "научиться трудным путём",
+    "example": "I learned that the hard way."
+  },
+  "lose your touch": {
+    "translation": "потерять хватку",
+    "literal": "потерять прикосновение",
+    "example": "I think I'm losing my touch."
+  },
+  "make ends meet": {
+    "translation": "сводить концы с концами",
+    "literal": "заставить концы встретиться",
+    "example": "It's hard to make ends meet."
+  },
+  "no strings attached": {
+    "translation": "без обязательств",
+    "literal": "без привязанных верёвочек",
+    "example": "It's a gift, no strings attached."
+  },
+  "not my cup of tea": {
+    "translation": "не моё, не по вкусу",
+    "literal": "не моя чашка чая",
+    "example": "Horror films aren't my cup of tea."
+  },
+  "on cloud nine": {
+    "translation": "на седьмом небе от счастья",
+    "literal": "на девятом облаке",
+    "example": "She's been on cloud nine all week."
+  },
+  "out of the frying pan into the fire": {
+    "translation": "из огня да в полымя",
+    "literal": "со сковороды в огонь",
+    "example": "That was out of the frying pan into the fire."
+  },
+  "over the moon": {
+    "translation": "вне себя от радости",
+    "literal": "над луной",
+    "example": "They were over the moon about the news."
+  },
+  "pass with flying colors": {
+    "translation": "сдать блестяще",
+    "literal": "пройти с развевающимися флагами",
+    "example": "She passed the exam with flying colors."
+  },
+  "pull strings": {
+    "translation": "использовать связи",
+    "literal": "тянуть за верёвочки",
+    "example": "He pulled some strings to get in."
+  },
+  "put your foot in your mouth": {
+    "translation": "сказать бестактность",
+    "literal": "сунуть ногу себе в рот",
+    "example": "I really put my foot in my mouth."
+  },
+  "rain on someone's parade": {
+    "translation": "испортить всё удовольствие",
+    "literal": "пролить дождь на чужой парад",
+    "example": "Sorry to rain on your parade."
+  },
+  "rock the boat": {
+    "translation": "раскачивать лодку, мутить воду",
+    "literal": "качать лодку",
+    "example": "Don't rock the boat right now."
+  },
+  "rule of thumb": {
+    "translation": "примерное правило",
+    "literal": "правило большого пальца",
+    "example": "As a rule of thumb, add ten percent."
+  },
+  "save face": {
+    "translation": "сохранить лицо",
+    "literal": "спасти лицо",
+    "example": "He apologized to save face."
+  },
+  "second wind": {
+    "translation": "второе дыхание",
+    "literal": "второй ветер",
+    "example": "I got my second wind after coffee."
+  },
+  "sit tight": {
+    "translation": "ждать и не дёргаться",
+    "literal": "сидеть плотно",
+    "example": "Sit tight, help is coming."
+  },
+  "steal someone's thunder": {
+    "translation": "перехватить лавры",
+    "literal": "украсть чужой гром",
+    "example": "She stole my thunder at the meeting."
+  },
+  "take a rain check": {
+    "translation": "отложить на другой раз",
+    "literal": "взять дождевой талон",
+    "example": "Can I take a rain check on dinner?"
+  },
+  "the whole nine yards": {
+    "translation": "всё целиком, по полной",
+    "literal": "все девять ярдов",
+    "example": "He went the whole nine yards."
+  },
+  "throw someone under the bus": {
+    "translation": "подставить ради своей выгоды",
+    "literal": "бросить под автобус",
+    "example": "He threw his colleague under the bus."
+  },
+  "tighten your belt": {
+    "translation": "затянуть пояс потуже",
+    "literal": "затянуть ремень",
+    "example": "We must tighten our belts this year."
+  },
+  "touch base": {
+    "translation": "связаться, сверить планы",
+    "literal": "коснуться базы",
+    "example": "Let's touch base next week."
+  },
+  "twist someone's arm": {
+    "translation": "уговорить, надавить",
+    "literal": "выкрутить руку",
+    "example": "You twisted my arm, I'll come."
+  },
+  "under the radar": {
+    "translation": "незаметно, тихо",
+    "literal": "под радаром",
+    "example": "They stayed under the radar."
+  },
+  "up to speed": {
+    "translation": "в курсе дела",
+    "literal": "на нужной скорости",
+    "example": "Get me up to speed on the project."
+  },
+  "wear your heart on your sleeve": {
+    "translation": "не скрывать своих чувств",
+    "literal": "носить сердце на рукаве",
+    "example": "He wears his heart on his sleeve."
+  },
+  "what goes around comes around": {
+    "translation": "как аукнется, так и откликнется",
+    "literal": "что уходит, то возвращается",
+    "example": "What goes around comes around."
+  },
+  "wild goose chase": {
+    "translation": "погоня за пустышкой",
+    "literal": "погоня за диким гусём",
+    "example": "It turned into a wild goose chase."
+  },
+  "your guess is as good as mine": {
+    "translation": "понятия не имею",
+    "literal": "твоя догадка не хуже моей",
+    "example": "Your guess is as good as mine."
+  },
+  "a dime a dozen": {
+    "translation": "пруд пруди, ничего особенного",
+    "literal": "десять центов за дюжину",
+    "example": "Such apps are a dime a dozen."
+  },
+  "against the clock": {
+    "translation": "наперегонки со временем",
+    "literal": "против часов",
+    "example": "We're working against the clock."
+  },
+  "ahead of the curve": {
+    "translation": "впереди других, на опережение",
+    "literal": "впереди кривой",
+    "example": "Their design is ahead of the curve."
+  },
+  "an uphill battle": {
+    "translation": "тяжёлая борьба",
+    "literal": "битва в гору",
+    "example": "Fixing this is an uphill battle."
+  },
+  "bad apple": {
+    "translation": "паршивая овца",
+    "literal": "плохое яблоко",
+    "example": "One bad apple spoils the group."
+  },
+  "behind the scenes": {
+    "translation": "за кулисами",
+    "literal": "за сценами",
+    "example": "A lot happens behind the scenes."
+  },
+  "blow out of proportion": {
+    "translation": "раздуть из мухи слона",
+    "literal": "раздуть непропорционально",
+    "example": "The media blew it out of proportion."
+  },
+  "bury the hatchet": {
+    "translation": "помириться, закопать топор войны",
+    "literal": "закопать топорик",
+    "example": "They finally buried the hatchet."
+  },
+  "by and large": {
+    "translation": "в целом, в общем",
+    "literal": "в целом и в широком",
+    "example": "By and large, the trip was great."
+  },
+  "call it quits": {
+    "translation": "завязать, прекратить",
+    "literal": "объявить это концом",
+    "example": "After ten years they called it quits."
+  },
+  "caught between a rock and a hard place": {
+    "translation": "между молотом и наковальней",
+    "literal": "зажат между камнем и твёрдым местом",
+    "example": "I'm caught between a rock and a hard place."
+  },
+  "cut it close": {
+    "translation": "впритык, едва успеть",
+    "literal": "резать близко",
+    "example": "We cut it close but made it."
+  },
+  "don't hold your breath": {
+    "translation": "не жди этого, не дождёшься",
+    "literal": "не задерживай дыхание",
+    "example": "He might call, but don't hold your breath."
+  },
+  "draw the line": {
+    "translation": "провести черту, обозначить предел",
+    "literal": "провести линию",
+    "example": "I draw the line at lying."
+  },
+  "drive someone up the wall": {
+    "translation": "доводить до белого каления",
+    "literal": "гнать кого-то вверх по стене",
+    "example": "That noise drives me up the wall."
+  },
+  "fair and square": {
+    "translation": "честно и открыто",
+    "literal": "честно и квадратно",
+    "example": "He won fair and square."
+  },
+  "get the hang of it": {
+    "translation": "приноровиться, освоиться",
+    "literal": "уловить сноровку",
+    "example": "You'll get the hang of it soon."
+  },
+  "hit or miss": {
+    "translation": "как повезёт, неровно",
+    "literal": "попал или промазал",
+    "example": "The service here is hit or miss."
+  },
+  "in the nick of time": {
+    "translation": "в самый последний момент",
+    "literal": "в зарубку времени",
+    "example": "He arrived in the nick of time."
+  },
+  "keep it under wraps": {
+    "translation": "держать в тайне",
+    "literal": "держать под обёрткой",
+    "example": "Keep the news under wraps."
+  },
+  "know by heart": {
+    "translation": "знать наизусть",
+    "literal": "знать сердцем",
+    "example": "She knows the poem by heart."
+  },
+  "light at the end of the tunnel": {
+    "translation": "свет в конце тоннеля",
+    "literal": "свет в конце тоннеля",
+    "example": "I finally see light at the end of the tunnel."
+  },
+  "lose track of time": {
+    "translation": "не замечать, как идёт время",
+    "literal": "потерять след времени",
+    "example": "I lost track of time reading."
+  },
+  "make a scene": {
+    "translation": "устроить сцену, скандал",
+    "literal": "сделать сцену",
+    "example": "Please don't make a scene."
+  },
+  "nip it in the bud": {
+    "translation": "пресечь в зародыше",
+    "literal": "срезать в бутоне",
+    "example": "We nipped the problem in the bud."
+  },
+  "on the same page": {
+    "translation": "понимать друг друга одинаково",
+    "literal": "на той же странице",
+    "example": "Let's make sure we're on the same page."
+  },
+  "par for the course": {
+    "translation": "обычное дело, как всегда",
+    "literal": "норма для поля",
+    "example": "Delays are par for the course here."
+  },
+  "put on hold": {
+    "translation": "отложить, приостановить",
+    "literal": "поставить на удержание",
+    "example": "The project is on hold."
+  },
+  "run out of steam": {
+    "translation": "выдохнуться",
+    "literal": "остаться без пара",
+    "example": "The team ran out of steam."
+  },
+  "sitting duck": {
+    "translation": "лёгкая мишень",
+    "literal": "сидящая утка",
+    "example": "Without cover we're sitting ducks."
+  },
+  "take a back seat": {
+    "translation": "отойти на второй план",
+    "literal": "занять заднее сиденье",
+    "example": "He took a back seat in the project."
+  },
+  "the bottom line": {
+    "translation": "суть, итог",
+    "literal": "нижняя строка",
+    "example": "The bottom line is we need money."
+  },
+  "throw shade": {
+    "translation": "подкалывать, принижать",
+    "literal": "бросать тень",
+    "example": "She threw shade at her rival."
+  },
+  "under your belt": {
+    "translation": "за плечами, в багаже опыта",
+    "literal": "под ремнём",
+    "example": "He has ten years under his belt."
+  },
+  "water under the bridge": {
+    "translation": "дело прошлое, забудем",
+    "literal": "вода под мостом",
+    "example": "That argument is water under the bridge."
+  },
+  "gas in the tank": {
+    "translation": "силы, запас энергии",
+    "literal": "бензин в баке",
+    "example": "I've still got gas in the tank."
+  },
+  "bring to the table": {
+    "translation": "что ты можешь предложить",
+    "literal": "принести к столу",
+    "example": "What do you bring to the table?"
+  },
+  "a ballpark estimate": {
+    "translation": "прикидка, грубая оценка",
+    "literal": "оценка со стадиона",
+    "example": "Just give me a ballpark estimate."
+  },
+  "blow someone away": {
+    "translation": "поразить, впечатлить",
+    "literal": "сдуть кого-то",
+    "example": "Her voice blew me away."
+  },
+  "break even": {
+    "translation": "выйти в ноль",
+    "literal": "сломать ровно",
+    "example": "The shop finally broke even."
+  },
+  "caught off guard": {
+    "translation": "застигнут врасплох",
+    "literal": "пойман без охраны",
+    "example": "The question caught me off guard."
+  },
+  "come in handy": {
+    "translation": "пригодиться",
+    "literal": "прийти под руку",
+    "example": "This tool will come in handy."
+  },
+  "cross your mind": {
+    "translation": "прийти в голову",
+    "literal": "пересечь твой разум",
+    "example": "It never crossed my mind."
+  },
+  "cut both ways": {
+    "translation": "палка о двух концах",
+    "literal": "резать в обе стороны",
+    "example": "That argument cuts both ways."
+  },
+  "do the trick": {
+    "translation": "сработать, помочь",
+    "literal": "сделать трюк",
+    "example": "A little salt should do the trick."
+  },
+  "down the drain": {
+    "translation": "коту под хвост, впустую",
+    "literal": "в слив",
+    "example": "All that work went down the drain."
+  },
+  "draw a blank": {
+    "translation": "не вспомнить, ничего не найти",
+    "literal": "вытянуть пустышку",
+    "example": "I drew a blank on his name."
+  },
+  "fall through": {
+    "translation": "сорваться, не состояться",
+    "literal": "провалиться сквозь",
+    "example": "The deal fell through."
+  },
+  "far-fetched": {
+    "translation": "притянутый за уши",
+    "literal": "далеко принесённый",
+    "example": "That theory sounds far-fetched."
+  },
+  "for the time being": {
+    "translation": "пока что, на данный момент",
+    "literal": "на текущее время",
+    "example": "For the time being, stay here."
+  },
+  "get away with": {
+    "translation": "выйти сухим из воды",
+    "literal": "уйти прочь с чем-то",
+    "example": "He got away with cheating."
+  },
+  "give it a shot": {
+    "translation": "попробовать",
+    "literal": "дать этому выстрел",
+    "example": "Just give it a shot."
+  },
+  "hang out": {
+    "translation": "тусоваться, проводить время",
+    "literal": "висеть снаружи",
+    "example": "We hang out every weekend."
+  },
+  "have a soft spot for": {
+    "translation": "питать слабость к",
+    "literal": "иметь мягкое место для",
+    "example": "I have a soft spot for old films."
+  },
+  "in the dark": {
+    "translation": "не в курсе, в неведении",
+    "literal": "в темноте",
+    "example": "They kept me in the dark."
+  },
+  "keep your cool": {
+    "translation": "сохранять спокойствие",
+    "literal": "держать свою прохладу",
+    "example": "He kept his cool under pressure."
+  },
+  "look forward to": {
+    "translation": "с нетерпением ждать",
+    "literal": "смотреть вперёд к",
+    "example": "I look forward to seeing you."
+  },
+  "make up your mind": {
+    "translation": "определиться, решить",
+    "literal": "составить свой разум",
+    "example": "Make up your mind already."
+  },
+  "on second thought": {
+    "translation": "если подумать; передумав",
+    "literal": "на второй мысли",
+    "example": "On second thought, let's stay home."
+  },
+  "out of hand": {
+    "translation": "вышедший из-под контроля",
+    "literal": "из руки",
+    "example": "The argument got out of hand."
+  },
+  "play down": {
+    "translation": "преуменьшать значение",
+    "literal": "играть вниз",
+    "example": "He played down the risks."
+  },
+  "pull off": {
+    "translation": "провернуть, суметь сделать",
+    "literal": "стянуть",
+    "example": "They pulled off a great show."
+  },
+  "put up with": {
+    "translation": "мириться, терпеть",
+    "literal": "поставить с",
+    "example": "I can't put up with this noise."
+  },
+  "stand your ground": {
+    "translation": "стоять на своём",
+    "literal": "держать свою землю",
+    "example": "She stood her ground firmly."
+  },
+  "take for granted": {
+    "translation": "принимать как должное",
+    "literal": "брать как данное",
+    "example": "Don't take her help for granted."
+  },
+  "the odds are": {
+    "translation": "скорее всего; шансы таковы",
+    "literal": "шансы есть",
+    "example": "The odds are we'll be late."
+  }
+}

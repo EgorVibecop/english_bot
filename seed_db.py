@@ -13,9 +13,12 @@
   examples.json             — короткая фраза-пример для каждого слова
   pos.json                  — часть речи (заранее посчитана через WordNet)
   slang.json                — отдельный словарь сленговых сокращений
+  idioms.json               — идиомы и устойчивые выражения
 
 Скрипт идемпотентен: повторный запуск не трогает уже заполненные слова
-и не сбрасывает прогресс пользователей. Запуск вручную:  python seed_db.py
+и не сбрасывает прогресс пользователей. Слова, убранные из JSON, при этом
+удаляются и из базы (prune_words) — иначе они остались бы там навсегда.
+Запуск вручную:  python seed_db.py
 """
 
 import json
@@ -32,6 +35,7 @@ CURATED_FILE = BASE_DIR / "translations_curated.json"
 EXAMPLES_FILE = BASE_DIR / "examples.json"
 POS_FILE = BASE_DIR / "pos.json"
 SLANG_FILE = BASE_DIR / "slang.json"
+IDIOMS_FILE = BASE_DIR / "idioms.json"
 
 
 def _load(path, default=None):
@@ -53,6 +57,11 @@ def seed(verbose=True):
     examples = _load(EXAMPLES_FILE, {})
     pos_map = _load(POS_FILE, {})
     slang = _load(SLANG_FILE, {})
+    idioms = _load(IDIOMS_FILE, {})
+
+    # Слова, убранные из словаря (например формы одного и того же слова),
+    # надо удалить и из базы: seed только добавляет, сам он их не уберёт.
+    pruned = db.prune_words({item["word"] for item in words})
 
     total = len(words)
     added = skipped = 0
@@ -99,19 +108,29 @@ def seed(verbose=True):
         )
         slang_added += 1
 
+    idioms_added = 0
+    for i, (phrase, entry) in enumerate(idioms.items(), start=1):
+        db.upsert_idiom(
+            i, phrase, entry["translation"], entry.get("literal"), entry["example"]
+        )
+        idioms_added += 1
+
     if verbose:
         print("\n--- Готово ---")
         print(f"Слов добавлено: {added}, пропущено (уже были): {skipped}")
+        if pruned:
+            print(f"Удалено устаревших слов из базы: {pruned}")
         print(f"Слов в базе с переводом: "
               f"{db.count_words(only_with_translation=True)} / {db.count_words()}")
         print(f"Сленговых сокращений добавлено: {slang_added} "
               f"(всего в базе: {db.count_slang()})")
+        print(f"Идиом в базе: {db.count_idioms()}")
         if no_translation:
             print(f"\n⚠ Нет перевода для {len(no_translation)} слов — "
                   f"добавьте их в translations_curated.json:")
             print(", ".join(no_translation[:50]))
 
-    return added + slang_added
+    return added + slang_added + idioms_added
 
 
 if __name__ == "__main__":

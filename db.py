@@ -91,6 +91,42 @@ def init_db():
             PRIMARY KEY (user_id, slang_id),
             FOREIGN KEY (slang_id) REFERENCES slang (id)
         );
+
+        CREATE TABLE IF NOT EXISTS idioms (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            order_index INTEGER,
+            phrase TEXT UNIQUE NOT NULL,
+            translation TEXT,
+            literal TEXT,
+            example TEXT
+        );
+
+        CREATE TABLE IF NOT EXISTS idiom_progress (
+            user_id INTEGER NOT NULL,
+            idiom_id INTEGER NOT NULL,
+            box INTEGER DEFAULT 0,
+            status TEXT DEFAULT 'new',
+            next_review TEXT,
+            last_seen TEXT,
+            PRIMARY KEY (user_id, idiom_id),
+            FOREIGN KEY (idiom_id) REFERENCES idioms (id)
+        );
+
+        -- Журнал показанных карточек. Нужен, чтобы не повторять недавнее:
+        -- прогресс пишется только когда пользователь ответил, а показ надо
+        -- запоминать сразу, иначе листание без ответа выдаёт одно и то же.
+        -- Порядок по id, а не по времени: несколько показов в одну секунду
+        -- дают одинаковый timestamp и ломают сортировку.
+        CREATE TABLE IF NOT EXISTS shown_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            kind TEXT NOT NULL,
+            item_id INTEGER NOT NULL,
+            shown_at TEXT
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_shown_log_lookup
+            ON shown_log (user_id, kind, id DESC);
         """
     )
     conn.commit()
@@ -125,6 +161,32 @@ def get_word_by_word(word):
     row = conn.execute("SELECT * FROM words WHERE word = ?", (word,)).fetchone()
     conn.close()
     return row
+
+
+def prune_words(valid_words):
+    """Удалить из базы слова, которых больше нет в словаре-источнике.
+
+    Нужно потому, что seed_db только добавляет: без этого слова, убранные
+    из JSON (например формы одного и того же слова), навсегда оставались бы
+    в базе на сервере и продолжали показываться. Прогресс по удалённым
+    словам тоже убираем, иначе останутся висячие ссылки.
+    """
+    if not valid_words:
+        return 0
+    conn = get_conn()
+    rows = conn.execute("SELECT id, word FROM words").fetchall()
+    stale = [r["id"] for r in rows if r["word"] not in valid_words]
+    if stale:
+        marks = ",".join("?" * len(stale))
+        conn.execute(f"DELETE FROM progress WHERE word_id IN ({marks})", stale)
+        conn.execute(
+            f"DELETE FROM shown_log WHERE kind = 'word' AND item_id IN ({marks})",
+            stale,
+        )
+        conn.execute(f"DELETE FROM words WHERE id IN ({marks})", stale)
+        conn.commit()
+    conn.close()
+    return len(stale)
 
 
 def count_words(only_with_translation=False):
@@ -171,6 +233,8 @@ def get_admin_stats(active_days=7):
             SELECT user_id, answered_at AS ts FROM grammar_log
             UNION ALL
             SELECT user_id, last_seen AS ts FROM slang_progress
+            UNION ALL
+            SELECT user_id, last_seen AS ts FROM idiom_progress
         )
         WHERE ts >= ?
         """,
@@ -192,6 +256,9 @@ def get_admin_stats(active_days=7):
     slang_known = conn.execute(
         "SELECT COUNT(*) FROM slang_progress WHERE status = 'known'"
     ).fetchone()[0]
+    idioms_known = conn.execute(
+        "SELECT COUNT(*) FROM idiom_progress WHERE status = 'known'"
+    ).fetchone()[0]
 
     conn.close()
     return {
@@ -203,6 +270,7 @@ def get_admin_stats(active_days=7):
         "words_learning": words_learning,
         "grammar_answers": grammar_answers,
         "slang_known": slang_known,
+        "idioms_known": idioms_known,
     }
 
 
@@ -222,48 +290,106 @@ NO_REPEAT_WINDOW = 200
 PINNED_FIRST = ("i", "love", "katya")
 
 
-def get_next_new_word(user_id, level=1):
-    """Случайное слово выбранного уровня, исключая NO_REPEAT_WINDOW последних
-    показанных этому пользователю.
+# Сколько записей журнала показов хранить на пользователя и раздел.
+SHOWN_LOG_KEEP = 1000
 
-    Порядок именно случайный, а не фиксированный: прогресс на хостинге
-    сбрасывается при передеплое, и при фиксированном порядке после каждого
-    сброса шли бы одни и те же первые слова. Слово может встретиться снова,
-    но не раньше, чем через NO_REPEAT_WINDOW других слов.
+
+def log_shown(user_id, kind, item_id):
+    """Запомнить, что карточка показана. Вызывается в момент показа, а не
+    ответа: иначе листание без ответа выдаёт одно и то же слово подряд."""
+    conn = get_conn()
+    conn.execute(
+        "INSERT INTO shown_log (user_id, kind, item_id, shown_at) VALUES (?, ?, ?, ?)",
+        (user_id, kind, item_id, datetime.utcnow().isoformat()),
+    )
+    conn.execute(
+        """
+        DELETE FROM shown_log
+        WHERE user_id = ? AND kind = ? AND id NOT IN (
+            SELECT id FROM shown_log
+            WHERE user_id = ? AND kind = ?
+            ORDER BY id DESC LIMIT ?
+        )
+        """,
+        (user_id, kind, user_id, kind, SHOWN_LOG_KEEP),
+    )
+    conn.commit()
+    conn.close()
+
+
+def count_shown(user_id, kind):
+    conn = get_conn()
+    n = conn.execute(
+        "SELECT COUNT(*) FROM shown_log WHERE user_id = ? AND kind = ?",
+        (user_id, kind),
+    ).fetchone()[0]
+    conn.close()
+    return n
+
+
+def get_next_new_word(user_id, level=1):
+    """Следующее слово уровня.
+
+    Приоритет — слова, которых пользователь ещё не видел: сначала берём
+    из них, и только когда уровень пройден целиком, начинаем показывать
+    уже виденные. Раньше выбор был случайным среди всего уровня, и на
+    середине уровня больше половины показов приходилось на повторы.
+
+    Внутри каждой группы порядок случайный (фиксированного нет намеренно:
+    прогресс на хостинге сбрасывается при передеплое, и при фиксированном
+    порядке после каждого сброса шли бы одни и те же первые слова),
+    но недавно показанное исключается окном NO_REPEAT_WINDOW.
     """
     conn = get_conn()
 
-    seen_count = conn.execute(
-        "SELECT COUNT(*) FROM progress WHERE user_id = ?", (user_id,)
+    shown_count = conn.execute(
+        "SELECT COUNT(*) FROM shown_log WHERE user_id = ? AND kind = 'word'",
+        (user_id,),
     ).fetchone()[0]
-    if level == 1 and seen_count < len(PINNED_FIRST):
+    if level == 1 and shown_count < len(PINNED_FIRST):
         pinned = conn.execute(
             "SELECT * FROM words WHERE word = ? AND level = ?",
-            (PINNED_FIRST[seen_count], level),
+            (PINNED_FIRST[shown_count], level),
         ).fetchone()
         if pinned is not None:
             conn.close()
             return pinned
 
+    recent = """
+        SELECT item_id FROM shown_log
+        WHERE user_id = ? AND kind = 'word'
+        ORDER BY id DESC LIMIT ?
+    """
+
+    # 1. Ещё не показанные слова уровня.
     row = conn.execute(
-        """
+        f"""
         SELECT w.* FROM words w
         WHERE w.translation IS NOT NULL
           AND w.level = ?
-          AND w.id NOT IN (
-              SELECT word_id FROM progress
-              WHERE user_id = ?
-              ORDER BY last_seen DESC
-              LIMIT ?
-          )
+          AND w.id NOT IN ({recent})
+          AND w.id NOT IN (SELECT word_id FROM progress WHERE user_id = ?)
         ORDER BY RANDOM()
         LIMIT 1
         """,
-        (level, user_id, NO_REPEAT_WINDOW),
+        (level, user_id, NO_REPEAT_WINDOW, user_id),
     ).fetchone()
 
-    # Подстраховка: если в уровне слов меньше окна, окно исключит вообще всё —
-    # тогда выдаём просто случайное слово уровня.
+    # 2. Уровень пройден — берём виденные, но не из последних NO_REPEAT_WINDOW.
+    if row is None:
+        row = conn.execute(
+            f"""
+            SELECT w.* FROM words w
+            WHERE w.translation IS NOT NULL
+              AND w.level = ?
+              AND w.id NOT IN ({recent})
+            ORDER BY RANDOM()
+            LIMIT 1
+            """,
+            (level, user_id, NO_REPEAT_WINDOW),
+        ).fetchone()
+
+    # 3. Подстраховка: в уровне слов меньше окна — окно исключило всё.
     if row is None:
         row = conn.execute(
             """
@@ -424,24 +550,40 @@ def count_slang():
 
 
 def get_next_slang(user_id):
-    """Случайное сокращение, исключая последние показанные (см. get_next_new_word)."""
+    """Следующее сокращение: сначала непоказанные, потом виденные
+    (та же логика приоритета, что и в get_next_new_word)."""
     conn = get_conn()
     total = conn.execute("SELECT COUNT(*) FROM slang").fetchone()[0]
     window = min(NO_REPEAT_WINDOW, max(1, total // 2))
+
+    recent = """
+        SELECT item_id FROM shown_log
+        WHERE user_id = ? AND kind = 'slang'
+        ORDER BY id DESC LIMIT ?
+    """
+
     row = conn.execute(
-        """
+        f"""
         SELECT s.* FROM slang s
-        WHERE s.id NOT IN (
-            SELECT slang_id FROM slang_progress
-            WHERE user_id = ?
-            ORDER BY last_seen DESC
-            LIMIT ?
-        )
+        WHERE s.id NOT IN ({recent})
+          AND s.id NOT IN (SELECT slang_id FROM slang_progress WHERE user_id = ?)
         ORDER BY RANDOM()
         LIMIT 1
         """,
-        (user_id, window),
+        (user_id, window, user_id),
     ).fetchone()
+
+    if row is None:
+        row = conn.execute(
+            f"""
+            SELECT s.* FROM slang s
+            WHERE s.id NOT IN ({recent})
+            ORDER BY RANDOM()
+            LIMIT 1
+            """,
+            (user_id, window),
+        ).fetchone()
+
     if row is None:
         row = conn.execute("SELECT * FROM slang ORDER BY RANDOM() LIMIT 1").fetchone()
     conn.close()
@@ -484,6 +626,116 @@ def get_slang_stats(user_id):
     ).fetchone()[0]
     known = conn.execute(
         "SELECT COUNT(*) FROM slang_progress WHERE user_id = ? AND status = 'known'",
+        (user_id,),
+    ).fetchone()[0]
+    conn.close()
+    return {"total": total, "seen": seen, "known": known}
+
+
+# ---------- idioms (идиомы и устойчивые выражения) ----------
+
+def upsert_idiom(order_index, phrase, translation, literal, example):
+    conn = get_conn()
+    conn.execute(
+        """
+        INSERT INTO idioms (order_index, phrase, translation, literal, example)
+        VALUES (?, ?, ?, ?, ?)
+        ON CONFLICT(phrase) DO UPDATE SET
+            order_index=excluded.order_index,
+            translation=excluded.translation,
+            literal=excluded.literal,
+            example=excluded.example
+        """,
+        (order_index, phrase, translation, literal, example),
+    )
+    conn.commit()
+    conn.close()
+
+
+def count_idioms():
+    conn = get_conn()
+    n = conn.execute("SELECT COUNT(*) FROM idioms").fetchone()[0]
+    conn.close()
+    return n
+
+
+def get_next_idiom(user_id):
+    """Следующая идиома: сначала непоказанные, потом виденные
+    (та же логика приоритета, что и в get_next_new_word)."""
+    conn = get_conn()
+    total = conn.execute("SELECT COUNT(*) FROM idioms").fetchone()[0]
+    window = min(NO_REPEAT_WINDOW, max(1, total // 2))
+
+    recent = """
+        SELECT item_id FROM shown_log
+        WHERE user_id = ? AND kind = 'idiom'
+        ORDER BY id DESC LIMIT ?
+    """
+
+    row = conn.execute(
+        f"""
+        SELECT i.* FROM idioms i
+        WHERE i.id NOT IN ({recent})
+          AND i.id NOT IN (SELECT idiom_id FROM idiom_progress WHERE user_id = ?)
+        ORDER BY RANDOM()
+        LIMIT 1
+        """,
+        (user_id, window, user_id),
+    ).fetchone()
+
+    if row is None:
+        row = conn.execute(
+            f"""
+            SELECT i.* FROM idioms i
+            WHERE i.id NOT IN ({recent})
+            ORDER BY RANDOM()
+            LIMIT 1
+            """,
+            (user_id, window),
+        ).fetchone()
+
+    if row is None:
+        row = conn.execute("SELECT * FROM idioms ORDER BY RANDOM() LIMIT 1").fetchone()
+    conn.close()
+    return row
+
+
+def record_idiom_answer(user_id, idiom_id, known: bool):
+    conn = get_conn()
+    prev = conn.execute(
+        "SELECT box FROM idiom_progress WHERE user_id = ? AND idiom_id = ?",
+        (user_id, idiom_id),
+    ).fetchone()
+    current_box = prev["box"] if prev else 0
+    new_box = min(current_box + 1, MAX_BOX) if known else 1
+    status = "known" if new_box >= KNOWN_BOX_THRESHOLD else "learning"
+    now = datetime.utcnow()
+    conn.execute(
+        """
+        INSERT INTO idiom_progress (user_id, idiom_id, box, status, next_review, last_seen)
+        VALUES (?, ?, ?, ?, ?, ?)
+        ON CONFLICT(user_id, idiom_id) DO UPDATE SET
+            box=excluded.box, status=excluded.status,
+            next_review=excluded.next_review, last_seen=excluded.last_seen
+        """,
+        (
+            user_id, idiom_id, new_box, status,
+            (now + timedelta(days=LEITNER_INTERVALS[new_box])).isoformat(),
+            now.isoformat(),
+        ),
+    )
+    conn.commit()
+    conn.close()
+
+
+def get_idiom_stats(user_id):
+    conn = get_conn()
+    total = conn.execute("SELECT COUNT(*) FROM idioms").fetchone()[0]
+    seen = conn.execute(
+        "SELECT COUNT(*) FROM idiom_progress WHERE user_id = ?", (user_id,)
+    ).fetchone()[0]
+    known = conn.execute(
+        "SELECT COUNT(*) FROM idiom_progress WHERE user_id = ? AND status = 'known'",
         (user_id,),
     ).fetchone()[0]
     conn.close()
