@@ -43,6 +43,7 @@ from telegram.ext import (
 
 import backup
 import db
+import pronunciation
 
 BACKUP_INTERVAL_SECONDS = 6 * 60 * 60  # каждые 6 часов
 
@@ -58,11 +59,34 @@ logger = logging.getLogger(__name__)
 with open("grammar_exercises.json", encoding="utf-8") as f:
     GRAMMAR_EXERCISES = json.load(f)
 
+
+def _load_optional(name):
+    """Данные для тренажёра произношения. Без них он просто станет проще."""
+    try:
+        with open(name, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        logger.warning("Не найден %s — тренажёр произношения будет без подсказок", name)
+        return {}
+
+
+CONFUSABLES = _load_optional("confusables.json")
+TRANSCRIPTIONS = _load_optional("transcriptions.json")
+
 MAIN_MENU = ReplyKeyboardMarkup(
     [
         ["📚 Словарь", "⏳ Времена"],
         ["💬 Сленг", "🎭 Идиомы"],
-        ["📊 Прогресс", "❓ Помощь"],
+        ["🎤 Произношение", "📊 Прогресс"],
+        ["❓ Помощь"],
+    ],
+    resize_keyboard=True,
+)
+
+PRON_MENU = ReplyKeyboardMarkup(
+    [
+        ["🎤 Другое слово"],
+        ["⬅️ Назад"],
     ],
     resize_keyboard=True,
 )
@@ -216,7 +240,11 @@ async def help_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "и пример.\n\n"
         "🎭 Идиомы: устойчивые выражения, которые дословно не переводятся. "
         "На карточке видно и настоящий смысл, и дословный перевод — чтобы "
-        "было понятно, почему по словам переводить нельзя.",
+        "было понятно, почему по словам переводить нельзя.\n\n"
+        "🎤 Произношение: бот присылает слово с транскрипцией, ты "
+        "наговариваешь его голосовым. Бот отвечает, что услышал: если "
+        "вместо sheep вышло ship, он это заметит и подскажет, в каком "
+        "звуке разница.",
         reply_markup=MAIN_MENU,
     )
 
@@ -371,6 +399,7 @@ async def cmd_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
     g_percent = round(100 * g["correct"] / g["total"]) if g["total"] else 0
     sl = db.get_slang_stats(user.id)
     idm = db.get_idiom_stats(user.id)
+    pr = db.get_pron_stats(user.id)
     await update.message.reply_text(
         f"📊 *Твой прогресс*\n\n"
         f"📚 *Словарь* ({LEVELS[level]})\n"
@@ -387,7 +416,10 @@ async def cmd_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Пройдено: {sl['seen']} · ✅ выучено: {sl['known']}\n\n"
         f"🎭 *Идиомы*\n"
         f"Всего идиом: {idm['total']}\n"
-        f"Пройдено: {idm['seen']} · ✅ выучено: {idm['known']}",
+        f"Пройдено: {idm['seen']} · ✅ выучено: {idm['known']}\n\n"
+        f"🎤 *Произношение*\n"
+        f"Слов проговорено: {pr['words']}\n"
+        f"Попыток: {pr['attempts']} · ✅ верно: {pr['correct']}",
         reply_markup=MAIN_MENU,
         parse_mode=ParseMode.MARKDOWN,
     )
@@ -440,6 +472,142 @@ async def send_quiz_question(send_func, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=InlineKeyboardMarkup(buttons),
         parse_mode=ParseMode.MARKDOWN,
     )
+
+
+# ---------- произношение ----------
+
+def _confusable_words(word):
+    return [e["word"] if isinstance(e, dict) else e
+            for e in CONFUSABLES.get(word, [])]
+
+
+def _sound_pair(word, heard):
+    """Какими звуками различаются целевое и услышанное слово."""
+    for entry in CONFUSABLES.get(word, []):
+        if isinstance(entry, dict) and entry.get("word") == heard:
+            return entry.get("pair") or []
+    return []
+
+
+async def send_pron_word(send_func, user_id, context):
+    level = db.get_user_level(user_id)
+    row = db.get_next_pron_word(user_id, level)
+    if row is None:
+        await send_func("В этом уровне пока нет слов с транскрипцией.",
+                        reply_markup=PRON_MENU)
+        return
+    db.log_shown(user_id, "pron", row["id"])
+    context.user_data["pron_word"] = {"id": row["id"], "word": row["word"]}
+    await send_func(
+        "🎤 Произнеси слово\n\n"
+        f"*{row['word']}*\n"
+        f"🔊 [{row['transcription']}]\n"
+        f"🇷🇺 {row['translation']}\n\n"
+        "_Запиши голосовое — скажи только это слово._",
+        reply_markup=PRON_MENU,
+        parse_mode=ParseMode.MARKDOWN,
+    )
+
+
+async def cmd_pron(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
+    db.ensure_user(user.id, user.username or user.first_name)
+    context.user_data.pop("grammar_active", None)
+
+    if not pronunciation.deps_ok():
+        await update.message.reply_text(
+            "🎤 Раздел недоступен: на сервере не установлены библиотеки "
+            "распознавания речи (vosk, soundfile).",
+            reply_markup=MAIN_MENU,
+        )
+        return
+
+    if not pronunciation.model_ready():
+        await update.message.reply_text(
+            "🎤 Готовлю распознавание речи — качаю модель (~40 МБ). "
+            "Это разово, займёт около минуты."
+        )
+        ok = await asyncio.to_thread(pronunciation.download_model)
+        if not ok:
+            await update.message.reply_text(
+                "Не удалось скачать модель распознавания. Попробуй позже — "
+                "остальные разделы работают как обычно.",
+                reply_markup=MAIN_MENU,
+            )
+            return
+        await update.message.reply_text("Готово, можно тренироваться 👌")
+
+    if db.get_pron_stats(user.id)["attempts"] == 0:
+        await update.message.reply_text(
+            "🎤 Раздел «Произношение».\n\n"
+            "Бот присылает слово с транскрипцией, ты наговариваешь его "
+            "голосовым — бот слушает и отвечает, что услышал. Если "
+            "произнесёшь похожее слово, он заметит: услышит ship вместо "
+            "sheep и подскажет, в каком звуке разница.",
+            reply_markup=PRON_MENU,
+        )
+    await send_pron_word(update.message.reply_text, user.id, context)
+
+
+async def on_voice(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Голосовое сообщение — проверка произношения текущего слова."""
+    target = context.user_data.get("pron_word")
+    if not target:
+        await update.message.reply_text(
+            "Сначала открой раздел «🎤 Произношение» — я пришлю слово, "
+            "которое нужно произнести.",
+            reply_markup=MAIN_MENU,
+        )
+        return
+
+    if not pronunciation.model_ready():
+        await update.message.reply_text(
+            "Модель распознавания ещё не готова, попробуй чуть позже."
+        )
+        return
+
+    user_id = update.effective_user.id
+    word = target["word"]
+    note = await update.message.reply_text("🎧 Слушаю...")
+
+    voice = update.message.voice or update.message.audio
+    tg_file = await context.bot.get_file(voice.file_id)
+    raw = bytes(await tg_file.download_as_bytearray())
+
+    result = await asyncio.to_thread(
+        pronunciation.check, raw, word, _confusable_words(word)
+    )
+    status = result["status"]
+    transcription = TRANSCRIPTIONS.get(word, "")
+
+    if status == "ok":
+        db.record_pron_attempt(user_id, target["id"], True)
+        text = f"✅ Отлично! Услышал именно *{word}*."
+    elif status == "unclear":
+        db.record_pron_attempt(user_id, target["id"], False)
+        text = (f"⚠️ Слово узнал, но звучит нечётко — *{word}* [{transcription}].\n"
+                "Попробуй сказать чуть медленнее и чётче.")
+    elif status == "wrong":
+        db.record_pron_attempt(user_id, target["id"], False)
+        heard = result["heard"]
+        heard_tr = TRANSCRIPTIONS.get(heard, "")
+        heard_part = f"*{heard}*" + (f" [{heard_tr}]" if heard_tr else "")
+        text = f"❌ Услышал {heard_part}, а нужно *{word}* [{transcription}]."
+        pair = _sound_pair(word, heard)
+        hint = pronunciation.sound_hint(pair[0], pair[1]) if len(pair) == 2 else None
+        if hint:
+            text += f"\n\n💡 {hint}."
+    elif status == "not_heard":
+        text = "🤔 Не разобрал слово. Запиши ещё раз, ближе к микрофону."
+    elif status == "too_quiet":
+        text = "🔇 Слишком тихо — почти не слышно. Попробуй ещё раз."
+    elif status == "too_short":
+        text = "⏱ Запись слишком короткая. Скажи слово целиком."
+    else:
+        text = "😕 Не смог разобрать запись. Попробуй ещё раз."
+
+    await note.edit_text(text, parse_mode=ParseMode.MARKDOWN)
+    await send_pron_word(update.message.reply_text, user_id, context)
 
 
 # ---------- callback (inline buttons) ----------
@@ -649,6 +817,8 @@ async def on_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "💬 Сленг": cmd_slang_menu,
         "💬 Новое сокращение": cmd_slang,
         "🎭 Идиомы": cmd_idiom_menu,
+        "🎤 Произношение": cmd_pron,
+        "🎤 Другое слово": cmd_pron,
         "🎭 Новая идиома": cmd_idiom,
         "⬅️ Назад": cmd_back_to_main,
         "🏁 Закончить тренировку": cmd_grammar_stop,
@@ -756,10 +926,12 @@ def main():
     app.add_handler(CommandHandler("grammar", cmd_grammar))
     app.add_handler(CommandHandler("slang", cmd_slang))
     app.add_handler(CommandHandler("idioms", cmd_idiom))
+    app.add_handler(CommandHandler("pron", cmd_pron))
     app.add_handler(CommandHandler("progress", cmd_progress))
     app.add_handler(CommandHandler("backup", cmd_backup))
     app.add_handler(CommandHandler("admin", cmd_admin))
     app.add_handler(CallbackQueryHandler(on_callback))
+    app.add_handler(MessageHandler(filters.VOICE | filters.AUDIO, on_voice))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, on_text))
 
     print("Бот запущен. Останови через Ctrl+C.")

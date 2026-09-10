@@ -129,6 +129,16 @@ def init_db():
         CREATE INDEX IF NOT EXISTS idx_shown_log_lookup
             ON shown_log (user_id, kind, id DESC);
 
+        CREATE TABLE IF NOT EXISTS pron_progress (
+            user_id INTEGER NOT NULL,
+            word_id INTEGER NOT NULL,
+            attempts INTEGER DEFAULT 0,
+            correct INTEGER DEFAULT 0,
+            last_seen TEXT,
+            PRIMARY KEY (user_id, word_id),
+            FOREIGN KEY (word_id) REFERENCES words (id)
+        );
+
         CREATE TABLE IF NOT EXISTS meta (
             key TEXT PRIMARY KEY,
             value TEXT
@@ -829,6 +839,75 @@ def record_idiom_answer(user_id, idiom_id, known: bool):
     )
     conn.commit()
     conn.close()
+
+
+def get_next_pron_word(user_id, level):
+    """Слово для тренировки произношения: сначала непроизнесённые."""
+    conn = get_conn()
+    recent = """
+        SELECT item_id FROM shown_log
+        WHERE user_id = ? AND kind = 'pron'
+        ORDER BY id DESC LIMIT 30
+    """
+    row = conn.execute(
+        f"""
+        SELECT w.* FROM words w
+        WHERE w.translation IS NOT NULL AND w.level = ?
+          AND w.transcription IS NOT NULL
+          AND w.id NOT IN ({recent})
+          AND w.id NOT IN (SELECT word_id FROM pron_progress WHERE user_id = ?)
+        ORDER BY RANDOM() LIMIT 1
+        """,
+        (level, user_id, user_id),
+    ).fetchone()
+    if row is None:
+        # всё произнесено — берём то, что даётся хуже всего
+        row = conn.execute(
+            f"""
+            SELECT w.* FROM words w
+            JOIN pron_progress p ON p.word_id = w.id AND p.user_id = ?
+            WHERE w.level = ? AND w.transcription IS NOT NULL
+              AND w.id NOT IN ({recent})
+            ORDER BY (CAST(p.correct AS REAL) / MAX(p.attempts, 1)) ASC, RANDOM()
+            LIMIT 1
+            """,
+            (user_id, level, user_id),
+        ).fetchone()
+    if row is None:
+        row = conn.execute(
+            "SELECT * FROM words WHERE level = ? AND transcription IS NOT NULL "
+            "ORDER BY RANDOM() LIMIT 1", (level,)
+        ).fetchone()
+    conn.close()
+    return row
+
+
+def record_pron_attempt(user_id, word_id, success: bool):
+    conn = get_conn()
+    conn.execute(
+        """
+        INSERT INTO pron_progress (user_id, word_id, attempts, correct, last_seen)
+        VALUES (?, ?, 1, ?, ?)
+        ON CONFLICT(user_id, word_id) DO UPDATE SET
+            attempts = attempts + 1,
+            correct = correct + ?,
+            last_seen = excluded.last_seen
+        """,
+        (user_id, word_id, int(success), datetime.utcnow().isoformat(), int(success)),
+    )
+    conn.commit()
+    conn.close()
+
+
+def get_pron_stats(user_id):
+    conn = get_conn()
+    row = conn.execute(
+        "SELECT COUNT(*) AS words, COALESCE(SUM(attempts),0) AS attempts, "
+        "COALESCE(SUM(correct),0) AS correct FROM pron_progress WHERE user_id = ?",
+        (user_id,),
+    ).fetchone()
+    conn.close()
+    return {"words": row["words"], "attempts": row["attempts"], "correct": row["correct"]}
 
 
 def get_idiom_stats(user_id):

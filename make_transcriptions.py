@@ -129,10 +129,23 @@ def to_russian(phonemes):
 def main():
     cmu = load_cmudict()
     words = json.load(open(BASE_DIR / "words_top1000.json", encoding="utf-8"))
+    needed = [item["word"] for item in words]
+
+    # Слова-подсказки из тренажёра произношения тоже нуждаются в транскрипции:
+    # в ответе показываем, что услышали, и как это звучит.
+    confusables = BASE_DIR / "confusables.json"
+    if confusables.exists():
+        extra = json.load(open(confusables, encoding="utf-8"))
+        seen = set(needed)
+        for similar in extra.values():
+            for entry in similar:
+                w = entry["word"] if isinstance(entry, dict) else entry
+                if w not in seen:
+                    seen.add(w)
+                    needed.append(w)
 
     result, missing = {}, []
-    for item in words:
-        word = item["word"]
+    for word in needed:
         phonemes = cmu.get(word)
         if not phonemes:
             missing.append(word)
@@ -142,7 +155,7 @@ def main():
     json.dump(result, open(OUT, "w", encoding="utf-8"),
               ensure_ascii=False, indent=2, sort_keys=True)
 
-    print(f"Готово: транскрипция для {len(result)} слов из {len(words)}")
+    print(f"Готово: транскрипция для {len(result)} слов из {len(needed)}")
     if missing:
         print(f"Нет произношения для {len(missing)} слов: {', '.join(missing[:20])}")
     return missing
