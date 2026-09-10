@@ -282,11 +282,18 @@ def count_words(only_with_translation=False):
 
 # ---------- users ----------
 
+# Уровни соответствуют шкале CEFR: 1=A1, 2=A2, 3=B1, 4=B2, 5=C1, 6=C2.
+# Новый пользователь начинает с B1: с самых азов интереснее не всем,
+# а уровень всегда можно сменить кнопкой.
+MIN_LEVEL, MAX_LEVEL = 1, 6
+DEFAULT_LEVEL = 3
+
+
 def ensure_user(user_id, username):
     conn = get_conn()
     conn.execute(
-        "INSERT OR IGNORE INTO users (user_id, username, created_at, level) VALUES (?, ?, ?, 1)",
-        (user_id, username, datetime.utcnow().isoformat()),
+        "INSERT OR IGNORE INTO users (user_id, username, created_at, level) VALUES (?, ?, ?, ?)",
+        (user_id, username, datetime.utcnow().isoformat(), DEFAULT_LEVEL),
     )
     conn.commit()
     conn.close()
@@ -296,7 +303,8 @@ def get_user_level(user_id):
     conn = get_conn()
     row = conn.execute("SELECT level FROM users WHERE user_id = ?", (user_id,)).fetchone()
     conn.close()
-    return row["level"] if row and row["level"] else 1
+    level = row["level"] if row and row["level"] else DEFAULT_LEVEL
+    return level if MIN_LEVEL <= level <= MAX_LEVEL else DEFAULT_LEVEL
 
 
 def get_admin_stats(active_days=7):
@@ -425,10 +433,12 @@ def get_next_new_word(user_id, level=1):
         "SELECT COUNT(*) FROM shown_log WHERE user_id = ? AND kind = 'word'",
         (user_id,),
     ).fetchone()[0]
-    if level == 1 and shown_count < len(PINNED_FIRST):
+    # Первые карточки — всегда закреплённые, на любом уровне: сами эти слова
+    # относятся к A1, и привязка к уровню отключала бы их для всех, кто
+    # начинает не с самого начала.
+    if shown_count < len(PINNED_FIRST):
         pinned = conn.execute(
-            "SELECT * FROM words WHERE word = ? AND level = ?",
-            (PINNED_FIRST[shown_count], level),
+            "SELECT * FROM words WHERE word = ?", (PINNED_FIRST[shown_count],)
         ).fetchone()
         if pinned is not None:
             conn.close()
