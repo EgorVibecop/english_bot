@@ -12,6 +12,7 @@
   translations_curated.json — переводы остальных слов
   examples.json             — короткая фраза-пример для каждого слова
   pos.json                  — часть речи (заранее посчитана через WordNet)
+  transcriptions.json       — русская транскрипция (make_transcriptions.py)
   slang.json                — отдельный словарь сленговых сокращений
   idioms.json               — идиомы и устойчивые выражения
 
@@ -35,6 +36,7 @@ CORE_FILE = BASE_DIR / "core_words.json"
 CURATED_FILE = BASE_DIR / "translations_curated.json"
 EXAMPLES_FILE = BASE_DIR / "examples.json"
 POS_FILE = BASE_DIR / "pos.json"
+TRANSCRIPTIONS_FILE = BASE_DIR / "transcriptions.json"
 SLANG_FILE = BASE_DIR / "slang.json"
 IDIOMS_FILE = BASE_DIR / "idioms.json"
 
@@ -55,7 +57,7 @@ def _fingerprint():
     """Отпечаток всех файлов-словарей: если не менялись, пересобирать нечего."""
     h = hashlib.sha256()
     for path in (WORDS_FILE, CORE_FILE, CURATED_FILE, EXAMPLES_FILE,
-                 POS_FILE, SLANG_FILE, IDIOMS_FILE):
+                 POS_FILE, TRANSCRIPTIONS_FILE, SLANG_FILE, IDIOMS_FILE):
         h.update(path.read_bytes() if path.exists() else b"")
     return h.hexdigest()
 
@@ -79,6 +81,7 @@ def seed(verbose=True, force=False):
     curated = _load(CURATED_FILE)
     examples = _load(EXAMPLES_FILE, {})
     pos_map = _load(POS_FILE, {})
+    transcriptions = _load(TRANSCRIPTIONS_FILE, {})
     slang = _load(SLANG_FILE, {})
     idioms = _load(IDIOMS_FILE, {})
 
@@ -110,7 +113,7 @@ def seed(verbose=True, force=False):
 
         rows.append(
             (rank, word, translation, examples.get(word), pos, source,
-             order_index, level)
+             order_index, level, transcriptions.get(word))
         )
 
     # Пишем весь словарь разом: нумерация при обновлении меняется, и построчная

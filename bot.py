@@ -115,9 +115,13 @@ GRAMMAR_MENU = ReplyKeyboardMarkup(
 
 def word_card_text(row, header="📖 Новое слово"):
     pos = f" _({row['pos']})_" if row["pos"] else ""
+    # Транскрипция появилась позже: у старых записей её может не быть.
+    sound = row["transcription"] if "transcription" in row.keys() else None
+    sound_line = f"🔊 [{sound}]\n" if sound else ""
     text = (
         f"{header}\n\n"
-        f"*{row['word']}*{pos}   `#{row['rank']}`\n\n"
+        f"*{row['word']}*{pos}   `#{row['rank']}`\n"
+        f"{sound_line}\n"
         f"🇷🇺 {row['translation']}\n"
     )
     if row["definition"]:

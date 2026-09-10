@@ -43,7 +43,8 @@ def init_db():
             definition TEXT,
             pos TEXT,
             source TEXT,
-            level INTEGER DEFAULT 1
+            level INTEGER DEFAULT 1,
+            transcription TEXT
         );
 
         CREATE TABLE IF NOT EXISTS users (
@@ -134,6 +135,15 @@ def init_db():
         );
         """
     )
+
+    # Колонки, добавленные позже: в уже созданной базе CREATE TABLE их не
+    # заведёт, поэтому досоздаём вручную. Без этого бот на сервере упал бы
+    # на первом же запросе к новой колонке.
+    existing = {row["name"] for row in conn.execute("PRAGMA table_info(words)")}
+    for column, ddl in (("transcription", "ALTER TABLE words ADD COLUMN transcription TEXT"),):
+        if column not in existing:
+            conn.execute(ddl)
+
     conn.commit()
     conn.close()
 
@@ -168,7 +178,8 @@ _RENUMBER_OFFSET = 10_000_000
 def bulk_upsert_words(rows):
     """Записать весь словарь одним заходом.
 
-    rows: (rank, word, translation, definition, pos, source, order_index, level)
+    rows: (rank, word, translation, definition, pos, source, order_index,
+           level, transcription)
 
     Перед вставкой номера существующих слов временно сдвигаются: rank и
     order_index объявлены UNIQUE, а при обновлении словаря нумерация меняется.
@@ -187,8 +198,9 @@ def bulk_upsert_words(rows):
         conn.executemany(
             """
             INSERT INTO words
-                (rank, order_index, word, translation, definition, pos, source, level)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                (rank, order_index, word, translation, definition, pos, source,
+                 level, transcription)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(word) DO UPDATE SET
                 rank=excluded.rank,
                 order_index=excluded.order_index,
@@ -196,12 +208,14 @@ def bulk_upsert_words(rows):
                 definition=excluded.definition,
                 pos=excluded.pos,
                 source=excluded.source,
-                level=excluded.level
+                level=excluded.level,
+                transcription=excluded.transcription
             """,
             [
-                (rank, order_index, word, translation, definition, pos, source, level)
-                for rank, word, translation, definition, pos, source, order_index, level
-                in rows
+                (rank, order_index, word, translation, definition, pos, source,
+                 level, transcription)
+                for rank, word, translation, definition, pos, source, order_index,
+                    level, transcription in rows
             ],
         )
         conn.commit()
