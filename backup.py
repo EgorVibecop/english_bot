@@ -33,6 +33,14 @@ from pathlib import Path
 logger = logging.getLogger(__name__)
 
 BACKUP_BRANCH = "backup"
+
+# Сколько снимков держать в истории ветки. База уезжает целиком каждые
+# несколько часов, и git хранит каждую версию: без ограничения ветка растёт
+# примерно на размер базы × число снимков и со временем раздувает
+# репозиторий. Когда снимков становится больше, история схлопывается
+# в один коммит — свежая база при этом остаётся на месте, а старые версии
+# недельной давности всё равно никому не нужны.
+KEEP_SNAPSHOTS = int(os.getenv("BACKUP_KEEP_SNAPSHOTS", "10"))
 BACKUP_PATH_IN_REPO = "english_bot.db"
 API_BASE = "https://api.github.com"
 TIMEOUT = 20
@@ -102,6 +110,57 @@ def _ensure_branch(token: str, repo: str, _base=None) -> bool:
     return True
 
 
+def _prune_history(token: str, repo: str, keep: int = KEEP_SNAPSHOTS, _base=None) -> bool:
+    """Схлопнуть историю ветки бэкапов, когда снимков накопилось больше `keep`.
+
+    Свежий снимок сохраняется: берём дерево текущего коммита и делаем из него
+    коммит без родителей, то есть историю с одной записью. Старые коммиты
+    остаются без ссылок, и GitHub их со временем убирает сам.
+    """
+    if keep <= 0:
+        return True
+
+    status, commits = _api_request(
+        "GET", f"/repos/{repo}/commits?sha={BACKUP_BRANCH}&per_page={keep + 1}",
+        token, _base=_base,
+    )
+    if status != 200 or not isinstance(commits, list):
+        logger.warning("Бэкап: не смог посчитать историю ветки: %s", status)
+        return False
+    if len(commits) <= keep:
+        return True
+
+    head = commits[0]
+    tree_sha = (head.get("commit") or {}).get("tree", {}).get("sha")
+    if not tree_sha:
+        logger.warning("Бэкап: не нашёл дерево свежего коммита, историю не трогаю")
+        return False
+
+    status, commit = _api_request(
+        "POST", f"/repos/{repo}/git/commits", token,
+        {
+            "message": f"backup (история сжата) {datetime.now(timezone.utc).isoformat(timespec='seconds')}",
+            "tree": tree_sha,
+            "parents": [],
+        },
+        _base=_base,
+    )
+    if status not in (200, 201) or not commit:
+        logger.warning("Бэкап: не удалось создать сжатый коммит: %s %s", status, commit)
+        return False
+
+    status, data = _api_request(
+        "PATCH", f"/repos/{repo}/git/refs/heads/{BACKUP_BRANCH}", token,
+        {"sha": commit["sha"], "force": True}, _base=_base,
+    )
+    if status != 200:
+        logger.warning("Бэкап: не удалось сжать историю: %s %s", status, data)
+        return False
+
+    logger.info("Бэкап: история ветки сжата, было снимков больше %s", keep)
+    return True
+
+
 def backup_now(db_path: Path, _api_base: str | None = None) -> bool:
     """Сделать снимок базы и отправить его в ветку backup. Возвращает True при успехе.
 
@@ -151,6 +210,13 @@ def backup_now(db_path: Path, _api_base: str | None = None) -> bool:
         )
         if status in (200, 201):
             logger.info("Бэкап базы отправлен в ветку %s", BACKUP_BRANCH)
+            # Подчищаем историю уже после того, как свежий снимок на месте,
+            # и отдельно от основного хода: сорвавшаяся очистка не должна
+            # выглядеть как неудавшийся бэкап — он уже сохранён.
+            try:
+                _prune_history(token, repo, _base=_api_base)
+            except Exception:
+                logger.exception("Бэкап сохранён, но историю сжать не удалось")
             return True
         logger.error("Бэкап не удался: %s %s", status, data)
         return False
