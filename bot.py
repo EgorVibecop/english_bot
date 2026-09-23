@@ -448,6 +448,7 @@ async def cmd_quiz(update: Update, context: ContextTypes.DEFAULT_TYPE):
         random.shuffle(options)
         questions.append(
             {
+                "id": row["id"],
                 "word": row["word"],
                 "correct": row["translation"],
                 "options": options,
@@ -670,6 +671,10 @@ async def on_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         q = quiz["questions"][quiz["index"]]
         chosen = q["options"][idx]
         correct = chosen == q["correct"]
+        # Ответ в квизе — такой же ответ по слову, как «знаю / не знаю» на
+        # карточке. Без этого угаданное слово оставалось бы в квизе навсегда.
+        if q.get("id"):
+            db.record_answer(user_id, q["id"], correct)
         if correct:
             quiz["score"] += 1
             result = f"✅ Верно! *{q['word']}* — {q['correct']}"

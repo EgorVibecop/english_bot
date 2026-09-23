@@ -59,6 +59,11 @@ def init_db():
             word_id INTEGER NOT NULL,
             box INTEGER DEFAULT 0,
             status TEXT DEFAULT 'new',
+            -- Последний ответ: 1 - «знаю», 0 - «не знаю». Хранится отдельно,
+            -- потому что по статусу его не восстановить: 'learning' означает
+            -- «ещё не доведено до автоматизма», и туда попадает как «не знаю»,
+            -- так и первое «знаю» (коробка 0 -> 1, а выученное с 3).
+            last_known INTEGER DEFAULT 0,
             next_review TEXT,
             last_seen TEXT,
             PRIMARY KEY (user_id, word_id),
@@ -153,6 +158,15 @@ def init_db():
     for column, ddl in (("transcription", "ALTER TABLE words ADD COLUMN transcription TEXT"),):
         if column not in existing:
             conn.execute(ddl)
+
+    progress_columns = {row["name"] for row in conn.execute("PRAGMA table_info(progress)")}
+    if "last_known" not in progress_columns:
+        conn.execute("ALTER TABLE progress ADD COLUMN last_known INTEGER DEFAULT 0")
+        # Восстанавливаем прошлые ответы, насколько это возможно: коробка 2
+        # и выше набирается только повторными «знаю». Коробка 1 неоднозначна
+        # (и «не знаю», и первое «знаю»), такие слова попадут в квиз — после
+        # первого же ответа всё встанет на места.
+        conn.execute("UPDATE progress SET last_known = 1 WHERE box >= 2")
 
     conn.commit()
     conn.close()
@@ -557,13 +571,15 @@ def record_answer(user_id, word_id, known: bool):
 
     conn.execute(
         """
-        INSERT INTO progress (user_id, word_id, box, status, next_review, last_seen)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO progress
+            (user_id, word_id, box, status, last_known, next_review, last_seen)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(user_id, word_id) DO UPDATE SET
             box=excluded.box, status=excluded.status,
+            last_known=excluded.last_known,
             next_review=excluded.next_review, last_seen=excluded.last_seen
         """,
-        (user_id, word_id, new_box, status, next_review, now),
+        (user_id, word_id, new_box, status, int(known), next_review, now),
     )
     conn.commit()
     conn.close()
@@ -949,14 +965,19 @@ def get_grammar_stats(user_id):
 
 
 def get_quiz_pool(user_id, limit=8):
-    """Слова со статусом 'learning' — те, где пользователь ответил 'не знаю'
-    (именно они и должны тренироваться квизом, а не уже выученные/новые)."""
+    """Слова, на которых пользователь последний раз ответил «не знаю».
+
+    Раньше здесь стоял фильтр по статусу 'learning', и квиз греб всё подряд:
+    статус означает «ещё не доведено до автоматизма», а не «не знал». После
+    первого «знаю» слово переходит в коробку 1, выученным считается с 3 —
+    то есть в 'learning' попадали и те слова, которые пользователь знает.
+    """
     conn = get_conn()
     rows = conn.execute(
         """
         SELECT w.* FROM progress p
         JOIN words w ON w.id = p.word_id
-        WHERE p.user_id = ? AND p.status = 'learning' AND w.translation IS NOT NULL
+        WHERE p.user_id = ? AND p.last_known = 0 AND w.translation IS NOT NULL
         ORDER BY RANDOM()
         LIMIT ?
         """,
