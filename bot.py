@@ -137,6 +137,15 @@ GRAMMAR_MENU = ReplyKeyboardMarkup(
 )
 
 
+def progress_bar(done, total, width=10):
+    """Полоска прогресса из блоков: ▓▓▓▓░░░░░░ 38%"""
+    if not total:
+        return "░" * width + " 0%"
+    share = done / total
+    filled = min(width, int(round(share * width)))
+    return "▓" * filled + "░" * (width - filled) + f" {round(share * 100)}%"
+
+
 def word_card_text(row, header="📖 Новое слово"):
     pos = f" _({row['pos']})_" if row["pos"] else ""
     # Транскрипция появилась позже: у старых записей её может не быть.
@@ -233,7 +242,9 @@ async def help_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Слова идут в случайном порядке и не повторяются раньше, чем через "
         "200 других слов. Кнопка «🎚 Уровень» меняет сложность слов "
         "(1 — база, 2 — средний, 3 — продвинутый).\n\n"
-        "⏳ Времена: бот присылает предложение с пропуском (___), впиши "
+        "⏳ Грамматика: 13 тем — времена, артикли, предлоги, модальные "
+        "глаголы, условные, пассив и другие. Бот присылает предложение "
+        "с пропуском (___), впиши "
         "пропущенное слово (или несколько слов, например «will have») "
         "обычным текстовым сообщением.\n\n"
         "💬 Сленг: сокращения из реальной переписки — расшифровка, перевод "
@@ -394,19 +405,33 @@ async def cmd_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     level = db.get_user_level(user.id)
     s = db.get_stats(user.id, level)
-    percent = round(100 * s["seen"] / s["total"]) if s["total"] else 0
+    overall = db.get_overall_progress(user.id)
     g = db.get_grammar_stats(user.id)
     g_percent = round(100 * g["correct"] / g["total"]) if g["total"] else 0
     sl = db.get_slang_stats(user.id)
     idm = db.get_idiom_stats(user.id)
     pr = db.get_pron_stats(user.id)
+
+    levels_lines = "\n".join(
+        f"{LEVELS[lvl].split(' —')[0]}  {progress_bar(d['known'], d['total'], width=8)} "
+        f"{d['known']}/{d['total']}"
+        for lvl, d in sorted(overall["by_level"].items())
+        if lvl in LEVELS
+    )
+
     await update.message.reply_text(
         f"📊 *Твой прогресс*\n\n"
-        f"📚 *Словарь* ({LEVELS[level]})\n"
-        f"Всего слов в словаре: {s['total']}\n"
-        f"Просмотрено: {s['seen']} ({percent}%)\n"
-        f"✅ Выучено: {s['known']}\n"
-        f"📘 В процессе: {s['learning']}\n"
+        f"🏁 *Весь словарь*\n"
+        f"{progress_bar(overall['known'], overall['total'])}\n"
+        f"Выучено {overall['known']} из {overall['total']} слов "
+        f"({overall['percent']}%)\n"
+        f"📘 В работе: {overall['learning']} · "
+        f"⬜ Не начато: {overall['untouched']}\n"
+        f"_Слово считается выученным после {db.MASTERY_STREAK} верных ответов подряд._\n\n"
+        f"*По уровням*\n{levels_lines}\n\n"
+        f"📚 *Текущий уровень* ({LEVELS[level]})\n"
+        f"Просмотрено: {s['seen']} из {s['total']}\n"
+        f"✅ Выучено: {s['known']} · 📘 В процессе: {s['learning']}\n"
         f"🔁 Ждут повторения сейчас: {s['due']}\n\n"
         f"⏳ *Времена*\n"
         f"Отвечено вопросов: {g['total']}\n"
@@ -619,6 +644,10 @@ async def on_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     data = query.data
     user_id = update.effective_user.id
 
+    if data.startswith("gtopic:"):
+        await start_grammar_topic(query, context, data.split(":", 1)[1])
+        return
+
     if data.startswith("level:"):
         level = int(data.split(":")[1])
         db.set_user_level(user_id, level)
@@ -646,6 +675,16 @@ async def on_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         word_id = int(data.split(":")[1])
         db.record_answer(user_id, word_id, known)
         await query.edit_message_reply_markup(reply_markup=None)
+        # Показываем, сколько верных ответов подряд осталось до «выучено» —
+        # иначе непонятно, почему слово всё ещё возвращается.
+        streak = db.get_word_streak(user_id, word_id)
+        if known:
+            if streak >= db.MASTERY_STREAK:
+                await query.message.reply_text("🎉 Слово выучено — ушло в запомнившиеся!")
+            else:
+                await query.message.reply_text(
+                    f"Засчитано: {streak} из {db.MASTERY_STREAK} верных подряд."
+                )
         await send_next_word(query.message.reply_text, user_id)
 
     elif data.startswith("reveal:"):
@@ -721,10 +760,16 @@ def normalize_answer(text):
 
 
 async def send_grammar_exercise(send_func, context: ContextTypes.DEFAULT_TYPE):
+    topic = context.user_data.get("grammar_topic")
     retry_tense = context.user_data.get("grammar_retry_tense")
     if retry_tense:
+        # После ошибки повторяем то же правило, пока не ответит верно.
         pool = [e for e in GRAMMAR_EXERCISES if e["tense"] == retry_tense]
+    elif topic:
+        pool = [e for e in GRAMMAR_EXERCISES if e.get("topic", "tenses") == topic]
     else:
+        pool = GRAMMAR_EXERCISES
+    if not pool:
         pool = GRAMMAR_EXERCISES
 
     previous = context.user_data.get("grammar_current")
@@ -746,19 +791,53 @@ async def send_grammar_exercise(send_func, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
+def grammar_topics():
+    """Темы в порядке появления, с числом упражнений в каждой."""
+    out = {}
+    for exercise in GRAMMAR_EXERCISES:
+        topic = exercise.get("topic", "tenses")
+        name = exercise.get("topic_ru", "Времена")
+        entry = out.setdefault(topic, {"name": name, "count": 0})
+        entry["count"] += 1
+    return out
+
+
 async def cmd_grammar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     db.ensure_user(user.id, user.username or user.first_name)
     context.user_data["grammar_session"] = {"total": 0, "correct": 0}
     context.user_data.pop("grammar_retry_tense", None)
+    context.user_data.pop("grammar_topic", None)
+
+    topics = grammar_topics()
+    buttons = [[InlineKeyboardButton(
+        f"🎲 Всё вперемешку ({len(GRAMMAR_EXERCISES)})", callback_data="gtopic:all")]]
+    buttons += [
+        [InlineKeyboardButton(f"{d['name']} ({d['count']})", callback_data=f"gtopic:{key}")]
+        for key, d in topics.items()
+    ]
     await update.message.reply_text(
-        "⏳ *Тренажёр времён*\n\n"
+        "⏳ *Грамматика*\n\n"
         "Присылаю предложение с пропуском — впиши недостающее слово "
-        "(или слова, например «will have») текстом. Времена идут вперемешку.",
+        "(или слова, например «will have») текстом.\n\n"
+        "Выбери тему:",
         parse_mode=ParseMode.MARKDOWN,
-        reply_markup=GRAMMAR_MENU,
+        reply_markup=InlineKeyboardMarkup(buttons),
     )
-    await send_grammar_exercise(update.message.reply_text, context)
+
+
+async def start_grammar_topic(query, context, topic):
+    context.user_data["grammar_session"] = {"total": 0, "correct": 0}
+    context.user_data.pop("grammar_retry_tense", None)
+    context.user_data["grammar_topic"] = None if topic == "all" else topic
+
+    topics = grammar_topics()
+    title = "всё вперемешку" if topic == "all" else topics.get(topic, {}).get("name", topic)
+    await query.edit_message_text(f"⏳ Тема: {title}. Поехали!")
+    await query.message.reply_text(
+        "Впиши пропущенное слово текстом.", reply_markup=GRAMMAR_MENU
+    )
+    await send_grammar_exercise(query.message.reply_text, context)
 
 
 async def cmd_grammar_stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -801,10 +880,16 @@ async def check_grammar_answer(update: Update, context: ContextTypes.DEFAULT_TYP
         )
         context.user_data.pop("grammar_retry_tense", None)
     else:
-        explanation = TENSE_EXPLANATIONS.get(exercise["tense"], "")
+        # У времён пояснение лежит в TENSE_EXPLANATIONS, у остальных тем —
+        # прямо в самой записи (tense_ru). Разбор нужен и там, и там.
+        explanation = TENSE_EXPLANATIONS.get(exercise["tense"])
+        if explanation:
+            rule_line = f"*{exercise['tense_ru']}* — {explanation}"
+        else:
+            rule_line = f"*{exercise['tense']}* — {exercise['tense_ru']}"
         reply = (
             f"❌ Неверно. Правильный ответ: *{exercise['answers'][0]}*\n"
-            f"*{exercise['tense_ru']}* — {explanation}\n"
+            f"{rule_line}\n"
             f"🇷🇺 {translation}"
         )
         context.user_data["grammar_retry_tense"] = exercise["tense"]

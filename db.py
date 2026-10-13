@@ -20,7 +20,12 @@ DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 # Интервалы повторения по системе Лейтнера (в днях), индекс = номер "коробки"
 LEITNER_INTERVALS = {0: 0, 1: 1, 2: 2, 3: 4, 4: 7, 5: 14, 6: 30}
 MAX_BOX = max(LEITNER_INTERVALS.keys())
-KNOWN_BOX_THRESHOLD = 3  # начиная с этой коробки слово считается "известным"
+KNOWN_BOX_THRESHOLD = 3  # коробка, с которой слово уходит на долгие интервалы
+
+# Сколько верных ответов подряд нужно, чтобы слово считалось выученным.
+# Именно подряд: одна ошибка обнуляет счётчик, иначе «выучено» получалось бы
+# у слова, которое угадали пару раз через раз.
+MASTERY_STREAK = 5
 
 
 def get_conn():
@@ -64,6 +69,8 @@ def init_db():
             -- «ещё не доведено до автоматизма», и туда попадает как «не знаю»,
             -- так и первое «знаю» (коробка 0 -> 1, а выученное с 3).
             last_known INTEGER DEFAULT 0,
+            -- Верных ответов подряд: по нему считается «выучено».
+            streak INTEGER DEFAULT 0,
             next_review TEXT,
             last_seen TEXT,
             PRIMARY KEY (user_id, word_id),
@@ -92,6 +99,7 @@ def init_db():
             slang_id INTEGER NOT NULL,
             box INTEGER DEFAULT 0,
             status TEXT DEFAULT 'new',
+            streak INTEGER DEFAULT 0,
             next_review TEXT,
             last_seen TEXT,
             PRIMARY KEY (user_id, slang_id),
@@ -112,6 +120,7 @@ def init_db():
             idiom_id INTEGER NOT NULL,
             box INTEGER DEFAULT 0,
             status TEXT DEFAULT 'new',
+            streak INTEGER DEFAULT 0,
             next_review TEXT,
             last_seen TEXT,
             PRIMARY KEY (user_id, idiom_id),
@@ -158,6 +167,17 @@ def init_db():
     for column, ddl in (("transcription", "ALTER TABLE words ADD COLUMN transcription TEXT"),):
         if column not in existing:
             conn.execute(ddl)
+
+    for table in ("progress", "slang_progress", "idiom_progress"):
+        columns = {row["name"] for row in conn.execute(f"PRAGMA table_info({table})")}
+        if "streak" not in columns:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN streak INTEGER DEFAULT 0")
+            # Что уже числилось выученным, таким и остаётся: обнулять счётчик
+            # значило бы отобрать у пользователя пройденное.
+            conn.execute(
+                f"UPDATE {table} SET streak = ? WHERE status = 'known'",
+                (MASTERY_STREAK,),
+            )
 
     progress_columns = {row["name"] for row in conn.execute("PRAGMA table_info(progress)")}
     if "last_known" not in progress_columns:
@@ -553,17 +573,22 @@ def record_answer(user_id, word_id, known: bool):
     """Обновить прогресс по слову после ответа пользователя (Лейтнер)."""
     conn = get_conn()
     row = conn.execute(
-        "SELECT box FROM progress WHERE user_id = ? AND word_id = ?",
+        "SELECT box, streak FROM progress WHERE user_id = ? AND word_id = ?",
         (user_id, word_id),
     ).fetchone()
     current_box = row["box"] if row else 0
+    current_streak = (row["streak"] if row and row["streak"] else 0)
 
     if known:
         new_box = min(current_box + 1, MAX_BOX)
+        new_streak = current_streak + 1
     else:
         new_box = 1
+        new_streak = 0
 
-    status = "known" if new_box >= KNOWN_BOX_THRESHOLD else "learning"
+    # Выучено — это пять верных ответов подряд, а не номер коробки: коробка
+    # отвечает за то, когда слово покажут снова, а не за то, знаешь ли ты его.
+    status = "known" if new_streak >= MASTERY_STREAK else "learning"
     next_review = (
         datetime.utcnow() + timedelta(days=LEITNER_INTERVALS[new_box])
     ).isoformat()
@@ -572,17 +597,76 @@ def record_answer(user_id, word_id, known: bool):
     conn.execute(
         """
         INSERT INTO progress
-            (user_id, word_id, box, status, last_known, next_review, last_seen)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+            (user_id, word_id, box, status, last_known, streak, next_review, last_seen)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(user_id, word_id) DO UPDATE SET
             box=excluded.box, status=excluded.status,
-            last_known=excluded.last_known,
+            last_known=excluded.last_known, streak=excluded.streak,
             next_review=excluded.next_review, last_seen=excluded.last_seen
         """,
-        (user_id, word_id, new_box, status, int(known), next_review, now),
+        (user_id, word_id, new_box, status, int(known), new_streak, next_review, now),
     )
     conn.commit()
     conn.close()
+
+
+def get_overall_progress(user_id):
+    """Прогресс по всему словарю сразу, а не по одному уровню.
+
+    Возвращает общие числа и разбивку по уровням: сколько слов выучено
+    (пять верных ответов подряд), сколько в работе и сколько ещё не трогали.
+    """
+    conn = get_conn()
+    total = conn.execute(
+        "SELECT COUNT(*) FROM words WHERE translation IS NOT NULL"
+    ).fetchone()[0]
+    known = conn.execute(
+        """SELECT COUNT(*) FROM progress p JOIN words w ON w.id = p.word_id
+           WHERE p.user_id = ? AND p.status = 'known' AND w.translation IS NOT NULL""",
+        (user_id,),
+    ).fetchone()[0]
+    learning = conn.execute(
+        """SELECT COUNT(*) FROM progress p JOIN words w ON w.id = p.word_id
+           WHERE p.user_id = ? AND p.status != 'known' AND w.translation IS NOT NULL""",
+        (user_id,),
+    ).fetchone()[0]
+
+    by_level = {}
+    rows = conn.execute(
+        """
+        SELECT w.level,
+               COUNT(*) AS total,
+               SUM(CASE WHEN p.status = 'known' THEN 1 ELSE 0 END) AS known
+        FROM words w
+        LEFT JOIN progress p ON p.word_id = w.id AND p.user_id = ?
+        WHERE w.translation IS NOT NULL
+        GROUP BY w.level ORDER BY w.level
+        """,
+        (user_id,),
+    ).fetchall()
+    for row in rows:
+        by_level[row["level"]] = {"total": row["total"], "known": row["known"] or 0}
+    conn.close()
+
+    return {
+        "total": total,
+        "known": known,
+        "learning": learning,
+        "untouched": total - known - learning,
+        "percent": round(100 * known / total) if total else 0,
+        "by_level": by_level,
+    }
+
+
+def get_word_streak(user_id, word_id):
+    """Сколько верных ответов подряд набрано по слову."""
+    conn = get_conn()
+    row = conn.execute(
+        "SELECT streak FROM progress WHERE user_id = ? AND word_id = ?",
+        (user_id, word_id),
+    ).fetchone()
+    conn.close()
+    return (row["streak"] if row and row["streak"] else 0)
 
 
 def get_stats(user_id, level=1):
@@ -722,23 +806,26 @@ def get_next_slang(user_id):
 def record_slang_answer(user_id, slang_id, known: bool):
     conn = get_conn()
     prev = conn.execute(
-        "SELECT box FROM slang_progress WHERE user_id = ? AND slang_id = ?",
+        "SELECT box, streak FROM slang_progress WHERE user_id = ? AND slang_id = ?",
         (user_id, slang_id),
     ).fetchone()
     current_box = prev["box"] if prev else 0
+    current_streak = (prev["streak"] if prev and prev["streak"] else 0)
     new_box = min(current_box + 1, MAX_BOX) if known else 1
-    status = "known" if new_box >= KNOWN_BOX_THRESHOLD else "learning"
+    new_streak = current_streak + 1 if known else 0
+    status = "known" if new_streak >= MASTERY_STREAK else "learning"
     now = datetime.utcnow()
     conn.execute(
         """
-        INSERT INTO slang_progress (user_id, slang_id, box, status, next_review, last_seen)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO slang_progress
+            (user_id, slang_id, box, status, streak, next_review, last_seen)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(user_id, slang_id) DO UPDATE SET
-            box=excluded.box, status=excluded.status,
+            box=excluded.box, status=excluded.status, streak=excluded.streak,
             next_review=excluded.next_review, last_seen=excluded.last_seen
         """,
         (
-            user_id, slang_id, new_box, status,
+            user_id, slang_id, new_box, status, new_streak,
             (now + timedelta(days=LEITNER_INTERVALS[new_box])).isoformat(),
             now.isoformat(),
         ),
@@ -832,23 +919,26 @@ def get_next_idiom(user_id):
 def record_idiom_answer(user_id, idiom_id, known: bool):
     conn = get_conn()
     prev = conn.execute(
-        "SELECT box FROM idiom_progress WHERE user_id = ? AND idiom_id = ?",
+        "SELECT box, streak FROM idiom_progress WHERE user_id = ? AND idiom_id = ?",
         (user_id, idiom_id),
     ).fetchone()
     current_box = prev["box"] if prev else 0
+    current_streak = (prev["streak"] if prev and prev["streak"] else 0)
     new_box = min(current_box + 1, MAX_BOX) if known else 1
-    status = "known" if new_box >= KNOWN_BOX_THRESHOLD else "learning"
+    new_streak = current_streak + 1 if known else 0
+    status = "known" if new_streak >= MASTERY_STREAK else "learning"
     now = datetime.utcnow()
     conn.execute(
         """
-        INSERT INTO idiom_progress (user_id, idiom_id, box, status, next_review, last_seen)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO idiom_progress
+            (user_id, idiom_id, box, status, streak, next_review, last_seen)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(user_id, idiom_id) DO UPDATE SET
-            box=excluded.box, status=excluded.status,
+            box=excluded.box, status=excluded.status, streak=excluded.streak,
             next_review=excluded.next_review, last_seen=excluded.last_seen
         """,
         (
-            user_id, idiom_id, new_box, status,
+            user_id, idiom_id, new_box, status, new_streak,
             (now + timedelta(days=LEITNER_INTERVALS[new_box])).isoformat(),
             now.isoformat(),
         ),

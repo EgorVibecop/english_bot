@@ -7,7 +7,9 @@
       "is",
       "'s"
     ],
-    "translation": "Она хороший человек."
+    "translation": "Она хороший человек.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -17,7 +19,9 @@
       "am",
       "'m"
     ],
-    "translation": "Я готов(а) к экзамену."
+    "translation": "Я готов(а) к экзамену.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -27,7 +31,9 @@
       "are",
       "'re"
     ],
-    "translation": "Они из Канады."
+    "translation": "Они из Канады.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -36,7 +42,9 @@
     "answers": [
       "goes"
     ],
-    "translation": "Он ходит на работу каждый день."
+    "translation": "Он ходит на работу каждый день.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -45,7 +53,9 @@
     "answers": [
       "have"
     ],
-    "translation": "Мы завтракаем в 8 каждое утро."
+    "translation": "Мы завтракаем в 8 каждое утро.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -55,7 +65,9 @@
       "are",
       "'re"
     ],
-    "translation": "Магазины закрыты по воскресеньям."
+    "translation": "Магазины закрыты по воскресеньям.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -64,7 +76,9 @@
     "answers": [
       "speaks"
     ],
-    "translation": "Моя сестра очень хорошо говорит по-английски."
+    "translation": "Моя сестра очень хорошо говорит по-английски.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -74,7 +88,9 @@
       "is",
       "'s"
     ],
-    "translation": "Здесь холодно зимой."
+    "translation": "Здесь холодно зимой.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -84,7 +100,9 @@
       "are",
       "'re"
     ],
-    "translation": "Ты вечно опаздываешь!"
+    "translation": "Ты вечно опаздываешь!",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -93,7 +111,9 @@
     "answers": [
       "boils"
     ],
-    "translation": "Вода кипит при 100 градусах Цельсия."
+    "translation": "Вода кипит при 100 градусах Цельсия.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -103,7 +123,9 @@
       "am",
       "'m"
     ],
-    "translation": "Я иду в кино сегодня."
+    "translation": "Я иду в кино сегодня.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -113,7 +135,9 @@
       "is",
       "'s"
     ],
-    "translation": "Она сейчас готовится к экзамену."
+    "translation": "Она сейчас готовится к экзамену.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -123,7 +147,9 @@
       "are",
       "'re"
     ],
-    "translation": "Мы сейчас ужинаем."
+    "translation": "Мы сейчас ужинаем.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -133,7 +159,9 @@
       "are",
       "'re"
     ],
-    "translation": "Они играют в футбол на улице."
+    "translation": "Они играют в футбол на улице.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -143,7 +171,9 @@
       "is",
       "'s"
     ],
-    "translation": "Он работает из дома на этой неделе."
+    "translation": "Он работает из дома на этой неделе.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -153,7 +183,9 @@
       "am",
       "'m"
     ],
-    "translation": "Я не слушаю, извини, повторишь?"
+    "translation": "Я не слушаю, извини, повторишь?",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -163,7 +195,9 @@
       "are",
       "'re"
     ],
-    "translation": "Дети сейчас спят."
+    "translation": "Дети сейчас спят.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -173,7 +207,9 @@
       "are",
       "'re"
     ],
-    "translation": "Ты стоишь на моей ноге!"
+    "translation": "Ты стоишь на моей ноге!",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -183,7 +219,9 @@
       "is",
       "'s"
     ],
-    "translation": "На улице сейчас идёт дождь."
+    "translation": "На улице сейчас идёт дождь.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -193,7 +231,9 @@
       "are",
       "'re"
     ],
-    "translation": "Мои родители приезжают к нам в гости на этих выходных."
+    "translation": "Мои родители приезжают к нам в гости на этих выходных.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -202,7 +242,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Она вчера устала."
+    "translation": "Она вчера устала.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -211,7 +253,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Вчера вечером я был(а) дома."
+    "translation": "Вчера вечером я был(а) дома.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -220,7 +264,9 @@
     "answers": [
       "were"
     ],
-    "translation": "Они были довольны результатами."
+    "translation": "Они были довольны результатами.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -229,7 +275,9 @@
     "answers": [
       "went"
     ],
-    "translation": "Мы ходили в кино в прошлую пятницу."
+    "translation": "Мы ходили в кино в прошлую пятницу.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -238,7 +286,9 @@
     "answers": [
       "finished"
     ],
-    "translation": "Он закончил домашнее задание перед ужином."
+    "translation": "Он закончил домашнее задание перед ужином.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -247,7 +297,9 @@
     "answers": [
       "were"
     ],
-    "translation": "Ты вчера опоздал(а) на встречу."
+    "translation": "Ты вчера опоздал(а) на встречу.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -256,7 +308,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Мне приснился странный сон прошлой ночью."
+    "translation": "Мне приснился странный сон прошлой ночью.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -265,7 +319,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Погода была ужасной на прошлой неделе."
+    "translation": "Погода была ужасной на прошлой неделе.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -274,7 +330,9 @@
     "answers": [
       "wrote"
     ],
-    "translation": "Она написала письмо своей подруге."
+    "translation": "Она написала письмо своей подруге.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -283,7 +341,9 @@
     "answers": [
       "played"
     ],
-    "translation": "Они играли в футбол в парке вчера."
+    "translation": "Они играли в футбол в парке вчера.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -292,7 +352,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Я смотрел(а) телевизор, когда ты позвонил(а)."
+    "translation": "Я смотрел(а) телевизор, когда ты позвонил(а).",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -301,7 +363,9 @@
     "answers": [
       "were"
     ],
-    "translation": "Они спали, когда зазвонил телефон."
+    "translation": "Они спали, когда зазвонил телефон.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -310,7 +374,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Она готовила ужин в 7 вечера вчера."
+    "translation": "Она готовила ужин в 7 вечера вчера.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -319,7 +385,9 @@
     "answers": [
       "were"
     ],
-    "translation": "Мы шли домой, когда начался дождь."
+    "translation": "Мы шли домой, когда начался дождь.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -328,7 +396,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Он работал, когда я его навестил(а)."
+    "translation": "Он работал, когда я его навестил(а).",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -337,7 +407,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Вчера весь день шёл дождь."
+    "translation": "Вчера весь день шёл дождь.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -346,7 +418,9 @@
     "answers": [
       "were"
     ],
-    "translation": "Ты слишком громко разговаривал(а) во время фильма."
+    "translation": "Ты слишком громко разговаривал(а) во время фильма.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -355,7 +429,9 @@
     "answers": [
       "were"
     ],
-    "translation": "Дети играли на улице, когда начался шторм."
+    "translation": "Дети играли на улице, когда начался шторм.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -364,7 +440,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Я не был(а) внимателен(на) во время урока."
+    "translation": "Я не был(а) внимателен(на) во время урока.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -373,7 +451,9 @@
     "answers": [
       "were"
     ],
-    "translation": "Мои родители ждали нас на станции."
+    "translation": "Мои родители ждали нас на станции.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -382,7 +462,9 @@
     "answers": [
       "has"
     ],
-    "translation": "Она уже закончила домашнее задание."
+    "translation": "Она уже закончила домашнее задание.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -391,7 +473,9 @@
     "answers": [
       "have"
     ],
-    "translation": "Я никогда не был(а) в Японии."
+    "translation": "Я никогда не был(а) в Японии.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -400,7 +484,9 @@
     "answers": [
       "have"
     ],
-    "translation": "Они только что прибыли в аэропорт."
+    "translation": "Они только что прибыли в аэропорт.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -409,7 +495,9 @@
     "answers": [
       "has"
     ],
-    "translation": "Он снова потерял ключи."
+    "translation": "Он снова потерял ключи.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -418,7 +506,9 @@
     "answers": [
       "have"
     ],
-    "translation": "Мы знаем друг друга уже десять лет."
+    "translation": "Мы знаем друг друга уже десять лет.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -427,7 +517,9 @@
     "answers": [
       "have"
     ],
-    "translation": "Ты так вырос(ла)!"
+    "translation": "Ты так вырос(ла)!",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -436,7 +528,9 @@
     "answers": [
       "has"
     ],
-    "translation": "Это был долгий день."
+    "translation": "Это был долгий день.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -445,7 +539,9 @@
     "answers": [
       "has"
     ],
-    "translation": "Мой брат уже уехал на работу."
+    "translation": "Мой брат уже уехал на работу.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -454,7 +550,9 @@
     "answers": [
       "have"
     ],
-    "translation": "Я смотрел(а) этот фильм три раза."
+    "translation": "Я смотрел(а) этот фильм три раза.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -463,7 +561,9 @@
     "answers": [
       "have"
     ],
-    "translation": "Студенты закончили экзамены."
+    "translation": "Студенты закончили экзамены.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -472,7 +572,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Я уже ушёл(ушла), когда он пришёл."
+    "translation": "Я уже ушёл(ушла), когда он пришёл.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -481,7 +583,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Она никогда не видела снег до той зимы."
+    "translation": "Она никогда не видела снег до той зимы.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -490,7 +594,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Они закончили ужинать до того, как мы пришли."
+    "translation": "Они закончили ужинать до того, как мы пришли.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -499,7 +605,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Он изучал английский до того, как переехал в Лондон."
+    "translation": "Он изучал английский до того, как переехал в Лондон.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -508,7 +616,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Мы только что сели, когда зазвонил телефон."
+    "translation": "Мы только что сели, когда зазвонил телефон.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -517,7 +627,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Ты предупреждал(а) меня, но я не послушал(а)."
+    "translation": "Ты предупреждал(а) меня, но я не послушал(а).",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -526,7 +638,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Поезд уже уехал к тому времени, как мы туда добрались."
+    "translation": "Поезд уже уехал к тому времени, как мы туда добрались.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -535,7 +649,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Я никогда не встречал(а) его до той вечеринки."
+    "translation": "Я никогда не встречал(а) его до той вечеринки.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -544,7 +660,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Она забыла зонт дома."
+    "translation": "Она забыла зонт дома.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -553,7 +671,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Они прожили там много лет, прежде чем переехать."
+    "translation": "Они прожили там много лет, прежде чем переехать.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -563,7 +683,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Мы посетим Париж в следующем году."
+    "translation": "Мы посетим Париж в следующем году.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -573,7 +695,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Я позвоню тебе завтра."
+    "translation": "Я позвоню тебе завтра.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -583,7 +707,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Она будет рада тебя видеть."
+    "translation": "Она будет рада тебя видеть.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -593,7 +719,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Они прибудут в полдень."
+    "translation": "Они прибудут в полдень.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -603,7 +731,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Наверное, позже пойдёт дождь."
+    "translation": "Наверное, позже пойдёт дождь.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -613,7 +743,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Он поможет тебе с проектом."
+    "translation": "Он поможет тебе с проектом.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -623,7 +755,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Тебе понравится этот ресторан."
+    "translation": "Тебе понравится этот ресторан.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -633,7 +767,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Я никогда не забуду этот день."
+    "translation": "Я никогда не забуду этот день.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -643,7 +779,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Мы закончим отчёт к пятнице."
+    "translation": "Мы закончим отчёт к пятнице.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -653,7 +791,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Поезд отправится через десять минут."
+    "translation": "Поезд отправится через десять минут.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -662,7 +802,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "Завтра в это же время я буду лететь в Нью-Йорк."
+    "translation": "Завтра в это же время я буду лететь в Нью-Йорк.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -671,7 +813,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "В 9 вечера она будет смотреть своё любимое шоу."
+    "translation": "В 9 вечера она будет смотреть своё любимое шоу.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -680,7 +824,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "На следующей неделе мы будем путешествовать по Европе."
+    "translation": "На следующей неделе мы будем путешествовать по Европе.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -689,7 +835,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "Он будет работать допоздна сегодня вечером."
+    "translation": "Он будет работать допоздна сегодня вечером.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -698,7 +846,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "Они будут ждать нас в аэропорту."
+    "translation": "Они будут ждать нас в аэропорту.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -707,7 +857,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "В полдень я буду обедать с начальником."
+    "translation": "В полдень я буду обедать с начальником.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -716,7 +868,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "В это же время в следующем году они будут жить за границей."
+    "translation": "В это же время в следующем году они будут жить за границей.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -725,7 +879,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "Она будет заниматься, когда ты придёшь."
+    "translation": "Она будет заниматься, когда ты придёшь.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -734,7 +890,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "На следующей неделе в это же время мы будем отмечать твой день рождения."
+    "translation": "На следующей неделе в это же время мы будем отмечать твой день рождения.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -743,7 +901,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "Он будет ехать в аэропорт в 6 утра."
+    "translation": "Он будет ехать в аэропорт в 6 утра.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -752,7 +912,9 @@
     "answers": [
       "have been"
     ],
-    "translation": "Я жду тебя уже час."
+    "translation": "Я жду тебя уже час.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -761,7 +923,9 @@
     "answers": [
       "has been"
     ],
-    "translation": "Она работает здесь с 2019 года."
+    "translation": "Она работает здесь с 2019 года.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -770,7 +934,9 @@
     "answers": [
       "have been"
     ],
-    "translation": "Они изучают английский уже два года."
+    "translation": "Они изучают английский уже два года.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -779,7 +945,9 @@
     "answers": [
       "has been"
     ],
-    "translation": "Он живёт в Лондоне уже полгода."
+    "translation": "Он живёт в Лондоне уже полгода.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -788,7 +956,9 @@
     "answers": [
       "have been"
     ],
-    "translation": "Мы весь день пытаемся до тебя дозвониться."
+    "translation": "Мы весь день пытаемся до тебя дозвониться.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -797,7 +967,9 @@
     "answers": [
       "has been"
     ],
-    "translation": "Дождь идёт с самого утра."
+    "translation": "Дождь идёт с самого утра.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -806,7 +978,9 @@
     "answers": [
       "have been"
     ],
-    "translation": "Ты много тренируешься в последнее время."
+    "translation": "Ты много тренируешься в последнее время.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -815,7 +989,9 @@
     "answers": [
       "has been"
     ],
-    "translation": "Моя сестра учится водить в этом месяце."
+    "translation": "Моя сестра учится водить в этом месяце.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -824,7 +1000,9 @@
     "answers": [
       "have been"
     ],
-    "translation": "Я чувствую усталость всю неделю."
+    "translation": "Я чувствую усталость всю неделю.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -833,7 +1011,9 @@
     "answers": [
       "have been"
     ],
-    "translation": "Дети играют на улице уже несколько часов."
+    "translation": "Дети играют на улице уже несколько часов.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -842,7 +1022,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Я ждал(а) уже час, прежде чем она пришла."
+    "translation": "Я ждал(а) уже час, прежде чем она пришла.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -851,7 +1033,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Она проработала там много лет, прежде чем уволилась."
+    "translation": "Она проработала там много лет, прежде чем уволилась.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -860,7 +1044,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Они занимались всю ночь перед экзаменом."
+    "translation": "Они занимались всю ночь перед экзаменом.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -869,7 +1055,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Он жил в Париже, прежде чем переехал в Лондон."
+    "translation": "Он жил в Париже, прежде чем переехал в Лондон.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -878,7 +1066,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Мы шли уже несколько часов, когда наконец нашли отель."
+    "translation": "Мы шли уже несколько часов, когда наконец нашли отель.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -887,7 +1077,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Дождь шёл весь день, прежде чем наконец прекратился."
+    "translation": "Дождь шёл весь день, прежде чем наконец прекратился.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -896,7 +1088,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Ты усердно тренировался(лась) перед соревнованием."
+    "translation": "Ты усердно тренировался(лась) перед соревнованием.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -905,7 +1099,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Мои родители ждали новостей несколько дней."
+    "translation": "Мои родители ждали новостей несколько дней.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -914,7 +1110,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Я чувствовал(а) себя плохо, прежде чем пошёл(шла) к врачу."
+    "translation": "Я чувствовал(а) себя плохо, прежде чем пошёл(шла) к врачу.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -923,7 +1121,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Команда тренировалась несколько месяцев перед чемпионатом."
+    "translation": "Команда тренировалась несколько месяцев перед чемпионатом.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -932,7 +1132,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К следующему году я закончу учёбу (получу диплом)."
+    "translation": "К следующему году я закончу учёбу (получу диплом).",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -941,7 +1143,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К тому времени, как ты приедешь, мы уже уедем."
+    "translation": "К тому времени, как ты приедешь, мы уже уедем.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -950,7 +1154,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "Она завершит проект к пятнице."
+    "translation": "Она завершит проект к пятнице.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -959,7 +1165,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К 2030 году они построят новый стадион."
+    "translation": "К 2030 году они построят новый стадион.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -968,7 +1176,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "Он закончит домашнее задание к ужину."
+    "translation": "Он закончит домашнее задание к ужину.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -977,7 +1187,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К следующему месяцу мы переедем в новый дом."
+    "translation": "К следующему месяцу мы переедем в новый дом.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -986,7 +1198,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К концу года я накоплю достаточно денег."
+    "translation": "К концу года я накоплю достаточно денег.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -995,7 +1209,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К тому времени поезд уже отправится."
+    "translation": "К тому времени поезд уже отправится.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -1004,7 +1220,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К завтрашнему дню она прочитает всю книгу."
+    "translation": "К завтрашнему дню она прочитает всю книгу.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -1013,7 +1231,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К следующей неделе они подпишут контракт."
+    "translation": "К следующей неделе они подпишут контракт.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1022,7 +1242,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К следующему году я буду работать здесь уже десять лет."
+    "translation": "К следующему году я буду работать здесь уже десять лет.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1031,7 +1253,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К июню она будет изучать английский уже пять лет."
+    "translation": "К июню она будет изучать английский уже пять лет.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1040,7 +1264,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К моменту выхода на пенсию он будет преподавать уже тридцать лет."
+    "translation": "К моменту выхода на пенсию он будет преподавать уже тридцать лет.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1049,7 +1275,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К следующему месяцу мы будем жить здесь уже год."
+    "translation": "К следующему месяцу мы будем жить здесь уже год.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1058,7 +1286,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К завтрашнему дню они будут в пути уже три дня подряд."
+    "translation": "К завтрашнему дню они будут в пути уже три дня подряд.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1067,7 +1297,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К концу этого года я буду работать над этим проектом уже два года."
+    "translation": "К концу этого года я буду работать над этим проектом уже два года.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1076,7 +1308,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К следующей неделе дождь будет идти уже целый месяц подряд."
+    "translation": "К следующей неделе дождь будет идти уже целый месяц подряд.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1085,7 +1319,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К тому времени, как ты приедешь, мы будем ждать уже два часа."
+    "translation": "К тому времени, как ты приедешь, мы будем ждать уже два часа.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1094,7 +1330,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К декабрю она будет руководить компанией уже десять лет."
+    "translation": "К декабрю она будет руководить компанией уже десять лет.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1103,7 +1341,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К тому времени он будет играть профессионально уже десять лет."
+    "translation": "К тому времени он будет играть профессионально уже десять лет.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -1113,7 +1353,9 @@
       "is",
       "'s"
     ],
-    "translation": "Этот ресторан открыт до полуночи."
+    "translation": "Этот ресторан открыт до полуночи.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -1122,7 +1364,9 @@
     "answers": [
       "speaks"
     ],
-    "translation": "Мой брат говорит на двух языках."
+    "translation": "Мой брат говорит на двух языках.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -1132,7 +1376,9 @@
       "are",
       "'re"
     ],
-    "translation": "Мы студенты этой школы."
+    "translation": "Мы студенты этой школы.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -1141,7 +1387,9 @@
     "answers": [
       "rises"
     ],
-    "translation": "Солнце встаёт на востоке."
+    "translation": "Солнце встаёт на востоке.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Simple",
@@ -1150,7 +1398,9 @@
     "answers": [
       "drink"
     ],
-    "translation": "Я пью кофе каждое утро."
+    "translation": "Я пью кофе каждое утро.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -1160,7 +1410,9 @@
       "is",
       "'s"
     ],
-    "translation": "Смотри! Идёт снег."
+    "translation": "Смотри! Идёт снег.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -1170,7 +1422,9 @@
       "are",
       "'re"
     ],
-    "translation": "Мы сейчас ждём автобус."
+    "translation": "Мы сейчас ждём автобус.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -1180,7 +1434,9 @@
       "is",
       "'s"
     ],
-    "translation": "Сегодня она в красном платье."
+    "translation": "Сегодня она в красном платье.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -1190,7 +1446,9 @@
       "am",
       "'m"
     ],
-    "translation": "Я пытаюсь закончить это до обеда."
+    "translation": "Я пытаюсь закончить это до обеда.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Continuous",
@@ -1200,7 +1458,9 @@
       "are",
       "'re"
     ],
-    "translation": "Они строят новый дом по соседству."
+    "translation": "Они строят новый дом по соседству.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -1209,7 +1469,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Я родился(лась) в 1995 году."
+    "translation": "Я родился(лась) в 1995 году.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -1218,7 +1480,9 @@
     "answers": [
       "were"
     ],
-    "translation": "Мы были удивлены новостью."
+    "translation": "Мы были удивлены новостью.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -1227,7 +1491,9 @@
     "answers": [
       "locked"
     ],
-    "translation": "Он запер дверь перед уходом."
+    "translation": "Он запер дверь перед уходом.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -1237,7 +1503,9 @@
       "traveled",
       "travelled"
     ],
-    "translation": "Она ездила в Испанию прошлым летом."
+    "translation": "Она ездила в Испанию прошлым летом.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Simple",
@@ -1246,7 +1514,9 @@
     "answers": [
       "won"
     ],
-    "translation": "Они легко выиграли матч."
+    "translation": "Они легко выиграли матч.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -1255,7 +1525,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Я читал(а) книгу, когда погас свет."
+    "translation": "Я читал(а) книгу, когда погас свет.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -1264,7 +1536,9 @@
     "answers": [
       "were"
     ],
-    "translation": "Мы устроили пикник, когда начался дождь."
+    "translation": "Мы устроили пикник, когда начался дождь.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -1273,7 +1547,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Она ехала слишком быстро, когда её остановила полиция."
+    "translation": "Она ехала слишком быстро, когда её остановила полиция.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -1282,7 +1558,9 @@
     "answers": [
       "were"
     ],
-    "translation": "Дети громко смеялись в соседней комнате."
+    "translation": "Дети громко смеялись в соседней комнате.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Continuous",
@@ -1291,7 +1569,9 @@
     "answers": [
       "was"
     ],
-    "translation": "Он не следил за дорогой."
+    "translation": "Он не следил за дорогой.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -1300,7 +1580,9 @@
     "answers": [
       "have"
     ],
-    "translation": "Мы посещали этот музей дважды."
+    "translation": "Мы посещали этот музей дважды.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -1309,7 +1591,9 @@
     "answers": [
       "has"
     ],
-    "translation": "Она уже ушла из офиса."
+    "translation": "Она уже ушла из офиса.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -1318,7 +1602,9 @@
     "answers": [
       "have"
     ],
-    "translation": "Я никогда раньше не пробовал(а) суши."
+    "translation": "Я никогда раньше не пробовал(а) суши.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -1327,7 +1613,9 @@
     "answers": [
       "has"
     ],
-    "translation": "Цена выросла в этом году."
+    "translation": "Цена выросла в этом году.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect",
@@ -1336,7 +1624,9 @@
     "answers": [
       "have"
     ],
-    "translation": "Они переехали в новую квартиру."
+    "translation": "Они переехали в новую квартиру.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -1345,7 +1635,9 @@
     "answers": [
       "had"
     ],
-    "translation": "К тому времени, когда я проснулся(лась), все уже ушли."
+    "translation": "К тому времени, когда я проснулся(лась), все уже ушли.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -1354,7 +1646,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Она поняла, что забыла паспорт."
+    "translation": "Она поняла, что забыла паспорт.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -1363,7 +1657,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Мы никогда раньше не видели такого красивого вида."
+    "translation": "Мы никогда раньше не видели такого красивого вида.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -1372,7 +1668,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Он закончил забег до того, как начался дождь."
+    "translation": "Он закончил забег до того, как начался дождь.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect",
@@ -1381,7 +1679,9 @@
     "answers": [
       "had"
     ],
-    "translation": "Я уже поел(а), когда меня пригласили на ужин."
+    "translation": "Я уже поел(а), когда меня пригласили на ужин.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -1391,7 +1691,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Обещаю, я буду там вовремя."
+    "translation": "Обещаю, я буду там вовремя.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -1401,7 +1703,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Она, наверное, позвонит тебе позже вечером."
+    "translation": "Она, наверное, позвонит тебе позже вечером.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -1411,7 +1715,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Нам понадобится больше времени, чтобы закончить это."
+    "translation": "Нам понадобится больше времени, чтобы закончить это.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -1421,7 +1727,9 @@
       "will",
       "'ll"
     ],
-    "translation": "Завтра точно пойдёт дождь."
+    "translation": "Завтра точно пойдёт дождь.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Simple",
@@ -1431,7 +1739,9 @@
       "will",
       "'ll"
     ],
-    "translation": "В следующем году они переедут в новый город."
+    "translation": "В следующем году они переедут в новый город.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -1440,7 +1750,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "В 8 вечера мы будем ужинать."
+    "translation": "В 8 вечера мы будем ужинать.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -1449,7 +1761,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "Завтра в это же время я буду сидеть в самолёте."
+    "translation": "Завтра в это же время я буду сидеть в самолёте.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -1458,7 +1772,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "Он будет выступать с презентацией весь день."
+    "translation": "Он будет выступать с презентацией весь день.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -1467,7 +1783,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "В это же время в следующем месяце они будут готовиться к экзаменам."
+    "translation": "В это же время в следующем месяце они будут готовиться к экзаменам.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Continuous",
@@ -1476,7 +1794,9 @@
     "answers": [
       "will be"
     ],
-    "translation": "Она будет ждать снаружи, когда ты выйдешь из здания."
+    "translation": "Она будет ждать снаружи, когда ты выйдешь из здания.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -1485,7 +1805,9 @@
     "answers": [
       "has been"
     ],
-    "translation": "Он работает над этим проектом с марта."
+    "translation": "Он работает над этим проектом с марта.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -1494,7 +1816,9 @@
     "answers": [
       "have been"
     ],
-    "translation": "Мы уже несколько недель ищем новую квартиру."
+    "translation": "Мы уже несколько недель ищем новую квартиру.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -1503,7 +1827,9 @@
     "answers": [
       "have been"
     ],
-    "translation": "Я всё утро пытаюсь до тебя дозвониться."
+    "translation": "Я всё утро пытаюсь до тебя дозвониться.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -1512,7 +1838,9 @@
     "answers": [
       "has been"
     ],
-    "translation": "В последнее время она чувствует себя намного лучше."
+    "translation": "В последнее время она чувствует себя намного лучше.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Present Perfect Continuous",
@@ -1521,7 +1849,9 @@
     "answers": [
       "have been"
     ],
-    "translation": "Они живут в этом доме уже долгое время."
+    "translation": "Они живут в этом доме уже долгое время.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -1530,7 +1860,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Она занималась несколько часов, прежде чем начался экзамен."
+    "translation": "Она занималась несколько часов, прежде чем начался экзамен.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -1539,7 +1871,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Мы ехали всю ночь, прежде чем добрались до отеля."
+    "translation": "Мы ехали всю ночь, прежде чем добрались до отеля.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -1548,7 +1882,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Он проработал там год, прежде чем получил повышение."
+    "translation": "Он проработал там год, прежде чем получил повышение.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -1557,7 +1893,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Я ждал(а) так долго, что чуть не ушёл(ушла)."
+    "translation": "Я ждал(а) так долго, что чуть не ушёл(ушла).",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Past Perfect Continuous",
@@ -1566,7 +1904,9 @@
     "answers": [
       "had been"
     ],
-    "translation": "Они спорили какое-то время, прежде чем я пришёл(пришла)."
+    "translation": "Они спорили какое-то время, прежде чем я пришёл(пришла).",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -1575,7 +1915,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К тому времени, как она приедет, мы закончим готовить."
+    "translation": "К тому времени, как она приедет, мы закончим готовить.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -1584,7 +1926,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К 2027 году он закончит университет."
+    "translation": "К 2027 году он закончит университет.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -1593,7 +1937,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К следующему лету они выплатят кредит."
+    "translation": "К следующему лету они выплатят кредит.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -1602,7 +1948,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К вечеру я дочитаю всю эту книгу."
+    "translation": "К вечеру я дочитаю всю эту книгу.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect",
@@ -1611,7 +1959,9 @@
     "answers": [
       "will have"
     ],
-    "translation": "К концу встречи мы всё решим."
+    "translation": "К концу встречи мы всё решим.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1620,7 +1970,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К следующему году она будет играть на пианино уже десять лет."
+    "translation": "К следующему году она будет играть на пианино уже десять лет.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1629,7 +1981,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К тому времени, как он закончит, он будет работать уже двенадцать часов подряд."
+    "translation": "К тому времени, как он закончит, он будет работать уже двенадцать часов подряд.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1638,7 +1992,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К 2030 году они будут жить в этом городе уже двадцать лет."
+    "translation": "К 2030 году они будут жить в этом городе уже двадцать лет.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1647,7 +2003,9 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К следующей неделе мы будем репетировать эту пьесу уже месяц."
+    "translation": "К следующей неделе мы будем репетировать эту пьесу уже месяц.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
   },
   {
     "tense": "Future Perfect Continuous",
@@ -1656,6 +2014,1652 @@
     "answers": [
       "will have been"
     ],
-    "translation": "К тому времени, как ты проснёшься, я буду за рулём уже шесть часов."
+    "translation": "К тому времени, как ты проснёшься, я буду за рулём уже шесть часов.",
+    "topic": "tenses",
+    "topic_ru": "Времена"
+  },
+  {
+    "tense": "Артикль a/an",
+    "tense_ru": "Перед согласным звуком — a, перед гласным — an",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "I saw ___ elephant at the zoo.",
+    "answers": [
+      "an"
+    ],
+    "translation": "Я видел слона в зоопарке."
+  },
+  {
+    "tense": "Артикль a/an",
+    "tense_ru": "Перед согласным звуком — a, перед гласным — an",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "She works as ___ nurse.",
+    "answers": [
+      "a"
+    ],
+    "translation": "Она работает медсестрой."
+  },
+  {
+    "tense": "Артикль a/an",
+    "tense_ru": "Смотрим на звук, а не на букву: hour звучит с гласного",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "We waited for ___ hour.",
+    "answers": [
+      "an"
+    ],
+    "translation": "Мы ждали час."
+  },
+  {
+    "tense": "Артикль a/an",
+    "tense_ru": "University звучит как «ю», поэтому a",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "He studies at ___ university.",
+    "answers": [
+      "a"
+    ],
+    "translation": "Он учится в университете."
+  },
+  {
+    "tense": "Определённый артикль",
+    "tense_ru": "The — когда предмет уже известен собеседнику",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "I bought a book. ___ book was expensive.",
+    "answers": [
+      "the",
+      "The"
+    ],
+    "translation": "Я купил книгу. Книга была дорогая."
+  },
+  {
+    "tense": "Определённый артикль",
+    "tense_ru": "The — когда предмет единственный в своём роде",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "___ sun rises in the east.",
+    "answers": [
+      "the",
+      "The"
+    ],
+    "translation": "Солнце встаёт на востоке."
+  },
+  {
+    "tense": "Определённый артикль",
+    "tense_ru": "С превосходной степенью всегда the",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "This is ___ best day of my life.",
+    "answers": [
+      "the"
+    ],
+    "translation": "Это лучший день в моей жизни."
+  },
+  {
+    "tense": "Нулевой артикль",
+    "tense_ru": "С именами и городами артикль не ставится",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "She lives in ___ Moscow.",
+    "answers": [
+      "-",
+      "—",
+      "no article",
+      "nothing",
+      ""
+    ],
+    "translation": "Она живёт в Москве."
+  },
+  {
+    "tense": "Нулевой артикль",
+    "tense_ru": "Перед неисчисляемым в общем смысле артикля нет",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "I like ___ music.",
+    "answers": [
+      "-",
+      "—",
+      "no article",
+      "nothing",
+      ""
+    ],
+    "translation": "Я люблю музыку."
+  },
+  {
+    "tense": "Нулевой артикль",
+    "tense_ru": "Во множественном числе в общем смысле артикля нет",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "___ dogs are loyal animals.",
+    "answers": [
+      "-",
+      "—",
+      "no article",
+      "nothing",
+      ""
+    ],
+    "translation": "Собаки — преданные животные."
+  },
+  {
+    "tense": "Артикль с профессией",
+    "tense_ru": "Перед названием профессии нужен a/an",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "My father is ___ engineer.",
+    "answers": [
+      "an"
+    ],
+    "translation": "Мой отец инженер."
+  },
+  {
+    "tense": "Артикль в выражениях",
+    "tense_ru": "Идти в школу учиться — без артикля",
+    "topic": "articles",
+    "topic_ru": "Артикли",
+    "sentence": "The children go to ___ school every morning.",
+    "answers": [
+      "-",
+      "—",
+      "no article",
+      "nothing",
+      ""
+    ],
+    "translation": "Дети ходят в школу каждое утро."
+  },
+  {
+    "tense": "Предлоги времени",
+    "tense_ru": "At — о точном времени",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "The meeting starts ___ 9 o'clock.",
+    "answers": [
+      "at"
+    ],
+    "translation": "Встреча начинается в 9 часов."
+  },
+  {
+    "tense": "Предлоги времени",
+    "tense_ru": "On — о днях и датах",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "I was born ___ Monday.",
+    "answers": [
+      "on"
+    ],
+    "translation": "Я родился в понедельник."
+  },
+  {
+    "tense": "Предлоги времени",
+    "tense_ru": "In — о месяцах, годах и временах года",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "We met ___ 2019.",
+    "answers": [
+      "in"
+    ],
+    "translation": "Мы познакомились в 2019 году."
+  },
+  {
+    "tense": "Предлоги времени",
+    "tense_ru": "In — о частях суток, но at night",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "She reads ___ the evening.",
+    "answers": [
+      "in"
+    ],
+    "translation": "Она читает по вечерам."
+  },
+  {
+    "tense": "Предлоги места",
+    "tense_ru": "At — о точке или заведении",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "He is waiting ___ the bus stop.",
+    "answers": [
+      "at"
+    ],
+    "translation": "Он ждёт на автобусной остановке."
+  },
+  {
+    "tense": "Предлоги места",
+    "tense_ru": "On — о поверхности",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "Your keys are ___ the table.",
+    "answers": [
+      "on"
+    ],
+    "translation": "Твои ключи на столе."
+  },
+  {
+    "tense": "Предлоги места",
+    "tense_ru": "In — внутри чего-то",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "There is milk ___ the fridge.",
+    "answers": [
+      "in"
+    ],
+    "translation": "В холодильнике есть молоко."
+  },
+  {
+    "tense": "Предлоги места",
+    "tense_ru": "Between — между двумя объектами",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "The shop is ___ the bank and the cafe.",
+    "answers": [
+      "between"
+    ],
+    "translation": "Магазин между банком и кафе."
+  },
+  {
+    "tense": "Предлоги движения",
+    "tense_ru": "To — направление движения",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "We are going ___ the cinema.",
+    "answers": [
+      "to"
+    ],
+    "translation": "Мы идём в кино."
+  },
+  {
+    "tense": "Устойчивые предлоги",
+    "tense_ru": "Depend всегда с on",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "It depends ___ the weather.",
+    "answers": [
+      "on"
+    ],
+    "translation": "Это зависит от погоды."
+  },
+  {
+    "tense": "Устойчивые предлоги",
+    "tense_ru": "Listen всегда с to",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "I like to listen ___ music.",
+    "answers": [
+      "to"
+    ],
+    "translation": "Мне нравится слушать музыку."
+  },
+  {
+    "tense": "Устойчивые предлоги",
+    "tense_ru": "Afraid всегда с of",
+    "topic": "prepositions",
+    "topic_ru": "Предлоги",
+    "sentence": "She is afraid ___ spiders.",
+    "answers": [
+      "of"
+    ],
+    "translation": "Она боится пауков."
+  },
+  {
+    "tense": "Can / can't",
+    "tense_ru": "Can — умение или возможность",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "I ___ swim very well.",
+    "answers": [
+      "can"
+    ],
+    "translation": "Я умею очень хорошо плавать."
+  },
+  {
+    "tense": "Can / can't",
+    "tense_ru": "Can't — невозможность",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "He ___ come today, he is ill.",
+    "answers": [
+      "can't",
+      "cannot",
+      "can not"
+    ],
+    "translation": "Он не может прийти сегодня, он болен."
+  },
+  {
+    "tense": "Must",
+    "tense_ru": "Must — сильная необходимость, часто изнутри",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "You ___ be quiet in the library.",
+    "answers": [
+      "must"
+    ],
+    "translation": "В библиотеке нужно вести себя тихо."
+  },
+  {
+    "tense": "Mustn't",
+    "tense_ru": "Mustn't — запрет, а не отсутствие необходимости",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "You ___ touch that, it's dangerous.",
+    "answers": [
+      "mustn't",
+      "must not"
+    ],
+    "translation": "Нельзя это трогать, это опасно."
+  },
+  {
+    "tense": "Should",
+    "tense_ru": "Should — совет",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "You look tired, you ___ rest.",
+    "answers": [
+      "should"
+    ],
+    "translation": "Ты выглядишь усталым, тебе стоит отдохнуть."
+  },
+  {
+    "tense": "Shouldn't",
+    "tense_ru": "Shouldn't — совет не делать",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "You ___ eat so much sugar.",
+    "answers": [
+      "shouldn't",
+      "should not"
+    ],
+    "translation": "Тебе не стоит есть столько сахара."
+  },
+  {
+    "tense": "Have to",
+    "tense_ru": "Have to — необходимость по внешним обстоятельствам",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "I ___ to get up early tomorrow.",
+    "answers": [
+      "have"
+    ],
+    "translation": "Мне придётся завтра рано встать."
+  },
+  {
+    "tense": "Don't have to",
+    "tense_ru": "Don't have to — можно и не делать, это не запрет",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "It's Sunday, you ___ have to work.",
+    "answers": [
+      "don't",
+      "do not"
+    ],
+    "translation": "Сегодня воскресенье, тебе не нужно работать."
+  },
+  {
+    "tense": "May",
+    "tense_ru": "May — вежливое разрешение",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "___ I ask you a question?",
+    "answers": [
+      "may",
+      "May"
+    ],
+    "translation": "Можно задать вам вопрос?"
+  },
+  {
+    "tense": "Might",
+    "tense_ru": "Might — малая вероятность",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "Take an umbrella, it ___ rain.",
+    "answers": [
+      "might",
+      "may"
+    ],
+    "translation": "Возьми зонт, может пойти дождь."
+  },
+  {
+    "tense": "Could",
+    "tense_ru": "Could — вежливая просьба",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "___ you help me, please?",
+    "answers": [
+      "could",
+      "Could"
+    ],
+    "translation": "Не могли бы вы мне помочь?"
+  },
+  {
+    "tense": "Would",
+    "tense_ru": "Would like — вежливое «хотел бы»",
+    "topic": "modals",
+    "topic_ru": "Модальные глаголы",
+    "sentence": "I ___ like a cup of tea.",
+    "answers": [
+      "would",
+      "'d"
+    ],
+    "translation": "Я бы хотел чашку чая."
+  },
+  {
+    "tense": "Нулевое условие",
+    "tense_ru": "Общая истина: if + Present, Present",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "If you heat ice, it ___.",
+    "answers": [
+      "melts"
+    ],
+    "translation": "Если нагреть лёд, он тает."
+  },
+  {
+    "tense": "Нулевое условие",
+    "tense_ru": "Закон природы — оба глагола в настоящем",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "Water ___ at 100 degrees if you boil it.",
+    "answers": [
+      "boils"
+    ],
+    "translation": "Вода кипит при ста градусах, если её нагреть."
+  },
+  {
+    "tense": "Первое условие",
+    "tense_ru": "Реальное будущее: if + Present, will + глагол",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "If it rains, we ___ stay at home.",
+    "answers": [
+      "will",
+      "'ll"
+    ],
+    "translation": "Если пойдёт дождь, мы останемся дома."
+  },
+  {
+    "tense": "Первое условие",
+    "tense_ru": "После if будущее не ставится — только настоящее",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "If she ___ early, she will catch the train.",
+    "answers": [
+      "leaves"
+    ],
+    "translation": "Если она выйдет рано, она успеет на поезд."
+  },
+  {
+    "tense": "Первое условие",
+    "tense_ru": "Unless значит «если не»",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "You will be late ___ you hurry.",
+    "answers": [
+      "unless"
+    ],
+    "translation": "Ты опоздаешь, если не поторопишься."
+  },
+  {
+    "tense": "Второе условие",
+    "tense_ru": "Нереальное настоящее: if + Past, would + глагол",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "If I had more money, I ___ buy a house.",
+    "answers": [
+      "would",
+      "'d"
+    ],
+    "translation": "Если бы у меня было больше денег, я бы купил дом."
+  },
+  {
+    "tense": "Второе условие",
+    "tense_ru": "В нереальном условии be становится were для всех лиц",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "If I ___ you, I would apologize.",
+    "answers": [
+      "were",
+      "was"
+    ],
+    "translation": "На твоём месте я бы извинился."
+  },
+  {
+    "tense": "Второе условие",
+    "tense_ru": "После if — прошедшее время, хотя речь о настоящем",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "If he ___ harder, he would pass the exam.",
+    "answers": [
+      "studied"
+    ],
+    "translation": "Если бы он занимался усерднее, он бы сдал экзамен."
+  },
+  {
+    "tense": "Третье условие",
+    "tense_ru": "Нереальное прошлое: if + Past Perfect, would have",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "If we had left earlier, we ___ have missed the flight.",
+    "answers": [
+      "wouldn't",
+      "would not"
+    ],
+    "translation": "Если бы мы выехали раньше, мы бы не опоздали на рейс."
+  },
+  {
+    "tense": "Третье условие",
+    "tense_ru": "В условии прошлого ставится had + третья форма",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "If she ___ known, she would have called you.",
+    "answers": [
+      "had"
+    ],
+    "translation": "Если бы она знала, она бы тебе позвонила."
+  },
+  {
+    "tense": "Третье условие",
+    "tense_ru": "Результат в прошлом: would have + третья форма",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "If I had seen him, I ___ have said hello.",
+    "answers": [
+      "would",
+      "'d"
+    ],
+    "translation": "Если бы я его увидел, я бы поздоровался."
+  },
+  {
+    "tense": "Wish",
+    "tense_ru": "I wish + прошедшее — сожаление о настоящем",
+    "topic": "conditionals",
+    "topic_ru": "Условные предложения",
+    "sentence": "I wish I ___ speak Chinese.",
+    "answers": [
+      "could"
+    ],
+    "translation": "Жаль, что я не говорю по-китайски."
+  },
+  {
+    "tense": "Сравнительная степень",
+    "tense_ru": "К коротким прилагательным добавляется -er",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "My brother is ___ than me.",
+    "answers": [
+      "taller"
+    ],
+    "translation": "Мой брат выше меня."
+  },
+  {
+    "tense": "Сравнительная степень",
+    "tense_ru": "Удвоение согласной: big — bigger",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "This house is ___ than ours.",
+    "answers": [
+      "bigger"
+    ],
+    "translation": "Этот дом больше нашего."
+  },
+  {
+    "tense": "Сравнительная степень",
+    "tense_ru": "У длинных прилагательных — more",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "This book is ___ interesting than that one.",
+    "answers": [
+      "more"
+    ],
+    "translation": "Эта книга интереснее той."
+  },
+  {
+    "tense": "Сравнительная степень",
+    "tense_ru": "Good — better, это исключение",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "Her English is ___ than mine.",
+    "answers": [
+      "better"
+    ],
+    "translation": "Её английский лучше моего."
+  },
+  {
+    "tense": "Сравнительная степень",
+    "tense_ru": "Bad — worse, это исключение",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "The weather today is ___ than yesterday.",
+    "answers": [
+      "worse"
+    ],
+    "translation": "Погода сегодня хуже вчерашней."
+  },
+  {
+    "tense": "Превосходная степень",
+    "tense_ru": "Короткие прилагательные: the + -est",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "This is the ___ building in the city.",
+    "answers": [
+      "tallest"
+    ],
+    "translation": "Это самое высокое здание в городе."
+  },
+  {
+    "tense": "Превосходная степень",
+    "tense_ru": "Длинные прилагательные: the most",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "She is the ___ intelligent student in the class.",
+    "answers": [
+      "most"
+    ],
+    "translation": "Она самая умная ученица в классе."
+  },
+  {
+    "tense": "Превосходная степень",
+    "tense_ru": "Good — the best",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "That was the ___ film I have ever seen.",
+    "answers": [
+      "best"
+    ],
+    "translation": "Это лучший фильм, который я когда-либо видел."
+  },
+  {
+    "tense": "As ... as",
+    "tense_ru": "Равенство строится как as + прилагательное + as",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "He is ___ tall as his father.",
+    "answers": [
+      "as"
+    ],
+    "translation": "Он такой же высокий, как его отец."
+  },
+  {
+    "tense": "As ... as",
+    "tense_ru": "Отрицание равенства: not as ... as",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "This film is not ___ good as the book.",
+    "answers": [
+      "as",
+      "so"
+    ],
+    "translation": "Этот фильм не так хорош, как книга."
+  },
+  {
+    "tense": "Than",
+    "tense_ru": "После сравнительной степени ставится than",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "Winter is colder ___ autumn.",
+    "answers": [
+      "than"
+    ],
+    "translation": "Зима холоднее осени."
+  },
+  {
+    "tense": "Much + сравнительная",
+    "tense_ru": "Усиление сравнения: much, far, a lot",
+    "topic": "comparison",
+    "topic_ru": "Степени сравнения",
+    "sentence": "This way is ___ faster than the other one.",
+    "answers": [
+      "much",
+      "far"
+    ],
+    "translation": "Этот путь намного быстрее другого."
+  },
+  {
+    "tense": "Much / many",
+    "tense_ru": "Many — с исчисляемыми во множественном числе",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "How ___ people were at the party?",
+    "answers": [
+      "many"
+    ],
+    "translation": "Сколько человек было на вечеринке?"
+  },
+  {
+    "tense": "Much / many",
+    "tense_ru": "Much — с неисчисляемыми",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "How ___ money do you need?",
+    "answers": [
+      "much"
+    ],
+    "translation": "Сколько денег тебе нужно?"
+  },
+  {
+    "tense": "Few / little",
+    "tense_ru": "A few — с исчисляемыми",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "I have a ___ friends in London.",
+    "answers": [
+      "few"
+    ],
+    "translation": "У меня есть пара друзей в Лондоне."
+  },
+  {
+    "tense": "Few / little",
+    "tense_ru": "A little — с неисчисляемыми",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "Add a ___ salt to the soup.",
+    "answers": [
+      "little"
+    ],
+    "translation": "Добавь немного соли в суп."
+  },
+  {
+    "tense": "Some / any",
+    "tense_ru": "Some — в утверждениях",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "There is ___ milk in the fridge.",
+    "answers": [
+      "some"
+    ],
+    "translation": "В холодильнике есть молоко."
+  },
+  {
+    "tense": "Some / any",
+    "tense_ru": "Any — в вопросах и отрицаниях",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "Do you have ___ questions?",
+    "answers": [
+      "any"
+    ],
+    "translation": "У тебя есть вопросы?"
+  },
+  {
+    "tense": "Some / any",
+    "tense_ru": "Any — в отрицательном предложении",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "I don't have ___ time today.",
+    "answers": [
+      "any"
+    ],
+    "translation": "У меня сегодня нет времени."
+  },
+  {
+    "tense": "A lot of",
+    "tense_ru": "A lot of подходит и к исчисляемым, и к неисчисляемым",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "She has ___ lot of work to do.",
+    "answers": [
+      "a"
+    ],
+    "translation": "У неё много работы."
+  },
+  {
+    "tense": "Исчисляемость",
+    "tense_ru": "Advice неисчисляемое, множественного числа у него нет",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "He gave me some good ___.",
+    "answers": [
+      "advice"
+    ],
+    "translation": "Он дал мне хороший совет."
+  },
+  {
+    "tense": "Исчисляемость",
+    "tense_ru": "Information неисчисляемое",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "I need more ___ about this course.",
+    "answers": [
+      "information"
+    ],
+    "translation": "Мне нужно больше информации об этом курсе."
+  },
+  {
+    "tense": "There is / there are",
+    "tense_ru": "There is — с единственным числом",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "___ is a cat on the roof.",
+    "answers": [
+      "there",
+      "There"
+    ],
+    "translation": "На крыше кошка."
+  },
+  {
+    "tense": "There is / there are",
+    "tense_ru": "There are — с множественным числом",
+    "topic": "quantity",
+    "topic_ru": "Количество и исчисляемость",
+    "sentence": "___ are many books on the shelf.",
+    "answers": [
+      "there",
+      "There"
+    ],
+    "translation": "На полке много книг."
+  },
+  {
+    "tense": "Вопрос с do/does",
+    "tense_ru": "В настоящем времени для he/she/it нужен does",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "___ she like coffee?",
+    "answers": [
+      "does",
+      "Does"
+    ],
+    "translation": "Она любит кофе?"
+  },
+  {
+    "tense": "Вопрос с do/does",
+    "tense_ru": "Для I/you/we/they — do",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "___ you work on Saturdays?",
+    "answers": [
+      "do",
+      "Do"
+    ],
+    "translation": "Ты работаешь по субботам?"
+  },
+  {
+    "tense": "Вопрос с did",
+    "tense_ru": "В прошедшем времени для всех лиц — did",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "___ you see him yesterday?",
+    "answers": [
+      "did",
+      "Did"
+    ],
+    "translation": "Ты видел его вчера?"
+  },
+  {
+    "tense": "Вопрос с did",
+    "tense_ru": "После did глагол стоит в начальной форме",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "Where did you ___ last summer?",
+    "answers": [
+      "go"
+    ],
+    "translation": "Куда ты ездил прошлым летом?"
+  },
+  {
+    "tense": "Вопросительные слова",
+    "tense_ru": "Where спрашивает о месте",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "___ do you live?",
+    "answers": [
+      "where",
+      "Where"
+    ],
+    "translation": "Где ты живёшь?"
+  },
+  {
+    "tense": "Вопросительные слова",
+    "tense_ru": "When спрашивает о времени",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "___ does the film start?",
+    "answers": [
+      "when",
+      "When"
+    ],
+    "translation": "Когда начинается фильм?"
+  },
+  {
+    "tense": "Вопросительные слова",
+    "tense_ru": "Why спрашивает о причине",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "___ are you late again?",
+    "answers": [
+      "why",
+      "Why"
+    ],
+    "translation": "Почему ты снова опоздал?"
+  },
+  {
+    "tense": "Вопросительные слова",
+    "tense_ru": "How much — о цене",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "How ___ does this jacket cost?",
+    "answers": [
+      "much"
+    ],
+    "translation": "Сколько стоит эта куртка?"
+  },
+  {
+    "tense": "Вопрос к подлежащему",
+    "tense_ru": "Когда спрашиваем о подлежащем, do не нужен",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "Who ___ the window?",
+    "answers": [
+      "broke",
+      "opened"
+    ],
+    "translation": "Кто разбил окно?"
+  },
+  {
+    "tense": "Разделительный вопрос",
+    "tense_ru": "После утверждения хвостик отрицательный",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "You are coming with us, ___ you?",
+    "answers": [
+      "aren't",
+      "are not"
+    ],
+    "translation": "Ты идёшь с нами, да?"
+  },
+  {
+    "tense": "Разделительный вопрос",
+    "tense_ru": "После отрицания хвостик утвердительный",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "She doesn't smoke, ___ she?",
+    "answers": [
+      "does"
+    ],
+    "translation": "Она ведь не курит?"
+  },
+  {
+    "tense": "Порядок слов",
+    "tense_ru": "Обстоятельство места идёт перед обстоятельством времени",
+    "topic": "questions",
+    "topic_ru": "Вопросы и порядок слов",
+    "sentence": "They arrived ___ the airport late at night.",
+    "answers": [
+      "at"
+    ],
+    "translation": "Они приехали в аэропорт поздно ночью."
+  },
+  {
+    "tense": "Пассив в настоящем",
+    "tense_ru": "Present Simple Passive: am/is/are + третья форма",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "English ___ spoken all over the world.",
+    "answers": [
+      "is"
+    ],
+    "translation": "На английском говорят во всём мире."
+  },
+  {
+    "tense": "Пассив в настоящем",
+    "tense_ru": "Множественное число — are",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "These cars ___ made in Germany.",
+    "answers": [
+      "are"
+    ],
+    "translation": "Эти машины делают в Германии."
+  },
+  {
+    "tense": "Пассив в прошедшем",
+    "tense_ru": "Past Simple Passive: was/were + третья форма",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "The letter ___ written yesterday.",
+    "answers": [
+      "was"
+    ],
+    "translation": "Письмо было написано вчера."
+  },
+  {
+    "tense": "Пассив в прошедшем",
+    "tense_ru": "Множественное число — were",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "The windows ___ cleaned last week.",
+    "answers": [
+      "were"
+    ],
+    "translation": "Окна помыли на прошлой неделе."
+  },
+  {
+    "tense": "Третья форма",
+    "tense_ru": "Build — built — built",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "This bridge was ___ in 1890.",
+    "answers": [
+      "built"
+    ],
+    "translation": "Этот мост построили в 1890 году."
+  },
+  {
+    "tense": "Третья форма",
+    "tense_ru": "Take — took — taken",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "The photo was ___ by my sister.",
+    "answers": [
+      "taken"
+    ],
+    "translation": "Фотографию сделала моя сестра."
+  },
+  {
+    "tense": "Пассив с модальным",
+    "tense_ru": "После модального глагола пассив строится как be + форма",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "The work must ___ finished today.",
+    "answers": [
+      "be"
+    ],
+    "translation": "Работа должна быть закончена сегодня."
+  },
+  {
+    "tense": "Пассив в будущем",
+    "tense_ru": "Future Passive: will be + третья форма",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "The results will ___ announced tomorrow.",
+    "answers": [
+      "be"
+    ],
+    "translation": "Результаты объявят завтра."
+  },
+  {
+    "tense": "Пассив в перфекте",
+    "tense_ru": "Present Perfect Passive: has/have been + форма",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "The room has ___ cleaned already.",
+    "answers": [
+      "been"
+    ],
+    "translation": "Комнату уже убрали."
+  },
+  {
+    "tense": "Исполнитель действия",
+    "tense_ru": "Кто выполнил действие, вводится через by",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "This song was written ___ my friend.",
+    "answers": [
+      "by"
+    ],
+    "translation": "Эту песню написал мой друг."
+  },
+  {
+    "tense": "Пассив в продолженном",
+    "tense_ru": "Present Continuous Passive: is being + форма",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "The house is ___ painted right now.",
+    "answers": [
+      "being"
+    ],
+    "translation": "Дом сейчас красят."
+  },
+  {
+    "tense": "Пассив в вопросе",
+    "tense_ru": "В вопросе be выходит вперёд",
+    "topic": "passive",
+    "topic_ru": "Пассивный залог",
+    "sentence": "___ this dish served cold?",
+    "answers": [
+      "is",
+      "Is"
+    ],
+    "translation": "Это блюдо подают холодным?"
+  },
+  {
+    "tense": "Герундий после глагола",
+    "tense_ru": "После enjoy всегда -ing",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "I enjoy ___ books in the evening.",
+    "answers": [
+      "reading"
+    ],
+    "translation": "Мне нравится читать книги по вечерам."
+  },
+  {
+    "tense": "Герундий после глагола",
+    "tense_ru": "После finish всегда -ing",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "She finished ___ her homework.",
+    "answers": [
+      "doing"
+    ],
+    "translation": "Она закончила делать домашнее задание."
+  },
+  {
+    "tense": "Герундий после предлога",
+    "tense_ru": "После предлога глагол всегда с -ing",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "He is good at ___ chess.",
+    "answers": [
+      "playing"
+    ],
+    "translation": "Он хорошо играет в шахматы."
+  },
+  {
+    "tense": "Герундий после глагола",
+    "tense_ru": "После avoid всегда -ing",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "Try to avoid ___ late.",
+    "answers": [
+      "being",
+      "arriving"
+    ],
+    "translation": "Старайся не опаздывать."
+  },
+  {
+    "tense": "Инфинитив после глагола",
+    "tense_ru": "После want всегда to + глагол",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "I want ___ learn Spanish.",
+    "answers": [
+      "to"
+    ],
+    "translation": "Я хочу выучить испанский."
+  },
+  {
+    "tense": "Инфинитив после глагола",
+    "tense_ru": "После decide всегда to + глагол",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "They decided ___ move to another city.",
+    "answers": [
+      "to"
+    ],
+    "translation": "Они решили переехать в другой город."
+  },
+  {
+    "tense": "Инфинитив после глагола",
+    "tense_ru": "После promise всегда to + глагол",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "He promised ___ help me.",
+    "answers": [
+      "to"
+    ],
+    "translation": "Он пообещал мне помочь."
+  },
+  {
+    "tense": "Инфинитив цели",
+    "tense_ru": "Чтобы выразить цель, ставится to + глагол",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "She went to the shop ___ buy bread.",
+    "answers": [
+      "to"
+    ],
+    "translation": "Она пошла в магазин купить хлеба."
+  },
+  {
+    "tense": "Герундий как подлежащее",
+    "tense_ru": "В начале предложения действие — это -ing",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "___ is good for your health.",
+    "answers": [
+      "swimming",
+      "Swimming",
+      "walking",
+      "Walking"
+    ],
+    "translation": "Плавание полезно для здоровья."
+  },
+  {
+    "tense": "Без частицы to",
+    "tense_ru": "После модальных глаголов to не ставится",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "You should ___ more water.",
+    "answers": [
+      "drink"
+    ],
+    "translation": "Тебе стоит пить больше воды."
+  },
+  {
+    "tense": "Make / let",
+    "tense_ru": "После make и let инфинитив идёт без to",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "My parents let me ___ out late.",
+    "answers": [
+      "stay",
+      "go"
+    ],
+    "translation": "Родители разрешают мне гулять допоздна."
+  },
+  {
+    "tense": "Stop + форма",
+    "tense_ru": "Stop doing — прекратить само действие",
+    "topic": "verb_forms",
+    "topic_ru": "Герундий и инфинитив",
+    "sentence": "Please stop ___ so loudly.",
+    "answers": [
+      "talking",
+      "speaking",
+      "shouting"
+    ],
+    "translation": "Пожалуйста, перестань так громко говорить."
+  },
+  {
+    "tense": "Get up",
+    "tense_ru": "Get up — вставать с постели",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "I usually get ___ at seven o'clock.",
+    "answers": [
+      "up"
+    ],
+    "translation": "Обычно я встаю в семь часов."
+  },
+  {
+    "tense": "Look for",
+    "tense_ru": "Look for — искать",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "I am looking ___ my keys.",
+    "answers": [
+      "for"
+    ],
+    "translation": "Я ищу свои ключи."
+  },
+  {
+    "tense": "Look after",
+    "tense_ru": "Look after — заботиться, присматривать",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "She looks ___ her little brother.",
+    "answers": [
+      "after"
+    ],
+    "translation": "Она присматривает за младшим братом."
+  },
+  {
+    "tense": "Turn on / off",
+    "tense_ru": "Turn on — включить прибор",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "Can you turn ___ the light, please?",
+    "answers": [
+      "on"
+    ],
+    "translation": "Включи свет, пожалуйста."
+  },
+  {
+    "tense": "Turn on / off",
+    "tense_ru": "Turn off — выключить прибор",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "Don't forget to turn ___ the TV.",
+    "answers": [
+      "off"
+    ],
+    "translation": "Не забудь выключить телевизор."
+  },
+  {
+    "tense": "Give up",
+    "tense_ru": "Give up — бросить, сдаться",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "He gave ___ smoking last year.",
+    "answers": [
+      "up"
+    ],
+    "translation": "Он бросил курить в прошлом году."
+  },
+  {
+    "tense": "Find out",
+    "tense_ru": "Find out — выяснить",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "I need to find ___ the truth.",
+    "answers": [
+      "out"
+    ],
+    "translation": "Мне нужно выяснить правду."
+  },
+  {
+    "tense": "Put on",
+    "tense_ru": "Put on — надеть одежду",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "It's cold, put ___ your coat.",
+    "answers": [
+      "on"
+    ],
+    "translation": "Холодно, надень пальто."
+  },
+  {
+    "tense": "Take off",
+    "tense_ru": "Take off — снять одежду; взлететь",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "The plane will take ___ in ten minutes.",
+    "answers": [
+      "off"
+    ],
+    "translation": "Самолёт взлетит через десять минут."
+  },
+  {
+    "tense": "Come back",
+    "tense_ru": "Come back — вернуться",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "He came ___ from London yesterday.",
+    "answers": [
+      "back"
+    ],
+    "translation": "Он вчера вернулся из Лондона."
+  },
+  {
+    "tense": "Grow up",
+    "tense_ru": "Grow up — расти, взрослеть",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "I grew ___ in a small village.",
+    "answers": [
+      "up"
+    ],
+    "translation": "Я вырос в маленькой деревне."
+  },
+  {
+    "tense": "Run out of",
+    "tense_ru": "Run out of — закончиться (о запасах)",
+    "topic": "phrasal",
+    "topic_ru": "Фразовые глаголы",
+    "sentence": "We have run ___ of milk.",
+    "answers": [
+      "out"
+    ],
+    "translation": "У нас закончилось молоко."
+  },
+  {
+    "tense": "Личные местоимения",
+    "tense_ru": "После глагола ставится объектная форма: me, him, her",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "Can you help ___, please?",
+    "answers": [
+      "me"
+    ],
+    "translation": "Помоги мне, пожалуйста."
+  },
+  {
+    "tense": "Личные местоимения",
+    "tense_ru": "Объектная форма от they — them",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "I saw ___ at the station.",
+    "answers": [
+      "them"
+    ],
+    "translation": "Я видел их на вокзале."
+  },
+  {
+    "tense": "Притяжательные",
+    "tense_ru": "Чей — his для мужского рода",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "This is Tom and this is ___ car.",
+    "answers": [
+      "his"
+    ],
+    "translation": "Это Том, а это его машина."
+  },
+  {
+    "tense": "Притяжательные",
+    "tense_ru": "Their — их",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "The children are with ___ parents.",
+    "answers": [
+      "their"
+    ],
+    "translation": "Дети со своими родителями."
+  },
+  {
+    "tense": "Абсолютные притяжательные",
+    "tense_ru": "Без существительного после: mine, yours, hers",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "This book is not yours, it's ___.",
+    "answers": [
+      "mine"
+    ],
+    "translation": "Эта книга не твоя, она моя."
+  },
+  {
+    "tense": "Указательные",
+    "tense_ru": "This — о близком предмете в единственном числе",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "___ book here is very interesting.",
+    "answers": [
+      "this",
+      "This"
+    ],
+    "translation": "Вот эта книга очень интересная."
+  },
+  {
+    "tense": "Указательные",
+    "tense_ru": "Those — о далёких предметах во множественном числе",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "___ mountains over there are beautiful.",
+    "answers": [
+      "those",
+      "Those"
+    ],
+    "translation": "Вон те горы прекрасны."
+  },
+  {
+    "tense": "Somebody / anybody",
+    "tense_ru": "Somebody — в утверждении",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "___ is knocking at the door.",
+    "answers": [
+      "somebody",
+      "Somebody",
+      "someone",
+      "Someone"
+    ],
+    "translation": "Кто-то стучит в дверь."
+  },
+  {
+    "tense": "Somebody / anybody",
+    "tense_ru": "Anybody — в вопросе",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "Is there ___ at home?",
+    "answers": [
+      "anybody",
+      "anyone"
+    ],
+    "translation": "Дома кто-нибудь есть?"
+  },
+  {
+    "tense": "Nothing / everything",
+    "tense_ru": "Nothing уже содержит отрицание, второго не нужно",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "There is ___ in the box, it's empty.",
+    "answers": [
+      "nothing"
+    ],
+    "translation": "В коробке ничего нет, она пустая."
+  },
+  {
+    "tense": "Возвратные",
+    "tense_ru": "Myself — когда действие направлено на себя",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "I cut ___ while cooking.",
+    "answers": [
+      "myself"
+    ],
+    "translation": "Я порезался, когда готовил."
+  },
+  {
+    "tense": "Each other",
+    "tense_ru": "Each other — друг друга",
+    "topic": "pronouns",
+    "topic_ru": "Местоимения",
+    "sentence": "They have known ___ other for years.",
+    "answers": [
+      "each"
+    ],
+    "translation": "Они знают друг друга много лет."
+  },
+  {
+    "tense": "Used to",
+    "tense_ru": "Used to — о том, что было раньше, а теперь нет",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "I ___ to play football every weekend.",
+    "answers": [
+      "used"
+    ],
+    "translation": "Раньше я играл в футбол каждые выходные."
+  },
+  {
+    "tense": "Used to",
+    "tense_ru": "После didn't глагол возвращается в начальную форму",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "She didn't ___ to like coffee.",
+    "answers": [
+      "use"
+    ],
+    "translation": "Раньше она не любила кофе."
+  },
+  {
+    "tense": "Be used to",
+    "tense_ru": "Be used to — привыкнуть к чему-то, дальше -ing",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "I am used to ___ up early.",
+    "answers": [
+      "getting",
+      "waking"
+    ],
+    "translation": "Я привык вставать рано."
+  },
+  {
+    "tense": "Get used to",
+    "tense_ru": "Get used to — привыкать постепенно",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "He is getting used ___ the new job.",
+    "answers": [
+      "to"
+    ],
+    "translation": "Он привыкает к новой работе."
+  },
+  {
+    "tense": "Would для прошлого",
+    "tense_ru": "Would тоже описывает повторявшееся в прошлом",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "Every summer we ___ visit our grandparents.",
+    "answers": [
+      "would",
+      "'d"
+    ],
+    "translation": "Каждое лето мы ездили к бабушке с дедушкой."
+  },
+  {
+    "tense": "Still",
+    "tense_ru": "Still — действие всё ещё продолжается",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "He ___ lives with his parents.",
+    "answers": [
+      "still"
+    ],
+    "translation": "Он всё ещё живёт с родителями."
+  },
+  {
+    "tense": "Already",
+    "tense_ru": "Already — уже произошло, раньше ожидаемого",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "I have ___ finished my work.",
+    "answers": [
+      "already"
+    ],
+    "translation": "Я уже закончил работу."
+  },
+  {
+    "tense": "Yet",
+    "tense_ru": "Yet — в отрицаниях и вопросах, в конце предложения",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "Have you finished your homework ___?",
+    "answers": [
+      "yet"
+    ],
+    "translation": "Ты уже сделал домашнее задание?"
+  },
+  {
+    "tense": "Just",
+    "tense_ru": "Just — только что",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "She has ___ left the office.",
+    "answers": [
+      "just"
+    ],
+    "translation": "Она только что ушла из офиса."
+  },
+  {
+    "tense": "Ever / never",
+    "tense_ru": "Ever — в вопросе о жизненном опыте",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "Have you ___ been to Japan?",
+    "answers": [
+      "ever"
+    ],
+    "translation": "Ты когда-нибудь был в Японии?"
+  },
+  {
+    "tense": "Ever / never",
+    "tense_ru": "Never само по себе отрицание",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "I have ___ seen such a beautiful place.",
+    "answers": [
+      "never"
+    ],
+    "translation": "Я никогда не видел такого красивого места."
+  },
+  {
+    "tense": "For / since",
+    "tense_ru": "Since — с момента времени, for — о длительности",
+    "topic": "used_to",
+    "topic_ru": "Привычки и прошлый опыт",
+    "sentence": "I have lived here ___ 2015.",
+    "answers": [
+      "since"
+    ],
+    "translation": "Я живу здесь с 2015 года."
   }
 ]
