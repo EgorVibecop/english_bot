@@ -569,26 +569,32 @@ def get_due_reviews(user_id, limit=1):
     return rows
 
 
-def record_answer(user_id, word_id, known: bool):
-    """Обновить прогресс по слову после ответа пользователя (Лейтнер)."""
+def record_answer(user_id, word_id, known: bool, count_streak: bool = False):
+    """Обновить прогресс по слову после ответа.
+
+    count_streak=True ставится только для ответов в квизе: именно там
+    считается серия верных подряд, по которой слово признаётся выученным.
+    Кнопки «знаю / не знаю» на карточке серию не двигают — перевод там
+    показан рядом, и нажатие «знаю» ничего не проверяет.
+    """
     conn = get_conn()
     row = conn.execute(
-        "SELECT box, streak FROM progress WHERE user_id = ? AND word_id = ?",
+        "SELECT box, streak, status FROM progress WHERE user_id = ? AND word_id = ?",
         (user_id, word_id),
     ).fetchone()
     current_box = row["box"] if row else 0
     current_streak = (row["streak"] if row and row["streak"] else 0)
 
-    if known:
-        new_box = min(current_box + 1, MAX_BOX)
-        new_streak = current_streak + 1
-    else:
-        new_box = 1
-        new_streak = 0
+    new_box = min(current_box + 1, MAX_BOX) if known else 1
 
-    # Выучено — это пять верных ответов подряд, а не номер коробки: коробка
-    # отвечает за то, когда слово покажут снова, а не за то, знаешь ли ты его.
-    status = "known" if new_streak >= MASTERY_STREAK else "learning"
+    if count_streak:
+        # Серия набирается только в квизе: там надо вспомнить перевод самому,
+        # а на карточке он написан рядом — «знаю» там не доказательство.
+        new_streak = current_streak + 1 if known else 0
+        status = "known" if new_streak >= MASTERY_STREAK else "learning"
+    else:
+        new_streak = current_streak
+        status = row["status"] if row else "learning"
     next_review = (
         datetime.utcnow() + timedelta(days=LEITNER_INTERVALS[new_box])
     ).isoformat()
@@ -1055,20 +1061,27 @@ def get_grammar_stats(user_id):
 
 
 def get_quiz_pool(user_id, limit=8):
-    """Слова, на которых пользователь последний раз ответил «не знаю».
+    """Очередь квиза: слова, которые ещё не выучены.
 
-    Раньше здесь стоял фильтр по статусу 'learning', и квиз греб всё подряд:
-    статус означает «ещё не доведено до автоматизма», а не «не знал». После
-    первого «знаю» слово переходит в коробку 1, выученным считается с 3 —
-    то есть в 'learning' попадали и те слова, которые пользователь знает.
+    Слово попадает сюда, когда на карточке нажали «не знаю», и остаётся,
+    пока не наберёт MASTERY_STREAK верных ответов подряд — иначе серию
+    было бы не набрать, слово уходило бы после первого же верного ответа.
+    Уже начатые серии (streak > 0) не теряются, даже если потом нажать
+    «знаю» на карточке.
+
+    Фильтра по статусу 'learning' здесь намеренно нет: статус означает
+    «ещё не выучено», и под него попадали слова, которые пользователь знает.
     """
     conn = get_conn()
     rows = conn.execute(
         """
         SELECT w.* FROM progress p
         JOIN words w ON w.id = p.word_id
-        WHERE p.user_id = ? AND p.last_known = 0 AND w.translation IS NOT NULL
-        ORDER BY RANDOM()
+        WHERE p.user_id = ?
+          AND p.status != 'known'
+          AND (p.last_known = 0 OR p.streak > 0)
+          AND w.translation IS NOT NULL
+        ORDER BY p.streak DESC, RANDOM()
         LIMIT ?
         """,
         (user_id, limit),

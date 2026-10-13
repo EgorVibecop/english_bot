@@ -3,7 +3,8 @@ Telegram-бот для изучения английского: словарь �
 
 Два раздела:
   📚 Словарь — /word, /review, /quiz (см. bot.py как раньше)
-  ⏳ Времена — тренажёр на 12 английских времён: бот присылает предложение
+  ⏳ Грамматика — 13 тем: времена, артикли, предлоги, модальные и другие;
+               бот присылает предложение
                с пропуском, пользователь отвечает текстом, бот проверяет.
 
 Команды:
@@ -75,7 +76,7 @@ TRANSCRIPTIONS = _load_optional("transcriptions.json")
 
 MAIN_MENU = ReplyKeyboardMarkup(
     [
-        ["📚 Словарь", "⏳ Времена"],
+        ["📚 Словарь", "⏳ Грамматика"],
         ["💬 Сленг", "🎭 Идиомы"],
         ["🎤 Произношение", "📊 Прогресс"],
         ["❓ Помощь"],
@@ -127,6 +128,13 @@ LEVELS = {
     5: "C1 — продвинутый (118 слов)",
     6: "C2 — свободный (222 слова)",
 }
+
+QUIZ_MENU = ReplyKeyboardMarkup(
+    [
+        ["🏁 Закончить квиз"],
+    ],
+    resize_keyboard=True,
+)
 
 GRAMMAR_MENU = ReplyKeyboardMarkup(
     [
@@ -225,7 +233,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Привет! 👋 Я помогу выучить английский.\n\n"
         "📚 *Словарь* — частотные слова с переводом и примером употребления, "
         "три уровня сложности, интервальный повтор и квиз.\n"
-        "⏳ *Времена* — тренажёр на все 12 английских времён: предложение "
+        "⏳ *Грамматика* — 13 тем: все 12 времён, артикли, предлоги, "
+        "модальные глаголы, условные и другие. Предложение "
         "с пропуском, ты вписываешь ответ текстом.\n"
         "💬 *Сленг* — современные сокращения из переписки: btw, ngl, iykyk "
         "и другие.\n\n"
@@ -450,54 +459,120 @@ async def cmd_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
+def translation_variants(translation):
+    """Допустимые варианты перевода.
+
+    В словаре перевод часто записан несколькими значениями через точку
+    с запятой, а в скобках стоит уточнение: «получение; получать (от get)».
+    Засчитываем любое из значений, уточнения в скобках не требуем.
+    """
+    cleaned = re.sub(r"\([^)]*\)", " ", translation or "")
+    parts = re.split(r"[;,/]", cleaned)
+    variants = {normalize_translation(p) for p in parts if normalize_translation(p)}
+    whole = normalize_translation(cleaned)
+    if whole:
+        variants.add(whole)
+    return variants
+
+
+def normalize_translation(text):
+    text = (text or "").strip().lower().replace("ё", "е")
+    text = re.sub(r"[.!?…]+$", "", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
 async def cmd_quiz(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
-    pool = db.get_quiz_pool(user.id, limit=8)
-    if len(pool) < 4:
+    context.user_data.pop("grammar_active", None)
+    pool = db.get_quiz_pool(user.id, limit=10)
+    if not pool:
         await update.message.reply_text(
-            "Пока маловато слов со статусом «не знаю» для квиза (нужно минимум 4). "
-            "Квиз тренирует именно те слова, где ты нажимал(а) «❌ Не знаю» на "
-            "«📖 Новое слово» или «🔁 Повторить».",
+            "Очередь квиза пуста. Слово попадает сюда, когда на карточке "
+            "нажимаешь «❌ Не знаю», и уходит, когда ты "
+            f"{db.MASTERY_STREAK} раза подряд правильно напишешь перевод здесь.",
             reply_markup=VOCAB_MENU,
         )
         return
 
-    questions = []
-    for row in pool:
-        distractors = db.get_random_translations(
-            row["id"], 3, pool="seen", user_id=user.id
-        )
-        if len(distractors) < 3:
-            distractors = db.get_random_translations(row["id"], 3, pool="all")
-        options = distractors + [row["translation"]]
-        random.shuffle(options)
-        questions.append(
-            {
-                "id": row["id"],
-                "word": row["word"],
-                "correct": row["translation"],
-                "options": options,
-            }
-        )
-
-    context.user_data["quiz"] = {"questions": questions, "index": 0, "score": 0}
+    questions = [
+        {"id": row["id"], "word": row["word"], "correct": row["translation"]}
+        for row in pool
+    ]
+    context.user_data["quiz"] = {
+        "questions": questions, "index": 0, "score": 0, "user_id": user.id,
+    }
+    await update.message.reply_text(
+        "🧠 *Квиз*\n\n"
+        "Пишу слово — ты вписываешь перевод текстом. "
+        f"{db.MASTERY_STREAK} верных подряд по одному слову — и оно выучено.",
+        parse_mode=ParseMode.MARKDOWN,
+        reply_markup=QUIZ_MENU,
+    )
     await send_quiz_question(update.message.reply_text, context)
 
 
 async def send_quiz_question(send_func, context: ContextTypes.DEFAULT_TYPE):
     quiz = context.user_data["quiz"]
     q = quiz["questions"][quiz["index"]]
-    buttons = [
-        [InlineKeyboardButton(opt, callback_data=f"quiz:{i}")]
-        for i, opt in enumerate(q["options"])
-    ]
     n = quiz["index"] + 1
     total = len(quiz["questions"])
+    streak = db.get_word_streak(quiz["user_id"], q["id"]) if quiz.get("user_id") else 0
+    progress = f"   серия {streak}/{db.MASTERY_STREAK}" if streak else ""
     await send_func(
-        f"🧠 Вопрос {n}/{total}\n\nКак переводится слово *{q['word']}*?",
-        reply_markup=InlineKeyboardMarkup(buttons),
+        f"🧠 Вопрос {n}/{total}{progress}\n\n"
+        f"*{q['word']}*\n\nКак переводится? Напиши ответ.",
+        reply_markup=QUIZ_MENU,
         parse_mode=ParseMode.MARKDOWN,
     )
+
+
+async def check_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Ответ в квизе вписывается текстом — сверяем с переводом из словаря."""
+    quiz = context.user_data.get("quiz")
+    if not quiz:
+        return
+    user_id = update.effective_user.id
+    q = quiz["questions"][quiz["index"]]
+
+    given = normalize_translation(update.message.text)
+    correct = given in translation_variants(q["correct"])
+
+    db.record_answer(user_id, q["id"], correct, count_streak=True)
+    streak = db.get_word_streak(user_id, q["id"])
+
+    if correct:
+        quiz["score"] += 1
+        if streak >= db.MASTERY_STREAK:
+            reply = f"🎉 Верно! *{q['word']}* — {q['correct']}\nСлово выучено, уходит из очереди."
+        else:
+            reply = (f"✅ Верно! *{q['word']}* — {q['correct']}\n"
+                     f"Серия: {streak} из {db.MASTERY_STREAK}.")
+    else:
+        reply = (f"❌ Неверно. *{q['word']}* — {q['correct']}\n"
+                 f"Ты написал(а): {update.message.text.strip()}\nСерия обнулена.")
+    await update.message.reply_text(reply, parse_mode=ParseMode.MARKDOWN)
+
+    quiz["index"] += 1
+    if quiz["index"] >= len(quiz["questions"]):
+        score, total = quiz["score"], len(quiz["questions"])
+        del context.user_data["quiz"]
+        await update.message.reply_text(
+            f"🏁 Квиз завершён! Результат: {score}/{total}",
+            reply_markup=VOCAB_MENU,
+        )
+        return
+    await send_quiz_question(update.message.reply_text, context)
+
+
+async def cmd_quiz_stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    quiz = context.user_data.pop("quiz", None)
+    if quiz:
+        await update.message.reply_text(
+            f"🏁 Квиз остановлен. В этот раз: {quiz['score']}/{quiz['index']}.",
+            reply_markup=VOCAB_MENU,
+        )
+    else:
+        await update.message.reply_text("Главное меню:", reply_markup=VOCAB_MENU)
 
 
 # ---------- произношение ----------
@@ -675,16 +750,10 @@ async def on_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         word_id = int(data.split(":")[1])
         db.record_answer(user_id, word_id, known)
         await query.edit_message_reply_markup(reply_markup=None)
-        # Показываем, сколько верных ответов подряд осталось до «выучено» —
-        # иначе непонятно, почему слово всё ещё возвращается.
-        streak = db.get_word_streak(user_id, word_id)
-        if known:
-            if streak >= db.MASTERY_STREAK:
-                await query.message.reply_text("🎉 Слово выучено — ушло в запомнившиеся!")
-            else:
-                await query.message.reply_text(
-                    f"Засчитано: {streak} из {db.MASTERY_STREAK} верных подряд."
-                )
+        if not known:
+            await query.message.reply_text(
+                "Добавил в очередь квиза — там и закрепим."
+            )
         await send_next_word(query.message.reply_text, user_id)
 
     elif data.startswith("reveal:"):
@@ -701,40 +770,8 @@ async def on_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=know_buttons(word_id),
         )
 
-    elif data.startswith("quiz:"):
-        quiz = context.user_data.get("quiz")
-        if not quiz:
-            await query.edit_message_text("Квиз уже завершён. Начни новый: /quiz")
-            return
-        idx = int(data.split(":")[1])
-        q = quiz["questions"][quiz["index"]]
-        chosen = q["options"][idx]
-        correct = chosen == q["correct"]
-        # Ответ в квизе — такой же ответ по слову, как «знаю / не знаю» на
-        # карточке. Без этого угаданное слово оставалось бы в квизе навсегда.
-        if q.get("id"):
-            db.record_answer(user_id, q["id"], correct)
-        if correct:
-            quiz["score"] += 1
-            result = f"✅ Верно! *{q['word']}* — {q['correct']}"
-        else:
-            result = f"❌ Неверно. *{q['word']}* — {q['correct']} (ты выбрал(а): {chosen})"
-        await query.edit_message_text(result, parse_mode=ParseMode.MARKDOWN)
 
-        quiz["index"] += 1
-        if quiz["index"] >= len(quiz["questions"]):
-            score = quiz["score"]
-            total = len(quiz["questions"])
-            del context.user_data["quiz"]
-            await query.message.reply_text(
-                f"🏁 Квиз завершён! Результат: {score}/{total}",
-                reply_markup=VOCAB_MENU,
-            )
-        else:
-            await send_quiz_question(query.message.reply_text, context)
-
-
-# ---------- grammar (tenses) ----------
+# ---------- grammar ----------
 
 TENSE_EXPLANATIONS = {
     "Present Simple": "факты, привычки, регулярные действия («every day», «usually»).",
@@ -903,7 +940,7 @@ async def on_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     mapping = {
         "📚 Словарь": cmd_vocab_menu,
-        "⏳ Времена": cmd_grammar,
+        "⏳ Грамматика": cmd_grammar,
         "💬 Сленг": cmd_slang_menu,
         "💬 Новое сокращение": cmd_slang,
         "🎭 Идиомы": cmd_idiom_menu,
@@ -912,6 +949,7 @@ async def on_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "🎭 Новая идиома": cmd_idiom,
         "⬅️ Назад": cmd_back_to_main,
         "🏁 Закончить тренировку": cmd_grammar_stop,
+        "🏁 Закончить квиз": cmd_quiz_stop,
         "📖 Новое слово": cmd_word,
         "🔁 Повторить": cmd_review,
         "🧠 Квиз": cmd_quiz,
@@ -922,6 +960,8 @@ async def on_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     handler = mapping.get(text)
     if handler:
         await handler(update, context)
+    elif context.user_data.get("quiz"):
+        await check_quiz_answer(update, context)
     elif context.user_data.get("grammar_active"):
         await check_grammar_answer(update, context)
     else:
